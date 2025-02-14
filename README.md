@@ -7,7 +7,8 @@ Node.Js v20.9.0 >=
 -------------------------------------------
 Para acessar o projeto crie uma pasta com o nome que preferir.
 Com a pasta aberta no VSCode abra o terminal e siga a sequencia de comandos.
-git init 
+git init <br>  
+
 git add .
 git clone https://github.com/MauMau221/LARAVEL-3-Semestre_Ecommerce.git
 
