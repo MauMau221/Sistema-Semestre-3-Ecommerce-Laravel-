@@ -1,12 +1,12 @@
 # LARAVEL-3-Semestre_Ecommerce
-Para que o projeto funcione certifique se as seguintes dependências estão instaladas: 
-PHP 8.2.x >=
-Composer version 2.7.2 >=
-Node.Js v20.9.0 >= 
+Para que o projeto funcione certifique se as seguintes dependências estão instaladas:  <br>  
+PHP 8.2.x >=  <br>  
+Composer version 2.7.2 >= <br>  
+Node.Js v20.9.0 >=  <br>  
 
 -------------------------------------------
-Para acessar o projeto crie uma pasta com o nome que preferir.
-Com a pasta aberta no VSCode abra o terminal e siga a sequencia de comandos.
+Para acessar o projeto crie uma pasta com o nome que preferir. <br>  
+Com a pasta aberta no VSCode abra o terminal e siga a sequencia de comandos. <br>  
 git init <br>  
 
 git add .
