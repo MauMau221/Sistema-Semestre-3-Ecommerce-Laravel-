@@ -17,7 +17,7 @@ composer install  <br>
 php artisan key:generate <br>  
 - Rodar as migrations para iniciar o banco de dados <br>  
 php artisan migrate --seed <br>  
-- Agora é só iniciar o servidor: <br>
+- Agora é só iniciar o servidor: <br>  
 php artisan serve <br>
 
 ---------------------------------------------
