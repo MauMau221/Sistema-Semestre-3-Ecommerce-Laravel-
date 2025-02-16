@@ -10,9 +10,9 @@ Node.Js v20.9.0 >=  <br>
 git init <br>  
 git add . <br>  
 git commit -m "Primeiro commit".  <br>  
-git clone https://github.com/MauMau221/LARAVEL-3-Semestre_Ecommerce.git <br>
+git clone https://github.com/MauMau221/LARAVEL-3-Semestre_Ecommerce.git <br>  
 cd LARAVEL-3-Semestre_Ecommerce <br>  
-cd ecommerce <br>
+cd ecommerce <br>  
 composer install <br>  
 
 - Agora é só renomear o arquivo ".env.example" para ".env" <br>  
