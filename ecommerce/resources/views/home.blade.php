@@ -33,29 +33,6 @@
                                 <option>Ordernar pelo maior preço</option>
                             </select>
                         </form>
-                        <nav class="d-inline-block">
-                            <ul class="pagination pagination-sm my-0">
-                                <li class="page-item">
-                                    <button class="page-link">1</button>
-                                </li>
-                                <li class="page-item">
-                                    <button class="page-link">2</button>
-                                </li>
-                                <li class="page-item disabled">
-                                    <button class="page-link">3</button>
-                                </li>
-                                <li class="page-item">
-                                    <button class="page-link">4</button>
-                                </li>
-                                <li class="page-item">
-                                    <button class="page-link">5</button>
-                                </li>
-                                <li class="page-item">
-                                    <button class="page-link">6</button>
-                                </li>
-                            </ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -93,11 +70,11 @@
                             </a>
                             <img src="/css/image/card/image.png" class="card-img-top">
                             <div class="card-header">
-                                R${{ number_format($item['preco'],2,',',',')}}
+                                R${{ number_format($item['preco'], 2, ',', ',') }}
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">{{ $item['nome']}}</h5>
-                                <p class="card-text encurtar-3l">{{ $item['desc']}}</p>
+                                <h5 class="card-title">{{ $item['nome'] }}</h5>
+                                <p class="card-text encurtar-3l">{{ $item['desc'] }}</p>
                             </div>
                             <div class="card-footer">
                                 <form action="" class="d-block">
@@ -122,28 +99,6 @@
                                 <option>Ordernar pelo maior preço</option>
                             </select>
                         </form>
-                        <nav class="d-inline-block">
-                            <ul class="pagination pagination-sm my-0">
-                                <li class="page-item">
-                                    <button class="page-link">1</button>
-                                </li>
-                                <li class="page-item">
-                                    <button class="page-link">2</button>
-                                </li>
-                                <li class="page-item disabled">
-                                    <button class="page-link">3</button>
-                                </li>
-                                <li class="page-item">
-                                    <button class="page-link">4</button>
-                                </li>
-                                <li class="page-item">
-                                    <button class="page-link">5</button>
-                                </li>
-                                <li class="page-item">
-                                    <button class="page-link">6</button>
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
             </div>
