@@ -18,7 +18,7 @@
                     <form action="" class="justify-content-center justify-content-md-start mb-3 mb-md-0">
                         <div class="input-group input-group-sm">
                             <input type="text" class="form-control" placeholder="Digite o que procura">
-                            <button class="btn btn-danger btn-sm btn-sm">
+                            <button class="btn btn-dark btn-sm btn-sm">
                                 Buscar
                             </button>
                         </div>

@@ -5,7 +5,7 @@
 @section('content')
     <section>
         <div class="login d-flex justify-content-center mt-5">
-            <div class="form-container bg-danger">
+            <div class="form-container bg-secondary">
                 <p class="title">Login</p>
                 <form class="form" action="" method="post">
                     @csrf

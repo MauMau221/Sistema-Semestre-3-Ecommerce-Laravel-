@@ -13,4 +13,9 @@ class HomeController extends Controller
 
         return view('home', ['itens' => $itens]);
     }
+    
+    public function login()
+    {
+        return view('login.login');
+    }
 }

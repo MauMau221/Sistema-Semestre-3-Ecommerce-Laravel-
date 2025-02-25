@@ -2,8 +2,7 @@
     <div class="container">
         <div class="d-flex justify-content-center">
             <div class="">
-                <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><strong>Ecommerce
-                        Online</strong></a>
+                <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><strong>Ecommerce</strong></a>
             </div>
         </div>
     </div>
@@ -16,24 +15,31 @@
             <div class="navbar-collapse collapse justify-content-center">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="{{ route('index.home') }}" class="nav-link">Principal</a>
+                        <a href="{{ route('index.home') }}" class="nav-link">%OFF</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('info.privacidade') }}" class="nav-link">Politica de
-                            privacidade</a>
+                        <a href="{{ route('info.privacidade') }}" class="nav-link">Roupas</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Quero me cadastrar</a>
+                        <a href="" class="nav-link">Calçados</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Entrar</a>
+                        <a href="" class="nav-link">Acessórios</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
+                        <a href="" class="nav-link">Outlet</a>
                     </li>
                 </ul>
+            </div>
+            <div class="">
+                <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><i
+                        class="fa-solid fa-magnifying-glass"></i></a>
+                <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><i
+                        class="fa-solid fa-user"></i></a>
+                <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><i
+                        class="fa-solid fa-heart"></i></a>
+                <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><i
+                        class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
     </nav>
