@@ -13,12 +13,48 @@
 
     <main>
         <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                my-2">
+                    <div class="card text-center bg-light">
+                        <a href="#" class="position-absolute custom-position p-3 text-dark">
+                        </a>
+                        <img src="/css/image/categorias/catCamisas.png" class="card-img-top">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                my-2">
+                    <div class="card text-center bg-light">
+                        <a href="#" class="position-absolute custom-position p-3 text-dark">
+                        </a>
+                        <img src="/css/image/categorias/catCamisas.png" class="card-img-top">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                my-2">
+                    <div class="card text-center bg-light">
+                        <a href="#" class="position-absolute custom-position p-3 text-dark">
+                        </a>
+                        <img src="/css/image/categorias/catCamisas.png"
+                        class="card-img-top">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                my-2">
+                    <div class="card text-center bg-light">
+                        <a href="#" class="position-absolute custom-position p-3 text-dark">
+                        </a>
+                        <img src="/css/image/categorias/catCamisas.png" class="card-img-top">
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-12 col-md-5">
                     <form action="" class="justify-content-center justify-content-md-start mb-3 mb-md-0">
                         <div class="input-group input-group-sm">
                             <input type="text" class="form-control" placeholder="Digite o que procura">
-                            <button class="btn btn-dark btn-sm btn-sm">
+                            <button class="interactive-button btn btn-dark btn-sm btn-sm">
                                 Buscar
                             </button>
                         </div>
@@ -41,7 +77,7 @@
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center bg-light">
-                        <a href="#" class="position-absolute custom-position p-3 text-danger">
+                        <a href="#" class="position-absolute custom-position p-3 text-dark">
                             <i class="fa-regular fa-heart fa-2xl"></i>
                         </a>
                         <img src="/css/image/card/image.png" class="card-img-top">
@@ -49,23 +85,148 @@
                             R$4,50
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Creatina</h5>
-                            <p class="card-text encurtar-3l">Creatina com betalamina e mix de pré treino</p>
+                            <h5 class="card-title">Um produto qualquer</h5>
+                            <p class="card-text encurtar-3l">Descrição meramente para distração e sem contexto algum</p>
                         </div>
                         <div class="card-footer">
                             <div>
-                                <button class="btn btn-light disabled">
-                                    <small>Reabastecendo Estoque</small>
+                                <button class="btn btn-light">
+                                    <small>Adicionar ao carrinho</small>
                                 </button>
                             </div>
-                            <small class="text-danger">Produto Esgotado</small>
+                            <small class="text-success">32 Unidades</small>
                         </div>
                     </div>
                 </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                my-2">
+                    <div class="card text-center bg-light">
+                        <a href="#" class="position-absolute custom-position p-3 text-dark">
+                            <i class="fa-regular fa-heart fa-2xl"></i>
+                        </a>
+                        <img src="/css/image/card/image.png" class="card-img-top">
+                        <div class="card-header">
+                            R$4,50
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Um produto qualquer</h5>
+                            <p class="card-text encurtar-3l">Descrição meramente para distração e sem contexto algum</p>
+                        </div>
+                        <div class="card-footer">
+                            <div>
+                                <button class="btn btn-light">
+                                    <small>Adicionar ao carrinho</small>
+                                </button>
+                            </div>
+                            <small class="text-success">32 Unidades</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                my-2">
+                    <div class="card text-center bg-light">
+                        <a href="#" class="position-absolute custom-position p-3 text-dark">
+                            <i class="fa-regular fa-heart fa-2xl"></i>
+                        </a>
+                        <img src="/css/image/card/image.png" class="card-img-top">
+                        <div class="card-header">
+                            R$4,50
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Um produto qualquer</h5>
+                            <p class="card-text encurtar-3l">Descrição meramente para distração e sem contexto algum</p>
+                        </div>
+                        <div class="card-footer">
+                            <div>
+                                <button class="btn btn-light">
+                                    <small>Adicionar ao carrinho</small>
+                                </button>
+                            </div>
+                            <small class="text-success">32 Unidades</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                my-2">
+                    <div class="card text-center bg-light">
+                        <a href="#" class="position-absolute custom-position p-3 text-dark">
+                            <i class="fa-regular fa-heart fa-2xl"></i>
+                        </a>
+                        <img src="/css/image/card/image.png" class="card-img-top">
+                        <div class="card-header">
+                            R$4,50
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Um produto qualquer</h5>
+                            <p class="card-text encurtar-3l">Descrição meramente para distração e sem contexto algum</p>
+                        </div>
+                        <div class="card-footer">
+                            <div>
+                                <button class="btn btn-light">
+                                    <small>Adicionar ao carrinho</small>
+                                </button>
+                            </div>
+                            <small class="text-success">32 Unidades</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                my-2">
+                    <div class="card text-center bg-light">
+                        <a href="#" class="position-absolute custom-position p-3 text-dark">
+                            <i class="fa-regular fa-heart fa-2xl"></i>
+                        </a>
+                        <img src="/css/image/card/image.png" class="card-img-top">
+                        <div class="card-header">
+                            R$4,50
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Um produto qualquer</h5>
+                            <p class="card-text encurtar-3l">Descrição meramente para distração e sem contexto algum</p>
+                        </div>
+                        <div class="card-footer">
+                            <div>
+                                <button class="btn btn-light">
+                                    <small>Adicionar ao carrinho</small>
+                                </button>
+                            </div>
+                            <small class="text-success">32 Unidades</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                my-2">
+                    <div class="card text-center bg-light">
+                        <a href="#" class="position-absolute custom-position p-3 text-dark">
+                            <i class="fa-regular fa-heart fa-2xl"></i>
+                        </a>
+                        <img src="/css/image/card/image.png" class="card-img-top">
+                        <div class="card-header">
+                            R$4,50
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Um produto qualquer</h5>
+                            <p class="card-text encurtar-3l">Descrição meramente para distração e sem contexto algum
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div>
+                                <button class="btn btn-light">
+                                    <small>Adicionar ao carrinho</small>
+                                </button>
+                            </div>
+                            <small class="text-success">32 Unidades</small>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 @foreach ($itens as $item)
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 my-1">
                         <div class="card text-center bg-light">
-                            <a href="#" class="position-absolute custom-position p-3 text-danger">
+                            <a href="#" class="position-absolute custom-position p-3 text-dark">
                                 <i class="fa-regular fa-heart fa-2xl"></i>
                             </a>
                             <img src="/css/image/card/image.png" class="card-img-top">

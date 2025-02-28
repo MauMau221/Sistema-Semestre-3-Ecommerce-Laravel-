@@ -12,10 +12,13 @@
                 aria-label="Abrir menu de navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="navbar-collapse collapse justify-content-start">
+
+            </div>
             <div class="navbar-collapse collapse justify-content-center">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="{{ route('index.home') }}" class="nav-link">%OFF</a>
+                    <li class="nav-item sale-nav">
+                        <a id="sale-text" href="{{ route('index.home') }}" class="nav-link">%OFF</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('info.privacidade') }}" class="nav-link">Roupas</a>
