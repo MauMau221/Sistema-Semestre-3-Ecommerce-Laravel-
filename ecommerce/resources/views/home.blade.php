@@ -14,7 +14,7 @@
     <main>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                <div class="col-4 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center bg-light">
                         <a href="#" class="position-absolute custom-position p-3 text-dark">
@@ -22,7 +22,7 @@
                         <img src="/css/image/categorias/catCamisas.png" class="card-img-top">
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                <div class="col-4 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center bg-light">
                         <a href="#" class="position-absolute custom-position p-3 text-dark">
@@ -30,7 +30,7 @@
                         <img src="/css/image/categorias/catCamisas1.png" class="card-img-top">
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                <div class="col-4 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center bg-light">
                         <a href="#" class="position-absolute custom-position p-3 text-dark">
@@ -38,7 +38,7 @@
                         <img src="/css/image/categorias/catCamisas2.png" class="card-img-top">
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                <div class="col-4 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center bg-light">
                         <a href="#" class="position-absolute custom-position p-3 text-dark">
@@ -46,7 +46,7 @@
                         <img src="/css/image/categorias/catCamisas3.png" class="card-img-top">
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                <div class="col-4 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center bg-light">
                         <a href="#" class="position-absolute custom-position p-3 text-dark">
@@ -54,28 +54,12 @@
                         <img src="/css/image/categorias/catCamisas4.png" class="card-img-top">
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
+                <div class="col-4 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center bg-light">
                         <a href="#" class="position-absolute custom-position p-3 text-dark">
                         </a>
                         <img src="/css/image/categorias/catCamisas5.png" class="card-img-top">
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
-                my-2">
-                    <div class="card text-center bg-light">
-                        <a href="#" class="position-absolute custom-position p-3 text-dark">
-                        </a>
-                        <img src="/css/image/categorias/catCamisas6.png" class="card-img-top">
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
-                my-2">
-                    <div class="card text-center bg-light">
-                        <a href="#" class="position-absolute custom-position p-3 text-dark">
-                        </a>
-                        <img src="/css/image/categorias/catCamisas7.png" class="card-img-top">
                     </div>
                 </div>
             </div>
