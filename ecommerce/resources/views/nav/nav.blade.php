@@ -50,8 +50,16 @@
                                 </h5>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="O que você procura">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <input class="form-control" type="text"
+                                            placeholder="O que você procura">
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="p-4 row">
                                     <ul>
