@@ -35,8 +35,39 @@
                 </ul>
             </div>
             <div class="">
-                <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><i
-                        class="fa-solid fa-magnifying-glass"></i></a>
+                <!-- Botão para acionar modal -->
+                <button type="button" class=" navbar-brand text-secondary border-0 bg-transparent" data-toggle="modal"
+                    data-target="#modalExemplo">
+                    <i class="fa-solid fa-magnifying-glass"></i> </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header justify-content-center border-0">
+                                <h5 class="modal-title" id="exampleModalLabel">LOGO
+                                </h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" placeholder="O que você procura">
+                                </div>
+                                <div class="p-4 row">
+                                    <ul>
+                                        <li>1</li>
+                                        <li>2</li>
+                                        <li>3</li>
+                                        <li>4</li>
+                                        <li>5</li>
+                                        <li>6</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><i
                         class="fa-solid fa-user"></i></a>
                 <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><i

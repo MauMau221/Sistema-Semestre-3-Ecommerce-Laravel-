@@ -63,30 +63,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-12 col-md-5">
-                    <form action="" class="justify-content-center justify-content-md-start mb-3 mb-md-0">
-                        <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" placeholder="Digite o que procura">
-                            <button class="interactive-button btn btn-dark btn-sm btn-sm">
-                                Buscar
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-12 col-md-7">
-                    <div class="d-flex flex-row-reverse justify-content-center justify-content-md-start">
-                        <form class="ml-3 d-inline-block">
-                            <select class="form-select form-select-sm">
-                                <option>Ordernar pelo nome</option>
-                                <option>Ordernar pelo menor preço</option>
-                                <option>Ordernar pelo maior preço</option>
-                            </select>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <hr class="mt-3">
             <div class="row justify-content-center">
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
