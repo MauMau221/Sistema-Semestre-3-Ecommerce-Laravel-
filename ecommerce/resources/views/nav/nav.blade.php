@@ -50,17 +50,15 @@
                                 </h5>
                             </div>
                             <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-11">
-                                        <input class="form-control" type="text"
-                                            placeholder="O que você procura">
+                                <form action="">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="O que você procura?">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="input-group-text btn"><i
+                                                    class="fa-solid fa-magnifying-glass"></i></button>
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <button class="btn">
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                </form>
                                 <div class="p-4 row">
                                     <ul>
                                         <li>1</li>
