@@ -35,7 +35,7 @@
                 </ul>
             </div>
             <div class="">
-                <!-- Botão para acionar modal -->
+                <!-- Botão acionar modal -->
                 <button type="button" class=" navbar-brand text-secondary border-0 bg-transparent" data-toggle="modal"
                     data-target="#modalExemplo">
                     <i class="fa-solid fa-magnifying-glass"></i> </button>
@@ -61,27 +61,27 @@
                                 </form>
                                 <div class="container p-4">
                                     <div class="row align-items-center">
-                                        <div class="col-4 col-lg-4 col-md-4 col-sm-6
+                                        <div class="col-6
                 my-2">
                                             Column
                                         </div>
-                                        <div class="col-4 col-lg-4 col-md-4 col-sm-6
+                                        <div class="col-6
                 my-2">
                                             Column
                                         </div>
-                                        <div class="col-4 col-lg-4 col-md-4 col-sm-6
+                                        <div class="col-6
                 my-2">
                                             Column
                                         </div>
-                                        <div class="col-4 col-lg-4 col-md-4 col-sm-6
+                                        <div class="col-6
                 my-2">
                                             Column
                                         </div>
-                                        <div class="col-4 col-lg-4 col-md-4 col-sm-6
+                                        <div class="col-6
                 my-2">
                                             Column
                                         </div>
-                                        <div class="col-4 col-lg-4 col-md-4 col-sm-6
+                                        <div class="col-6
                 my-2">
                                             Column
                                         </div>
