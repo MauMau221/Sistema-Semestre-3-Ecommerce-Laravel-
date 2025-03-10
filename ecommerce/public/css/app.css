@@ -43,14 +43,9 @@
   width: 100%;
 }
 
-.modal-body .form-control:focus {
-  border-color: #e70d0d ;
-
-}
-
-.modal-body .form-control:active {
-  border-color: #e70d0d ;
-
+.list-modal li {
+  list-style: none;
+  text-decoration: none;
 }
 
 .custom-position {

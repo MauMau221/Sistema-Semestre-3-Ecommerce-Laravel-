@@ -59,15 +59,33 @@
                                         </div>
                                     </div>
                                 </form>
-                                <div class="p-4 row">
-                                    <ul>
-                                        <li>1</li>
-                                        <li>2</li>
-                                        <li>3</li>
-                                        <li>4</li>
-                                        <li>5</li>
-                                        <li>6</li>
-                                    </ul>
+                                <div class="container p-4">
+                                    <div class="row align-items-center">
+                                        <div class="col-4 col-lg-4 col-md-4 col-sm-6
+                my-2">
+                                            Column
+                                        </div>
+                                        <div class="col-4 col-lg-4 col-md-4 col-sm-6
+                my-2">
+                                            Column
+                                        </div>
+                                        <div class="col-4 col-lg-4 col-md-4 col-sm-6
+                my-2">
+                                            Column
+                                        </div>
+                                        <div class="col-4 col-lg-4 col-md-4 col-sm-6
+                my-2">
+                                            Column
+                                        </div>
+                                        <div class="col-4 col-lg-4 col-md-4 col-sm-6
+                my-2">
+                                            Column
+                                        </div>
+                                        <div class="col-4 col-lg-4 col-md-4 col-sm-6
+                my-2">
+                                            Column
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
