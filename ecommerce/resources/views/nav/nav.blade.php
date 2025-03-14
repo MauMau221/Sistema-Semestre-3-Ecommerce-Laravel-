@@ -12,11 +12,10 @@
                 aria-label="Abrir menu de navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse justify-content-start">
-
+            <div class="navbar-collapse collapse">
             </div>
-            <div class="navbar-collapse collapse justify-content-center">
-                <ul class="navbar-nav">
+            <div class="navbar-collapse collapse ml-4">
+                <ul class="navbar-nav justify-content-center ml-4">
                     <li class="nav-item sale-nav">
                         <a id="sale-text" href="{{ route('index.home') }}" class="nav-link">%OFF</a>
                     </li>
@@ -34,7 +33,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="">
+            <div class="navbar-collapse collapse justify-content-center">
                 <!-- Botão acionar modal -->
                 <button type="button" class=" navbar-brand text-secondary border-0 bg-transparent" data-toggle="modal"
                     data-target="#modalExemplo">
@@ -52,7 +51,8 @@
                             <div class="modal-body">
                                 <form action="">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="O que você procura?">
+                                        <input type="text" class="form-control text-center"
+                                            placeholder="O que você procura?">
                                         <div class="input-group-append">
                                             <button type="submit" class="input-group-text btn"><i
                                                     class="fa-solid fa-magnifying-glass"></i></button>
@@ -60,30 +60,24 @@
                                     </div>
                                 </form>
                                 <div class="container p-4">
-                                    <div class="row align-items-center">
-                                        <div class="col-6
-                my-2">
-                                            Column
+                                    <div class="row align-items-center text-center ">
+                                        <div class="col-6 my-2">
+                                            <a href="" class="text-secondary">Calças</a>
                                         </div>
-                                        <div class="col-6
-                my-2">
-                                            Column
+                                        <div class="col-6 my-2">
+                                            <a href="" class="text-secondary">Camisas</a>
                                         </div>
-                                        <div class="col-6
-                my-2">
-                                            Column
+                                        <div class="col-6 my-2">
+                                            <a href="" class="text-secondary">Blusas</a>
                                         </div>
-                                        <div class="col-6
-                my-2">
-                                            Column
+                                        <div class="col-6 my-2">
+                                            <a href="" class="text-secondary">Acessorios</a>
                                         </div>
-                                        <div class="col-6
-                my-2">
-                                            Column
+                                        <div class="col-6 my-2">
+                                            <a href="" class="text-secondary">Alfaiataria</a>
                                         </div>
-                                        <div class="col-6
-                my-2">
-                                            Column
+                                        <div class="col-6 my-2">
+                                            <a href="" class="text-secondary">Promoção</a>
                                         </div>
                                     </div>
                                 </div>
