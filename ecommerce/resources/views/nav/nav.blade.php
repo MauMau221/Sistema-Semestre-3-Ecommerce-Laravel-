@@ -2,11 +2,11 @@
     <div class="container">
         <div class="d-flex justify-content-center">
             <div class="">
-                <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><strong>Ecommerce</strong></a>
+                <a class="navbar-brand text-dark" href="{{ route('index.home') }}"><strong>Ecommerce</strong></a>
             </div>
         </div>
     </div>
-    <nav class="navbar navbar-expand-md navbar-light border-bottom shadow-s">
+    <nav class="navbar navbar-expand-md border-bottom shadow-s">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
                 aria-label="Abrir menu de navegação">

@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
+
+:root {
+  --font-primary: 'Poppins', sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--font-primary);
   font-size: 1rem;
 
 }
@@ -49,6 +55,15 @@
 
 .navbar-brand:hover {
   cursor: pointer;
+}
+
+.nav-item a {
+  color: #000;
+}
+
+.nav-item a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .list-modal li {
