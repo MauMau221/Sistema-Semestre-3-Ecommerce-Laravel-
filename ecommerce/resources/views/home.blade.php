@@ -66,28 +66,181 @@
             </div>
             <hr class="mt-3">
 
+            <h3 class="p-4">Camisas</h3>
 
-
-
-            <div class="row justify-content-center">
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6
-                my-2">
-                    <div>
-                        <div class="card-product">
-                            <img src="/css/image/card/image.png" class="card-img-top">
-                            <div class="card d-flex flex-column p-2 border-0">
-                                <div class="star">
-                                    <i class="fa-solid fa-star fa-2xs"></i>
-                                    <i class="fa-solid fa-star fa-2xs"></i>
-                                    <i class="fa-solid fa-star fa-2xs"></i>
-                                    <i class="fa-solid fa-star fa-2xs"></i>
-                                    <i class="fa-regular fa-star fa-2xs"></i>
+            <div class="container">
+                <div class="d-flex justify-content-end m-2"> 
+                    <div class="button-prev p-1"><i class="fa-solid fa-circle-chevron-right fa-flip-horizontal fa-2xl"></i></div>
+                    <div class="button-next p-1"><i class="fa-solid fa-circle-chevron-right fa-2xl"></i></div>
+                </div>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="card-product">
+                                <div class="image-container position-relative">
+                                    <img src="/css/image/card/image.png" class="card-img-top">
+                                    <a href="#" class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
+                                        <i class="fa-solid fa-cart-plus fa-xl"></i>
+                                    </a>
                                 </div>
-                                <h5 class="font-weight-bold">CAMISA SLIM TRICONE MAQUINETADA BRANCA</h5>
-                                <p class="card-price">
-                                    <s>R$399,99</s> 
-                                    <strong>199,99</strong>
-                                </p>
+                                <div class="card d-flex flex-column p-2 border-0">
+                                    <div class="star">
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-regular fa-star fa-2xs"></i>
+                                    </div>
+                                    <h5 class="font-weight-bold">CAMISA SLIM TRICONE MAQUINETADA BRANCA</h5>
+                                    <p class="card-price">
+                                        <s>R$399,99</s>
+                                        <strong>199,99</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card-product">
+                                <div class="image-container position-relative">
+                                    <img src="/css/image/card/image.png" class="card-img-top">
+                                    <a href="#" class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
+                                        <i class="fa-solid fa-cart-plus fa-xl"></i>
+                                    </a>
+                                </div>
+                                <div class="card d-flex flex-column p-2 border-0">
+                                    <div class="star">
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-regular fa-star fa-2xs"></i>
+                                    </div>
+                                    <h5 class="font-weight-bold">CAMISA SLIM TRICONE MAQUINETADA BRANCA</h5>
+                                    <p class="card-price">
+                                        <s>R$399,99</s>
+                                        <strong>199,99</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card-product">
+                                <div class="image-container position-relative">
+                                    <img src="/css/image/card/image.png" class="card-img-top">
+                                    <a href="#" class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
+                                        <i class="fa-solid fa-cart-plus fa-xl"></i>
+                                    </a>
+                                </div>
+                                <div class="card d-flex flex-column p-2 border-0">
+                                    <div class="star">
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-regular fa-star fa-2xs"></i>
+                                    </div>
+                                    <h5 class="font-weight-bold">CAMISA SLIM TRICONE MAQUINETADA BRANCA</h5>
+                                    <p class="card-price">
+                                        <s>R$399,99</s>
+                                        <strong>199,99</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card-product">
+                                <div class="image-container position-relative">
+                                    <img src="/css/image/card/image.png" class="card-img-top">
+                                    <a href="#" class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
+                                        <i class="fa-solid fa-cart-plus fa-xl"></i>
+                                    </a>
+                                </div>
+                                <div class="card d-flex flex-column p-2 border-0">
+                                    <div class="star">
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-regular fa-star fa-2xs"></i>
+                                    </div>
+                                    <h5 class="font-weight-bold">CAMISA SLIM TRICONE MAQUINETADA BRANCA</h5>
+                                    <p class="card-price">
+                                        <s>R$399,99</s>
+                                        <strong>199,99</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card-product">
+                                <div class="image-container position-relative">
+                                    <img src="/css/image/card/image.png" class="card-img-top">
+                                    <a href="#" class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
+                                        <i class="fa-solid fa-cart-plus fa-xl"></i>
+                                    </a>
+                                </div>
+                                <div class="card d-flex flex-column p-2 border-0">
+                                    <div class="star">
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-regular fa-star fa-2xs"></i>
+                                    </div>
+                                    <h5 class="font-weight-bold">CAMISA SLIM TRICONE MAQUINETADA BRANCA</h5>
+                                    <p class="card-price">
+                                        <s>R$399,99</s>
+                                        <strong>199,99</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card-product">
+                                <div class="image-container position-relative">
+                                    <img src="/css/image/card/image.png" class="card-img-top">
+                                    <a href="#" class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
+                                        <i class="fa-solid fa-cart-plus fa-xl"></i>
+                                    </a>
+                                </div>
+                                <div class="card d-flex flex-column p-2 border-0">
+                                    <div class="star">
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-regular fa-star fa-2xs"></i>
+                                    </div>
+                                    <h5 class="font-weight-bold">CAMISA SLIM TRICONE MAQUINETADA BRANCA</h5>
+                                    <p class="card-price">
+                                        <s>R$399,99</s>
+                                        <strong>199,99</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card-product">
+                                <div class="image-container position-relative">
+                                    <img src="/css/image/card/image.png" class="card-img-top">
+                                    <a href="#" class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
+                                        <i class="fa-solid fa-cart-plus fa-xl"></i>
+                                    </a>
+                                </div>
+                                <div class="card d-flex flex-column p-2 border-0">
+                                    <div class="star">
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-solid fa-star fa-2xs"></i>
+                                        <i class="fa-regular fa-star fa-2xs"></i>
+                                    </div>
+                                    <h5 class="font-weight-bold">CAMISA SLIM TRICONE MAQUINETADA BRANCA</h5>
+                                    <p class="card-price">
+                                        <s>R$399,99</s>
+                                        <strong>199,99</strong>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

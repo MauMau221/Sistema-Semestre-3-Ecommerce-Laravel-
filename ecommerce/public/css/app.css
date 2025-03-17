@@ -113,6 +113,26 @@
   }
 }
 
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .card {
   text-align: start;
@@ -120,15 +140,26 @@
   border: none;
 }
 
-.card-product img{
+.card-product img {
   border: solid 1px;
-  border-color:  rgb(183, 179, 179);
+  border-color: rgb(183, 179, 179);
 }
 
-.card h5{
+.image-container {
+  position: relative;
+}
+
+.cart-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 8px;
+  padding: 10px;
+}
+
+.card h5 {
   font-size: 11px;
 }
 
-.card .card-price s{
+.card .card-price s {
   font-size: 11px;
 }
