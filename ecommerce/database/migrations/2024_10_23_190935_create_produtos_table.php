@@ -14,16 +14,17 @@ return new class extends Migration
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->text('desc');
+            $table->text('desc')->nullable();
             $table->double('preco', 8, 2);
-            $table->double('desconto', 8, 2);
-            $table->decimal('status', 8, 2);
-            $table->text('url');
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade'); //relacionamento, deleta os produtos que o usuario criou
+            $table->double('desconto', 8, 2)->nullable();
+            $table->boolean('status')->default(true);
+            $table->text('url')->nullable();
 
-            $table->unsignedBigInteger('id_categoria');
-            $table->foreign('id_categoria')->references('id')->on('categorias')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->unsignedBigInteger('categoria_id');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

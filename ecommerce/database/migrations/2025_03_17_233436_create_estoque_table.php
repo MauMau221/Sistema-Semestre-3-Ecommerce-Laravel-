@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categorias', function (Blueprint $table) {
+        Schema::create('estoques', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->text('descricao');
-            $table->boolean('status')->default(true); // true = ativo, false = inativo
+            $table->unsignedBigInteger('produto_id');
+            $table->integer('quantidade')->default(0);
             $table->timestamps();
+
+            // Chave estrangeira para a tabela produtos
+            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
         });
     }
 
@@ -25,6 +27,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categorias');
+        Schema::table('estoque', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -86,7 +86,7 @@
                     </div>
                 </div>
 
-                <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><i
+                <a class="navbar-brand text-secondary" href="{{ route('index.login') }}"><i
                         class="fa-solid fa-user"></i></a>
                 <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><i
                         class="fa-solid fa-heart"></i></a>
