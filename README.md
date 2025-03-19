@@ -23,6 +23,10 @@ php artisan migrate --seed <br>
 - Agora é só iniciar o servidor: <br>  
 php artisan serve <br>
 
+-Comandos para gerar dados fictícios: <br>  
+php artisan db:seed --class=CategoriasSeeder <br>  
+php artisan db:seed --class=ProdutosSeeder <br>  
+
 ---------------------------------------------
 
 Base do site https://www.aramis.com.br/casual-15-off
