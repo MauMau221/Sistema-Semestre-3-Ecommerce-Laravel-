@@ -18,7 +18,7 @@
                 <div class="col-12 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">
-                        <a href="#" class="position-absolute custom-position">
+                        <a href="{{ route('category.camisas') }}" class="position-absolute custom-position">
                         </a>
                         <img src="/css/image/categorias/catCamisas.png" class="card-img-top">
                     </div>
@@ -26,7 +26,7 @@
                 <div class="col-12 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">
-                        <a href="#" class="position-absolute custom-position">
+                        <a href="{{ route('category.camisetas') }}" class="position-absolute custom-position">
                         </a>
                         <img src="/css/image/categorias/catCamisas1.png" class="card-img-top">
                     </div>
@@ -34,7 +34,7 @@
                 <div class="col-12 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">
-                        <a href="#" class="position-absolute custom-position">
+                        <a href="{{ route('category.calcas') }}" class="position-absolute custom-position">
                         </a>
                         <img src="/css/image/categorias/catCamisas2.png" class="card-img-top">
                     </div>
@@ -42,7 +42,7 @@
                 <div class="col-12 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">
-                        <a href="#" class="position-absolute custom-position">
+                        <a href="{{ route('category.calcados') }}" class="position-absolute custom-position">
                         </a>
                         <img src="/css/image/categorias/catCamisas3.png" class="card-img-top">
                     </div>
@@ -50,7 +50,7 @@
                 <div class="col-12 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">
-                        <a href="#" class="position-absolute custom-position">
+                        <a href="{{ route('category.polos') }}" class="position-absolute custom-position">
                         </a>
                         <img src="/css/image/categorias/catCamisas4.png" class="card-img-top">
                     </div>
@@ -58,7 +58,7 @@
                 <div class="col-12 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">
-                        <a href="#" class="position-absolute custom-position">
+                        <a href="{{ route('category.jaquetas') }}" class="position-absolute custom-position">
                         </a>
                         <img src="/css/image/categorias/catCamisas5.png" class="card-img-top">
                     </div>
