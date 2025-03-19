@@ -20,13 +20,13 @@
                         <a id="sale-text" href="{{ route('index.home') }}" class="nav-link">%OFF</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('info.privacidade') }}" class="nav-link">Roupas</a>
+                        <a href="{{ route('category.camisas') }}" class="nav-link">Roupas</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Calçados</a>
+                        <a href="{{ route('category.calcados') }}" class="nav-link">Calçados</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Acessórios</a>
+                        <a href="{{ route('category.acessorios') }}" class="nav-link">Acessórios</a>
                     </li>
                     <li class="nav-item">
                         <a href="" class="nav-link">Outlet</a>

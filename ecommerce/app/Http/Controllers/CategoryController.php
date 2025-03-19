@@ -64,6 +64,6 @@ class CategoryController extends Controller
 
         $produtos = $categoria->produtos;
 
-        return view('pages.jaquetas', ['itens' => $produtos]);
+        return view('pages.acessorios', ['itens' => $produtos]);
     }
 }

@@ -15,6 +15,7 @@ Route::get('/calcas', [CategoryController::class, 'calcas'])->name('category.cal
 Route::get('/calcados', [CategoryController::class, 'calcados'])->name('category.calcados');
 Route::get('/polos', [CategoryController::class, 'polos'])->name('category.polos');
 Route::get('/jaquetas', [CategoryController::class, 'jaquetas'])->name('category.jaquetas');
+Route::get('/acessorios', [CategoryController::class, 'jaquetas'])->name('category.acessorios');
 
 
 Route::prefix('info')->group(function() {
