@@ -3,7 +3,7 @@
 @section('content')
     @include('nav.nav')
 
-    @if (empty($itens))
+    @if (empty($produtos))
         <div class="alert alert-danger mt-0">
             <p>Itens não encontrados</p>
         </div>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        @foreach ($itens as $item)
+                        @foreach ($produtos as $produto)
                             <div class="swiper-slide">
                                 <div class="card-product">
                                     <div class="image-container position-relative">
@@ -93,10 +93,10 @@
                                             <i class="fa-solid fa-star fa-2xs"></i>
                                             <i class="fa-regular fa-star fa-2xs"></i>
                                         </div>
-                                        <h5 class="font-weight-bold">{{ $item['nome'] }}</h5>
+                                        <h5 class="font-weight-bold">{{ $produto['nome'] }}</h5>
                                         <p class="card-price">
                                             <s>R$399,99</s>
-                                            <strong>{{ $item['preco'] }}</strong>
+                                            <strong>{{ $produto['preco'] }}</strong>
                                         </p>
                                     </div>
                                 </div>

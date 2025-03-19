@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[HomeController::class, 'index' ])->name('index.home');
+Route::post('/search',[HomeController::class, 'search' ])->name('index.search');
 Route::get('/login',[HomeController::class, 'login' ])->name('index.login');
 
 

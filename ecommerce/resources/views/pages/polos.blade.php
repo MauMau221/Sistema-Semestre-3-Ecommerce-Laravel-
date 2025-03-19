@@ -8,4 +8,5 @@
             <h1>Polos</h1>
         </div>
     </section>
+    @include('footer.footer')
 @endsection

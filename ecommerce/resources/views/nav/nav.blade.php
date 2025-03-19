@@ -49,9 +49,10 @@
                                 </h5>
                             </div>
                             <div class="modal-body">
-                                <form action="">
+                                <form action="{{ route('index.search') }}" method="post">
+                                    @csrf
                                     <div class="input-group">
-                                        <input type="text" class="form-control text-center"
+                                        <input type="text" class="form-control text-center" name="search"
                                             placeholder="O que você procura?">
                                         <div class="input-group-append">
                                             <button type="submit" class="input-group-text btn"><i
