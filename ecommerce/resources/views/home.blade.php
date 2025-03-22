@@ -80,7 +80,7 @@
                             <div class="swiper-slide">
                                 <div class="card-product">
                                     <div class="image-container position-relative">
-                                        <img src="/css/image/card/image.png" class="card-img-top">
+                                        <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}" class="card-img-top">
                                         <a href="#" class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
                                             <i class="fa-solid fa-cart-plus fa-xl"></i>
                                         </a>
@@ -96,7 +96,7 @@
                                         <h5 class="font-weight-bold">{{ $produto['nome'] }}</h5>
                                         <p class="card-price">
                                             <s>R$399,99</s>
-                                            <strong>{{ $produto['preco'] }}</strong>
+                                            <strong>R${{ $produto['preco'] }}</strong>
                                         </p>
                                     </div>
                                 </div>

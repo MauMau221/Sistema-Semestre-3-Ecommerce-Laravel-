@@ -9,6 +9,7 @@ class Estoque extends Model
 {
     use HasFactory;
 
-    protected $table = 'estoques'; // Defina o nome da tabela se necessário
-    protected $fillable = ['produto_id', 'quantidade']; // Adicione os campos que podem ser preenchidos
+    protected $table = 'estoques';
+     
+    protected $fillable = ['produto_id', 'quantidade']; 
 }

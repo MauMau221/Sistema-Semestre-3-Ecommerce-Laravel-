@@ -147,12 +147,12 @@
                             <div class="card product-card border-0">
                                 <div class="position-relative">
                                     <a href="#" class="text-decoration-none">
-                                        <img src="/css/image/card/image.png" alt="Camiseta 1" class="card-img-top">
+                                        <img src="{{ $produto['url'] }}" alt="Camiseta 1" class="card-img-top">
                                     </a>
                                 </div>
                                 <div class="card-body p-2">
                                     <h5 class="font-weight-bold">{{ $produto['nome'] }}</h5>
-                                    <strong>{{ number_format($produto['preco'], 2, ',', '.') }}</strong>
+                                    <strong>R${{ number_format($produto['preco'], 2, ',', '.') }}</strong>
                                     <div class="product-installments">
                                         <p>Ou 6x de R$ {{ number_format($produto['preco'] / 6, 2, ',', '.') }}</p>
                                     </div>
