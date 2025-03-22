@@ -19,7 +19,6 @@
                 <a href="{{ route('info.trocas') }}" class="text-decoration-none text-dark">Trocas e devoluções</a>
             </div>
             <div class="col-12 col-md-4 text-center text-md-right">
-                <a href="{{ route('info.contato') }}" class="text-decoration-none text-dark">Contato pelo site</a> <br>
                 E-mail: <a href="#" class="text-decoration-none text-dark">empresa@teste.com</a> <br>
                 Telefone: <a href="#" class="text-decoration-none text-dark">(11)99999-9999</a>
             </div>

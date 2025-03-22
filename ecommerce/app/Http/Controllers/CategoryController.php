@@ -15,7 +15,16 @@ class CategoryController extends Controller
 
     public function camisas()
     {
-        $categoria = Categoria::find(1);
+        $categoria = Categoria::where('nome', 'camisas')->firstOrFail();
+
+        $produtos = $categoria->produtos;
+
+        return view('pages.camisas', ['itens' => $produtos]);
+    }
+
+    public function blusas()
+    {
+        $categoria = Categoria::find('blusas');
 
         $produtos = $categoria->produtos;
 
@@ -24,7 +33,7 @@ class CategoryController extends Controller
 
     public function camisetas()
     {
-        $categoria = Categoria::find(2);
+        $categoria = Categoria::find('camisetas');
 
         $produtos = $categoria->produtos;
 
@@ -33,7 +42,7 @@ class CategoryController extends Controller
 
     public function calcas()
     {
-        $categoria = Categoria::find(3);
+        $categoria = Categoria::find('calcas');
 
         $produtos = $categoria->produtos;
 
@@ -42,7 +51,7 @@ class CategoryController extends Controller
 
     public function calcados()
     {
-        $categoria = Categoria::find(4);
+        $categoria = Categoria::find('calcados');
 
         $produtos = $categoria->produtos;
 
@@ -51,7 +60,7 @@ class CategoryController extends Controller
 
     public function polos()
     {
-        $categoria = Categoria::find(5);
+        $categoria = Categoria::find('polos');
 
         $produtos = $categoria->produtos;
 
@@ -60,7 +69,7 @@ class CategoryController extends Controller
 
     public function jaquetas()
     {
-        $categoria = Categoria::find(6);
+        $categoria = Categoria::find('jaquetas');
 
         $produtos = $categoria->produtos;
 

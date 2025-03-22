@@ -63,22 +63,22 @@
                                 <div class="container p-4">
                                     <div class="row align-items-center text-center ">
                                         <div class="col-6 my-2">
-                                            <a href="" class="text-secondary">Calças</a>
+                                            <a href="{{ route('category.calcas') }}" class="text-secondary">Calças</a>
                                         </div>
                                         <div class="col-6 my-2">
-                                            <a href="" class="text-secondary">Camisas</a>
+                                            <a href="{{ route('category.camisas') }}" class="text-secondary">Camisas</a>
                                         </div>
                                         <div class="col-6 my-2">
-                                            <a href="" class="text-secondary">Blusas</a>
+                                            <a href="{{ route('category.blusas') }}" class="text-secondary">Blusas</a>
                                         </div>
                                         <div class="col-6 my-2">
-                                            <a href="" class="text-secondary">Acessorios</a>
+                                            <a href="{{ route('category.acessorios') }}" class="text-secondary">Acessorios</a>
                                         </div>
                                         <div class="col-6 my-2">
-                                            <a href="" class="text-secondary">Alfaiataria</a>
+                                            <a href="{{ route('category.camisas') }}" class="text-secondary">Alfaiataria</a>
                                         </div>
                                         <div class="col-6 my-2">
-                                            <a href="" class="text-secondary">Promoção</a>
+                                            <a href="{{ route('category.camisas') }}" class="text-secondary">Promoção</a>
                                         </div>
                                     </div>
                                 </div>

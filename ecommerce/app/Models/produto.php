@@ -10,6 +10,8 @@ class Produto extends Model
 {
     use HasFactory;
 
+    protected $table = 'produtos';
+
     protected $fillable = [
         'nome',
         'desc',
@@ -18,8 +20,6 @@ class Produto extends Model
         'url',
         'categoria_id',
     ];
-
-    protected $table = 'produtos';
 
     public function categoria()
     {

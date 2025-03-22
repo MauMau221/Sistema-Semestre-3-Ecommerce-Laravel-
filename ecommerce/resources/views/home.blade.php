@@ -70,9 +70,9 @@
 
             <div class="container">
                 <div class="d-flex justify-content-end m-2">
-                    <div class="button-prev p-1"><i class="fa-solid fa-circle-chevron-right fa-flip-horizontal fa-2xl"></i>
+                    <div class="button-prev p-2"><i class="fa-solid fa-circle-chevron-right fa-flip-horizontal fa-2xl"></i>
                     </div>
-                    <div class="button-next p-1"><i class="fa-solid fa-circle-chevron-right fa-2xl"></i></div>
+                    <div class="button-next p-2"><i class="fa-solid fa-circle-chevron-right fa-2xl"></i></div>
                 </div>
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
@@ -107,19 +107,6 @@
                 </div>
             </div>
             <hr class="mt-3">
-            <div class="row pb-4">
-                <div class="col-12">
-                    <div class="d-flex flex-row-reverse justify-content-center justify-content-md-start">
-                        <form class="ml-3 d-inline-block">
-                            <select class="form-select form-select-sm">
-                                <option>Ordernar pelo nome</option>
-                                <option>Ordernar pelo menor preço</option>
-                                <option>Ordernar pelo maior preço</option>
-                            </select>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
     @include('footer.footer')

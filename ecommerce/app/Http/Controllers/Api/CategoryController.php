@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Produto;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class CategoryController extends Controller
 {
 
     public function index()
     {
-        return Produto::all();
+        return Categoria::all();
     }
 
 
@@ -24,9 +24,9 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
-        $produto = Produto::create($data);
+        $categoria = Categoria::create($data);
 
-        return $produto;
+        return $categoria;
     }
 
     public function show(string $id)
