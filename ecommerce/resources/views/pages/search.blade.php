@@ -147,7 +147,9 @@
                             <div class="card product-card border-0">
                                 <div class="position-relative">
                                     <a href="#" class="text-decoration-none">
-                                        <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}" alt="Camiseta 1" class="card-img-top">
+                                        <img src="{{ $produto['url'] ?? asset('https://cdn-icons-png.flaticon.com/512/2071/2071149.png') }}"
+                                            alt="Sem foto" class="card-img-top">
+
                                     </a>
                                 </div>
                                 <div class="card-body p-2">

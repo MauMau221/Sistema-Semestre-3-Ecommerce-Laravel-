@@ -12,13 +12,13 @@ class CategoriaFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => 'camisas',
-            'descricao' => 'camisas de manga longa',            'status' => true
+            // 'nome' => 'camisas',
+            // 'descricao' => 'camisas de manga longa',            'status' => true
 
             
-            // 'nome' => $this->faker->word,
-            // 'descricao' => $this->faker->sentence, // Adicionando um valor aleatório
-            // 'status' => $this->faker->boolean(80), // 80% de chance de ser "true"
+            'nome' => $this->faker->word,
+            'descricao' => $this->faker->sentence, // Adicionando um valor aleatório
+            'status' => $this->faker->boolean(80), // 80% de chance de ser "true"
         ];
     }
 }

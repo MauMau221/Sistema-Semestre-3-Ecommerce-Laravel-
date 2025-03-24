@@ -10,14 +10,7 @@ Route::post('/search',[HomeController::class, 'search' ])->name('index.search');
 Route::get('/login',[HomeController::class, 'login' ])->name('index.login');
 
 
-Route::get('/camisas', [CategoryController::class, 'camisas'])->name('category.camisas');
-Route::get('/camisetas', [CategoryController::class, 'camisetas'])->name('category.camisetas');
-Route::get('/blusas', [CategoryController::class, 'blusas'])->name('category.blusas');
-Route::get('/calcas', [CategoryController::class, 'calcas'])->name('category.calcas');
-Route::get('/calcados', [CategoryController::class, 'calcados'])->name('category.calcados');
-Route::get('/polos', [CategoryController::class, 'polos'])->name('category.polos');
-Route::get('/jaquetas', [CategoryController::class, 'jaquetas'])->name('category.jaquetas');
-Route::get('/acessorios', [CategoryController::class, 'jaquetas'])->name('category.acessorios');
+Route::get('/categoria', [CategoryController::class, 'categorias'])->name('category.categorias');
 
 
 Route::prefix('info')->group(function() {
