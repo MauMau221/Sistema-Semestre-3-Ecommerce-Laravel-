@@ -1,7 +1,5 @@
 @extends('master')
 
-@include('nav.nav')
-
 @section('content')
     <section>
         <section class="container py-4">
@@ -117,6 +115,4 @@
             </div>
         </section>
     </section>
-
-    @include('footer.footer')
 @endsection

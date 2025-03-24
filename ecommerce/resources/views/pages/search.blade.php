@@ -1,7 +1,5 @@
 @extends('master')
 
-@include('nav.nav')
-
 @section('content')
     <div class="container mt-3">
         <div class="row">
@@ -171,6 +169,4 @@
             </div>
         </div>
     </div>
-
-    @include('footer.footer')
 @endsection

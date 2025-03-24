@@ -1,4 +1,3 @@
-<header>
     <div class="container">
         <div class="d-flex justify-content-center">
             <div class="">
@@ -17,16 +16,20 @@
             <div class="navbar-collapse collapse ml-4">
                 <ul class="navbar-nav justify-content-center ml-4">
                     <li class="nav-item sale-nav">
-                        <a id="sale-text" href="{{ route('index.home', ['nome' => 'camisas']) }}" class="nav-link">%OFF</a>
+                        <a id="sale-text" href="{{ route('index.home', ['nome' => 'camisas']) }}"
+                            class="nav-link">%OFF</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('category.categorias', ['nome' => 'camisetas']) }}" class="nav-link">Roupas</a>
+                        <a href="{{ route('category.categorias', ['nome' => 'camisetas']) }}"
+                            class="nav-link">Roupas</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('category.categorias', ['nome' => 'calcados']) }}" class="nav-link">Calçados</a>
+                        <a href="{{ route('category.categorias', ['nome' => 'calcados']) }}"
+                            class="nav-link">Calçados</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('category.categorias', ['nome' => 'acessorios']) }}" class="nav-link">Acessórios</a>
+                        <a href="{{ route('category.categorias', ['nome' => 'acessorios']) }}"
+                            class="nav-link">Acessórios</a>
                     </li>
                     <li class="nav-item">
                         <a href="" class="nav-link">Outlet</a>
@@ -63,22 +66,28 @@
                                 <div class="container p-4">
                                     <div class="row align-items-center text-center ">
                                         <div class="col-6 my-2">
-                                            <a href="{{ route('category.categorias', ['nome' => 'calcas']) }}" class="text-secondary">Calças</a>
+                                            <a href="{{ route('category.categorias', ['nome' => 'calcas']) }}"
+                                                class="text-secondary">Calças</a>
                                         </div>
                                         <div class="col-6 my-2">
-                                            <a href="{{ route('category.categorias', ['nome' => 'camisas']) }}" class="text-secondary">Camisas</a>
+                                            <a href="{{ route('category.categorias', ['nome' => 'camisas']) }}"
+                                                class="text-secondary">Camisas</a>
                                         </div>
                                         <div class="col-6 my-2">
-                                            <a href="{{ route('category.categorias', ['nome' => 'blusas']) }}" class="text-secondary">Blusas</a>
+                                            <a href="{{ route('category.categorias', ['nome' => 'blusas']) }}"
+                                                class="text-secondary">Blusas</a>
                                         </div>
                                         <div class="col-6 my-2">
-                                            <a href="{{ route('category.categorias', ['nome' => 'acessorios']) }}" class="text-secondary">Acessorios</a>
+                                            <a href="{{ route('category.categorias', ['nome' => 'acessorios']) }}"
+                                                class="text-secondary">Acessorios</a>
                                         </div>
                                         <div class="col-6 my-2">
-                                            <a href="{{ route('category.categorias', ['nome' => 'camisetas']) }}" class="text-secondary">Alfaiataria</a>
+                                            <a href="{{ route('category.categorias', ['nome' => 'camisetas']) }}"
+                                                class="text-secondary">Alfaiataria</a>
                                         </div>
                                         <div class="col-6 my-2">
-                                            <a href="{{ route('category.categorias', ['nome' => 'polos']) }}" class="text-secondary">Promoção</a>
+                                            <a href="{{ route('category.categorias', ['nome' => 'polos']) }}"
+                                                class="text-secondary">Promoção</a>
                                         </div>
                                     </div>
                                 </div>
@@ -96,4 +105,3 @@
             </div>
         </div>
     </nav>
-</header>

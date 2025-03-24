@@ -23,5 +23,15 @@ class CategoryController extends Controller
 
         return view('pages.' . $nomeCategoria, ['itens' => $produtos]);
     }
+    
+    public function categoriaFilter(Request $request)
+    {
+        $nomeCategoria = $request->query('nome');
+        $categoria = Categoria::where('nome', $nomeCategoria)->firstOrFail();
+        
+        $produtos = $categoria->produtos;
+
+        return view('pages.' . $nomeCategoria, ['itens' => $produtos]);
+    }
 
 }

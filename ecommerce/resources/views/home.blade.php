@@ -1,7 +1,6 @@
 @extends('master')
 
 @section('content')
-    @include('nav.nav')
 
     @if (empty($produtos))
         <div class="alert alert-danger mt-0">
@@ -109,5 +108,4 @@
             <hr class="mt-3">
         </div>
     </main>
-    @include('footer.footer')
 @endsection
