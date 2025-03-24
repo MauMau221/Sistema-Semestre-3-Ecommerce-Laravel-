@@ -147,7 +147,7 @@
                             <div class="card product-card border-0">
                                 <div class="position-relative">
                                     <a href="#" class="text-decoration-none">
-                                        <img src="{{ $produto['url'] }}" alt="Camiseta 1" class="card-img-top">
+                                        <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}" alt="Camiseta 1" class="card-img-top">
                                     </a>
                                 </div>
                                 <div class="card-body p-2">
