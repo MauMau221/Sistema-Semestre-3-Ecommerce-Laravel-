@@ -144,14 +144,16 @@
                         <div class="col-6 col-md-4 col-lg-3">
                             <div class="card product-card border-0">
                                 <div class="position-relative">
-                                    <a href="#" class="text-decoration-none">
+                                    <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
                                         <img src="{{ $produto['url'] ?? asset('https://cdn-icons-png.flaticon.com/512/2071/2071149.png') }}"
                                             alt="Sem foto" class="card-img-top">
 
                                     </a>
                                 </div>
                                 <div class="card-body p-2">
-                                    <h5 class="font-weight-bold">{{ $produto['nome'] }}</h5>
+                                    <a href="{{ route('product.show', $produto['id']) }}" >
+                                        <h5 class="font-weight-bold text-dark">{{ $produto['nome'] }}</h5>
+                                    </a>
                                     <strong>R${{ number_format($produto['preco'], 2, ',', '.') }}</strong>
                                     <div class="product-installments">
                                         <p>Ou 6x de R$ {{ number_format($produto['preco'] / 6, 2, ',', '.') }}</p>
