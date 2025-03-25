@@ -1,7 +1,7 @@
     <div class="container">
         <div class="d-flex justify-content-center">
             <div class="">
-                <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><strong>Ecommerce</strong></a>
+                <a class="navbar-brand text-secondary" href="{{ route('home.home') }}"><strong>Ecommerce</strong></a>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
             <div class="navbar-collapse collapse ml-4">
                 <ul class="navbar-nav justify-content-center ml-4">
                     <li class="nav-item sale-nav">
-                        <a id="sale-text" href="{{ route('index.home', ['nome' => 'camisas']) }}"
+                        <a id="sale-text" href="{{ route('home.home', ['nome' => 'camisas']) }}"
                             class="nav-link">%OFF</a>
                     </li>
                     <li class="nav-item">
@@ -52,7 +52,7 @@
                                 </h5>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('index.search') }}" method="post">
+                                <form action="{{ route('product.search') }}" method="post">
                                     @csrf
                                     <div class="input-group">
                                         <input type="text" class="form-control text-center" name="search"
@@ -96,11 +96,11 @@
                     </div>
                 </div>
 
-                <a class="navbar-brand text-secondary" href="{{ route('index.login') }}"><i
+                <a class="navbar-brand text-secondary" href="{{ route('home.login') }}"><i
                         class="fa-solid fa-user"></i></a>
-                <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><i
+                <a class="navbar-brand text-secondary" href="{{ route('home.home') }}"><i
                         class="fa-solid fa-heart"></i></a>
-                <a class="navbar-brand text-secondary" href="{{ route('index.home') }}"><i
+                <a class="navbar-brand text-secondary" href="{{ route('home.home') }}"><i
                         class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>

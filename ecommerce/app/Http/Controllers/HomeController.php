@@ -14,13 +14,6 @@ class HomeController extends Controller
         return view('home', ['produtos' => $produtos]);
     }
 
-    public function search(Request $request)
-    {
-        $pesquisa = $request->search;
-        $produtos = Produto::where('nome', 'LIKE', "%{$pesquisa}%")->get();
-        return view('pages.search', ['produtos' => $produtos] );
-    }
-    
     public function login()
     {
         return view('login.login');

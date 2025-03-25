@@ -1,7 +1,6 @@
 @extends('master')
 
 @section('content')
-
     @if (empty($produtos))
         <div class="alert alert-danger mt-0">
             <p>Itens não encontrados</p>
@@ -76,30 +75,34 @@
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
                         @foreach ($produtos as $produto)
-                            <div class="swiper-slide">
-                                <div class="card-product">
-                                    <div class="image-container position-relative">
-                                        <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}" class="card-img-top">
-                                        <a href="#" class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
-                                            <i class="fa-solid fa-cart-plus fa-xl"></i>
-                                        </a>
-                                    </div>
-                                    <div class="card d-flex flex-column p-2 border-0">
-                                        <div class="star">
-                                            <i class="fa-solid fa-star fa-2xs"></i>
-                                            <i class="fa-solid fa-star fa-2xs"></i>
-                                            <i class="fa-solid fa-star fa-2xs"></i>
-                                            <i class="fa-solid fa-star fa-2xs"></i>
-                                            <i class="fa-regular fa-star fa-2xs"></i>
+                            <a href="{{ route('product.show', $produto['id']) }}">
+                                <div class="swiper-slide">
+                                    <div class="card-product">
+                                        <div class="image-container position-relative">
+                                            <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}"
+                                                class="card-img-top">
+                                            <a href="#"
+                                                class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
+                                                <i class="fa-solid fa-cart-plus fa-xl"></i>
+                                            </a>
                                         </div>
-                                        <h5 class="font-weight-bold">{{ $produto['nome'] }}</h5>
-                                        <p class="card-price">
-                                            <s>R$399,99</s>
-                                            <strong>R${{ $produto['preco'] }}</strong>
-                                        </p>
+                                        <div class="card d-flex flex-column p-2 border-0">
+                                            <div class="star">
+                                                <i class="fa-solid fa-star fa-2xs"></i>
+                                                <i class="fa-solid fa-star fa-2xs"></i>
+                                                <i class="fa-solid fa-star fa-2xs"></i>
+                                                <i class="fa-solid fa-star fa-2xs"></i>
+                                                <i class="fa-regular fa-star fa-2xs"></i>
+                                            </div>
+                                            <h5 class="font-weight-bold">{{ $produto['nome'] }}</h5>
+                                            <p class="card-price">
+                                                <s>R$399,99</s>
+                                                <strong>R${{ $produto['preco'] }}</strong>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         @endforeach
 
                     </div>

@@ -22,15 +22,15 @@
 
                 <!-- Imagem principal -->
                 <div class="col-md-5">
-                    <img src="/api/placeholder/450/600" alt="Camiseta Manga Curta" class="img-fluid">
+                    <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}" alt="Camiseta Manga Curta" class="img-fluid">
                 </div>
 
                 <!-- Detalhes do produto -->
                 <div class="col-md-6 product-details">
-                    <h1 class="product-title">CAMISETA MANGA CURTA</h1>
+                    <h1 class="product-title">{{ $produto['nome'] }}</h1>
                     <div class="mb-3">
-                        <span class="product-price">R$ 229,90</span>
-                        <div class="product-installments">em até 6x de R$ 38,32 sem juros</div>
+                        <span class="product-price">R$ {{ number_format($produto['preco'], 2, ',', '.') }}</span>
+                        <div class="product-installments">em até 6x de R$ {{ number_format($produto['preco'] / 6, 2, ',', '.') }} sem juros</div>
                     </div>
 
                     <div class="mb-4">
@@ -71,18 +71,12 @@
 
                     <div class="mb-4">
                         <div class="fw-bold mb-2">Descrição:</div>
-                        <p>Camiseta masculina confeccionada em malha de algodão. Possui gola redonda, manga curta e
-                            padronagem lisa. Peça casual e confortável, ideal para o dia a dia.</p>
+                        <p>{{ $produto['desc'] }}.</p>
                     </div>
 
                     <div class="mb-4">
                         <div class="fw-bold mb-2">Composição:</div>
                         <p>100% Algodão</p>
-                    </div>
-
-                    <div class="mb-4">
-                        <div class="fw-bold mb-2">Código do produto:</div>
-                        <p>8121423</p>
                     </div>
                 </div>
             </div>
