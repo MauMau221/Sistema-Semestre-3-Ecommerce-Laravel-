@@ -1,4 +1,4 @@
-<header>
+<header class="d-none d-lg-block">
     <div class="header-top">
         <div class="container">
             <div class="row">

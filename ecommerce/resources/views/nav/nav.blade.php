@@ -36,7 +36,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="navbar-collapse collapse justify-content-center testando">
+            <div class="navbar-collapse collapse justify-content-center">
                 <!-- Botão acionar modal -->
                 <button type="button" class=" navbar-brand text-secondary border-0 bg-transparent" data-toggle="modal"
                     data-target="#modalExemplo">
