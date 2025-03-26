@@ -148,7 +148,7 @@
 
 .card-product img {
   width: 100%;
-  height: 400px; /* Define uma altura fixa */
+  height: 380px; /* Define uma altura fixa */
   object-fit: cover; /* Mantém a proporção e cobre todo o espaço */
   border: solid 1px rgb(183, 179, 179);
 }

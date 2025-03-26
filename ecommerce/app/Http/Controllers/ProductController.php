@@ -40,7 +40,11 @@ class ProductController extends Controller
     {   
         $produto = Produto::findOrFail($id);
 
-        return view('product.show', ['produto' => $produto]);
+        $produtoCat = $produto->categoria_id;
+
+        $relacionados = Produto::where('categoria_id', $produtoCat)->where('id', '!=', $id)->get();
+
+        return view('product.show', ['produto' => $produto, 'relacionados' => $relacionados]);
     }
 
     /**

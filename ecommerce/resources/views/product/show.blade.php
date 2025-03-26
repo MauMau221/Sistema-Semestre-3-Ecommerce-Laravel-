@@ -22,7 +22,8 @@
 
                 <!-- Imagem principal -->
                 <div class="col-md-5">
-                    <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}" alt="Camiseta Manga Curta" class="img-fluid">
+                    <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}" alt="Camiseta Manga Curta"
+                        class="img-fluid">
                 </div>
 
                 <!-- Detalhes do produto -->
@@ -30,7 +31,8 @@
                     <h1 class="product-title">{{ $produto['nome'] }}</h1>
                     <div class="mb-3">
                         <span class="product-price">R$ {{ number_format($produto['preco'], 2, ',', '.') }}</span>
-                        <div class="product-installments">em até 6x de R$ {{ number_format($produto['preco'] / 6, 2, ',', '.') }} sem juros</div>
+                        <div class="product-installments">em até 6x de R$
+                            {{ number_format($produto['preco'] / 6, 2, ',', '.') }} sem juros</div>
                     </div>
 
                     <div class="mb-4">
@@ -85,28 +87,42 @@
         <!-- Produtos similares -->
         <section class="container py-5">
             <h2 class="text-center mb-4">VOCÊ TAMBÉM PODE GOSTAR</h2>
-            <div class="row">
-                <div class="col-6 col-md-3 similar-product">
-                    <img src="/api/placeholder/250/300" alt="Produto similar 1" class="img-fluid">
-                    <h5>Camiseta Básica</h5>
-                    <div class="fw-bold">R$ 199,90</div>
+            <div class="swiper mySwiper">
+                <div class="d-flex justify-content-end m-2">
+                    <div class="button-prev p-2"><i class="fa-solid fa-circle-chevron-right fa-flip-horizontal fa-2xl"></i>
+                    </div>
+                    <div class="button-next p-2"><i class="fa-solid fa-circle-chevron-right fa-2xl"></i></div>
                 </div>
-                <div class="col-6 col-md-3 similar-product">
-                    <img src="/api/placeholder/250/300" alt="Produto similar 2" class="img-fluid">
-                    <h5>Polo Manga Curta</h5>
-                    <div class="fw-bold">R$ 259,90</div>
-                </div>
-                <div class="col-6 col-md-3 similar-product">
-                    <img src="/api/placeholder/250/300" alt="Produto similar 3" class="img-fluid">
-                    <h5>Camiseta Estampada</h5>
-                    <div class="fw-bold">R$ 219,90</div>
-                </div>
-                <div class="col-6 col-md-3 similar-product">
-                    <img src="/api/placeholder/250/300" alt="Produto similar 4" class="img-fluid">
-                    <h5>Camiseta Listrada</h5>
-                    <div class="fw-bold">R$ 229,90</div>
+                <div class="swiper-wrapper">
+                    @foreach ($relacionados as $produto)
+                        <a href="{{ route('product.show', $produto['id']) }}">
+                            <div class="swiper-slide">
+                                <div class="card-product">
+                                    <div class="image-container position-relative">
+                                        <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}"
+                                            class="card-img-top">
+                                        <a href="#" class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
+                                            <i class="fa-solid fa-cart-plus fa-xl"></i>
+                                        </a>
+                                    </div>
+                                    <div class="card d-flex flex-column p-2 border-0">
+                                        <div class="star">
+                                            <i class="fa-solid fa-star fa-2xs"></i>
+                                            <i class="fa-solid fa-star fa-2xs"></i>
+                                            <i class="fa-solid fa-star fa-2xs"></i>
+                                            <i class="fa-solid fa-star fa-2xs"></i>
+                                            <i class="fa-regular fa-star fa-2xs"></i>
+                                        </div>
+                                        <h5 class="font-weight-bold">{{ $produto['nome'] }}</h5>
+                                        <p class="card-price">
+                                            <strong>R${{ $produto['preco'] }}</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </section>
-    </section>
-@endsection
+    @endsection
