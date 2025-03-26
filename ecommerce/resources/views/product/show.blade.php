@@ -7,23 +7,23 @@
                 <!-- Imagens do produto -->
                 <div class="col-md-1 d-none d-md-block">
                     <div class="product-thumbnail active">
-                        <img src="/api/placeholder/80/100" alt="Miniatura 1" class="img-fluid">
+                        <img src="/css/image/card/image.png" alt="Miniatura 1" class="img-fluid border border-secondary mb-2">
                     </div>
                     <div class="product-thumbnail">
-                        <img src="/api/placeholder/80/100" alt="Miniatura 2" class="img-fluid">
+                        <img src="/css/image/card/image.png" alt="Miniatura 2" class="img-fluid border border-secondary mb-2">
                     </div>
                     <div class="product-thumbnail">
-                        <img src="/api/placeholder/80/100" alt="Miniatura 3" class="img-fluid">
+                        <img src="/css/image/card/image.png" alt="Miniatura 3" class="img-fluid border border-secondary mb-2">
                     </div>
                     <div class="product-thumbnail">
-                        <img src="/api/placeholder/80/100" alt="Miniatura 4" class="img-fluid">
+                        <img src="/css/image/card/image.png" alt="Miniatura 4" class="img-fluid border border-secondary mb-2">
                     </div>
                 </div>
 
                 <!-- Imagem principal -->
                 <div class="col-md-5">
                     <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}" alt="Camiseta Manga Curta"
-                        class="img-fluid">
+                        class="img-fluid border border-secondary">
                 </div>
 
                 <!-- Detalhes do produto -->
@@ -51,10 +51,10 @@
                     <div class="mb-4">
                         <div class="fw-bold mb-2">Tamanho:</div>
                         <div class="d-flex flex-wrap">
-                            <button class="size-btn">P</button>
-                            <button class="size-btn">M</button>
-                            <button class="size-btn">G</button>
-                            <button class="size-btn">GG</button>
+                            <button class="size-btn btn btn-outline-dark rounded-0">P</button>
+                            <button class="size-btn btn btn-outline-dark rounded-0">M</button>
+                            <button class="size-btn btn btn-outline-dark rounded-0">G</button>
+                            <button class="size-btn btn btn-outline-dark rounded-0">GG</button>
                         </div>
                         <div class="mt-2">
                             <a href="#" class="text-decoration-none text-dark">Guia de tamanhos</a>
@@ -62,12 +62,11 @@
                     </div>
 
                     <div class="mb-4">
-                        <button class="add-to-cart w-100 mb-3">ADICIONAR À SACOLA</button>
+                        <button class="add-to-cart w-100 mb-3 btn btn-outline-dark rounded-0">ADICIONAR À SACOLA</button>
                         <div class="d-flex justify-content-between">
                             <a href="#" class="text-decoration-none text-dark"><i
-                                    class="bi bi-heart me-2"></i>Adicionar aos favoritos</a>
-                            <a href="#" class="text-decoration-none text-dark"><i
-                                    class="bi bi-share me-2"></i>Compartilhar</a>
+                                    class="fa-regular fa-heart fa-lg p-1"></i></i>Adicionar aos favoritos</a>
+                            <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-share fa-lg p-1"></i></i>Compartilhar</a>
                         </div>
                     </div>
 
