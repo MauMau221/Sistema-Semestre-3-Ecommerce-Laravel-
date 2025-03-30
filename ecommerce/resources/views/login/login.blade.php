@@ -1,7 +1,5 @@
 @extends('master')
 
-@include('nav.nav')
-
 @section('content')
     <section>
         <div class="login d-flex justify-content-center mt-5">

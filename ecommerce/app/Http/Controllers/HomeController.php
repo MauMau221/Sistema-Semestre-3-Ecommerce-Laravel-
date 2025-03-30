@@ -18,4 +18,9 @@ class HomeController extends Controller
     {
         return view('login.login');
     }
+
+    public function cart()
+    {
+        return view('cart.cart');
+    }
 }

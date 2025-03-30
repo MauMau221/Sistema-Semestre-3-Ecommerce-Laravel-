@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('estoques', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('produto_id');
-            $table->integer('quantidade')->default(0);
             $table->timestamps();
 
-            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 
@@ -26,8 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('estoque', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('carts');
     }
 };
