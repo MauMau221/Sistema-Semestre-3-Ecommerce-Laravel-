@@ -14,14 +14,4 @@ class HomeController extends Controller
         return view('home', ['produtos' => $produtos]);
     }
 
-    public function login()
-    {
-        return view('login.login');
-    }
-
-    public function register()
-    {
-        return view('login.create');
-    }
-
 }

@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[HomeController::class, 'index' ])->name('home.home');
-Route::get('/login',[HomeController::class, 'login' ])->name('home.login');
-Route::get('/register',[HomeController::class, 'register' ])->name('home.register');
 
 
 Route::get('/cart',[CartController::class, 'index' ])->name('cart.cart');

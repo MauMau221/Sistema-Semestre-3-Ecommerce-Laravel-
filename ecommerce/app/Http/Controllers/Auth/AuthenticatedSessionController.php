@@ -4,14 +4,21 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Handle an incoming authentication request.
-     */
+    
+    public function index()
+    {
+        return view('login.login');
+    }
+
+    public function create()
+    {
+        return view('login.create');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -22,7 +29,7 @@ class AuthenticatedSessionController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
 
-            return redirect()->route('home.home')->with('success', 'Você foi logado com sucesso!');
+            return redirect()->route('home.home')->with('success', 'Você foi logado(a) com sucesso!');
         }
 
         return back()->withErrors([
@@ -30,9 +37,6 @@ class AuthenticatedSessionController extends Controller
         ]);
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
     public function destroy()
     {
         
