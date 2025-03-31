@@ -20,8 +20,7 @@ class CategoryController extends Controller
         $categoria = Categoria::where('nome', $nomeCategoria)->firstOrFail();
         
         $produtos = $categoria->produtos;
-
-        return view('pages.' . $nomeCategoria, ['itens' => $produtos]);
+        return view('pages.listar', ['itens' => $produtos, 'categoria' => $nomeCategoria]);
     }
 
 }

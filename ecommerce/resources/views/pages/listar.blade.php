@@ -1,20 +1,20 @@
 @extends('master')
 
 @section('content')
+    @if (empty($itens))
+        <div class="alert alert-danger mt-0">
+            <p>Itens não encontrados para a categoria selecionada</p>
+        </div>
+    @endif
     <!-- Breadcrumb -->
     <div class="container mt-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-secondary">Home</a></li>
                 <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-secondary">Roupas</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Camisetas</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($categoria) }}</li> <!-- ucfisrt deixa a primeira letra maiuscula -->
             </ol>
         </nav>
-    </div>
-
-    <!-- Banner da categoria -->
-    <div class="container mb-4">
-        <img src="/api/placeholder/1200/300" alt="Banner Categoria" class="img-fluid w-100">
     </div>
 
     <!-- Conteúdo Principal -->
@@ -140,7 +140,7 @@
                 <!-- Cabeçalho de resultados -->
                 <div class="results-header d-flex justify-content-between align-items-center">
                     <div>
-                        <h4 class="mb-0">CAMISETAS</h4>
+                        <h4 class="mb-0">{{ ucfirst($categoria) }}</h4>
                         <p class="text-muted mb-0">117 produtos encontrados</p>
                     </div>
                     <div class="d-flex align-items-center">
