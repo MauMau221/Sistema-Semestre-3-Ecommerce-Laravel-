@@ -95,13 +95,23 @@
                         </div>
                     </div>
                 </div>
+                @auth
+                    <a class="navbar-brand text-secondary" href="{{ route('logout') }}">Olá
+                        {{ Auth::user()->name }}</a>
+                    <a class="navbar-brand text-secondary" href="{{ route('home.home') }}"><i
+                            class="fa-solid fa-heart"></i></a>
+                    <a class="navbar-brand text-secondary" href="{{ route('cart.cart') }}"><i
+                            class="fa-solid fa-cart-shopping"></i></a>
+                @endauth
 
-                <a class="navbar-brand text-secondary" href="{{ route('home.login') }}"><i
-                        class="fa-solid fa-user"></i></a>
-                <a class="navbar-brand text-secondary" href="{{ route('home.home') }}"><i
-                        class="fa-solid fa-heart"></i></a>
-                <a class="navbar-brand text-secondary" href="{{ route('home.cart') }}"><i
-                        class="fa-solid fa-cart-shopping"></i></a>
+                @guest
+                    <a class="navbar-brand text-secondary" href="{{ route('home.login') }}"><i
+                            class="fa-solid fa-user"></i></a>
+                    <a class="navbar-brand text-secondary" href="{{ route('home.home') }}"><i
+                            class="fa-solid fa-heart"></i></a>
+                    <a class="navbar-brand text-secondary" href="{{ route('cart.cart') }}"><i
+                            class="fa-solid fa-cart-shopping"></i></a>
+                @endguest
             </div>
         </div>
     </nav>

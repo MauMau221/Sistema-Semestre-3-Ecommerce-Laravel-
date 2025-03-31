@@ -9,18 +9,19 @@ class Cart extends Model
     protected $table = 'carts';
 
     protected $fillable = [
-        'qtd',
-        'produto_id',
         'user_id',
+        'produto_id',
+        'quantidade',
+        'preco_unitario',
     ];
 
     public function produtos()
     {
-        return $this->hasMany(Produto::class);
+        return $this->hasMany(Produto::class, 'produto_id');
     }
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, 'user_id');
     }
 }

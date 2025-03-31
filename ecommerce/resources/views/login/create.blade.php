@@ -5,7 +5,7 @@
         <div class="login d-flex justify-content-center mt-5">
             <div class="form-container bg-danger">
                 <p class="title">Cadastre-se</p>
-                <form class="form" action="" method="post">
+                <form class="form" action="{{ route('register') }}" method="post">
                     @csrf
                     <div class="input-group">
                         <label for="name">Nome</label>

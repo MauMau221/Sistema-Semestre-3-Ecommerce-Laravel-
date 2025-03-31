@@ -5,7 +5,7 @@
         <div class="login d-flex justify-content-center mt-5">
             <div class="form-container bg-secondary">
                 <p class="title">Login</p>
-                <form class="form" action="" method="post">
+                <form class="form" action="{{ route('login')}}" method="post">
                     @csrf
                     <div class="input-group">
                         <label for="email">Email</label>
@@ -50,7 +50,7 @@
                     </button>
                 </div>
                 <p class="signup">Ainda não tem conta?
-                    <a rel="noopener noreferrer" href="" class="">Crie uma conta</a>
+                    <a rel="noopener noreferrer" href="{{ route('home.register') }}" class="">Crie uma conta</a>
                 </p>
             </div>
         </div>

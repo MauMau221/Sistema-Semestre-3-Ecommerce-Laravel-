@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -8,7 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class, 'index' ])->name('home.home');
 Route::get('/login',[HomeController::class, 'login' ])->name('home.login');
-Route::get('/cart',[HomeController::class, 'cart' ])->name('home.cart');
+Route::get('/register',[HomeController::class, 'register' ])->name('home.register');
+
+
+Route::get('/cart',[CartController::class, 'index' ])->name('cart.cart');
+Route::get('/cart/add',[CartController::class, 'adicionar' ])->name('cart.add');
+Route::get('/cart/update',[CartController::class, 'atualizar' ])->name('cart.update');
+Route::get('/cart/remove',[CartController::class, 'remover' ])->name('cart.remove');
+Route::get('/cart/checkout',[CartController::class, 'checkout' ])->name('cart.checkout');
 
 
 

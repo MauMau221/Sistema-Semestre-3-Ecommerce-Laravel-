@@ -19,8 +19,9 @@ class HomeController extends Controller
         return view('login.login');
     }
 
-    public function cart()
+    public function register()
     {
-        return view('cart.cart');
+        return view('login.create');
     }
+
 }
