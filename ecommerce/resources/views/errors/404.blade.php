@@ -1,4 +1,3 @@
-@extends('master')
 <style>
     .ghost {
         font-size: 6rem;
