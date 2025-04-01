@@ -28,8 +28,10 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
+        $nomeCategoria = $request->query('nome');
+
         $pesquisa = $request->search;
         $produtos = Produto::where('nome', 'LIKE', "%{$pesquisa}%")->get();
-        return view('pages.search', ['produtos' => $produtos]);
+        return view('pages.listar', ['itens' => $produtos, 'categoria' => $nomeCategoria]);
     }
 }

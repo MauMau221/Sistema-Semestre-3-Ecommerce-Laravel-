@@ -115,7 +115,7 @@
                 <!-- Filtro de Tamanho -->
                 <div class="filter-card">
                     <div class="filter-header">TAMANHO</div>
-                    <div class="d-flex flex-wrap">
+                    <div class="d-flex flex-column">
                         <div class="me-2 mb-2">
                             <input type="checkbox" class="btn-check" id="size-p" autocomplete="off">
                             <label class="btn btn-outline-secondary btn-sm" for="size-p">P</label>
@@ -162,7 +162,7 @@
                         <div class="col-6 col-md-4 col-lg-3">
                             <div class="card product-card border-0">
                                 <div class="position-relative">
-                                    <a href="#" class="text-decoration-none">
+                                    <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
                                         <img src="{{ $produto['url'] ?? asset('https://cdn-icons-png.flaticon.com/512/2071/2071149.png') }}"
                                             alt="Camiseta 1" class="card-img-top">
                                     </a>
