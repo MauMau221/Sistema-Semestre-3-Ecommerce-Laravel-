@@ -2,6 +2,7 @@
 
 :root {
   --font-primary: 'Moderat Extended', arial;
+  --font-card: 15px; 
 }
 
 * {
@@ -165,7 +166,7 @@
 }
 
 .card h5 {
-  font-size: 11px;
+  font-size: var(--font-card);
 }
 
 .card .card-price s {

@@ -20,7 +20,7 @@
                             class="nav-link">%OFF</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('category.categorias', ['nome' => 'camisetas']) }}"
+                        <a href="{{ route('category.categorias', ['nome' => 'camisas']) }}"
                             class="nav-link">Roupas</a>
                     </li>
                     <li class="nav-item">

@@ -12,7 +12,8 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-secondary">Home</a></li>
                 <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-secondary">Roupas</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($categoria) }}</li> <!-- ucfisrt deixa a primeira letra maiuscula -->
+                <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($categoria) }}</li>
+                <!-- ucfisrt deixa a primeira letra maiuscula -->
             </ol>
         </nav>
     </div>
@@ -141,11 +142,11 @@
                 <div class="results-header d-flex justify-content-between align-items-center">
                     <div>
                         <h4 class="mb-0">{{ ucfirst($categoria) }}</h4>
-                        <p class="text-muted mb-0">117 produtos encontrados</p>
+                        <p class="text-muted mb-0">{{ $itens->count() }} produtos encontrados</p>
                     </div>
                     <div class="d-flex align-items-center">
-                        <label for="sort" class="me-2">Ordenar por:</label>
-                        <select id="sort" class="sort-select">
+                        <label for="sort" class="me-2 mt-1">Ordenar por:</label>
+                        <select id="sort" class="sort-select border-0 p-1">
                             <option>Relevância</option>
                             <option>Menor preço</option>
                             <option>Maior preço</option>
@@ -157,196 +158,30 @@
 
                 <!-- Grade de Produtos (4 por linha em desktop) -->
                 <div class="row">
-                    <!-- Produto 1 -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <div class="card product-card border-0">
-                            <div class="position-relative">
-                                <a href="#" class="text-decoration-none">
-                                    <img src="/api/placeholder/300/400" alt="Camiseta 1" class="card-img-top">
-                                </a>
-                                <button class="wishlist-btn">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                            <div class="card-body p-2">
-                                <h5 class="product-title">CAMISETA MANGA CURTA BÁSICA</h5>
-                                <div class="product-price">R$ 229,90</div>
-                                <div class="product-installments">ou 6x de R$ 38,32</div>
-                                <div class="product-colors">
-                                    <div class="color-option" style="background-color: navy;"></div>
-                                    <div class="color-option" style="background-color: black;"></div>
-                                    <div class="color-option" style="background-color: white;"></div>
+                    @foreach ($itens as $produto)
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="card product-card border-0">
+                                <div class="position-relative">
+                                    <a href="#" class="text-decoration-none">
+                                        <img src="{{ $produto['url'] ?? asset('https://cdn-icons-png.flaticon.com/512/2071/2071149.png') }}"
+                                            alt="Camiseta 1" class="card-img-top">
+                                    </a>
+                                </div>
+                                <div class="card-body p-2">
+                                    <h5 class="product-title font-weight-bold">{{ $produto['nome'] }}</h5>
+                                    <div class="product-price">R${{ number_format($produto['preco'], 2, ',', '.') }}</div>
+                                    <div class="product-installments">Ou 6x de R$
+                                        {{ number_format($produto['preco'] / 6, 2, ',', '.') }}</div>
+                                    <div class="product-colors">
+                                        <div class="color-option" style="background-color: navy;"></div>
+                                        <div class="color-option" style="background-color: black;"></div>
+                                        <div class="color-option" style="background-color: white;"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Produto 2 -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <div class="card product-card border-0">
-                            <div class="position-relative">
-                                <a href="#" class="text-decoration-none">
-                                    <img src="/api/placeholder/300/400" alt="Camiseta 2" class="card-img-top">
-                                </a>
-                                <button class="wishlist-btn">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                                <div class="badge-discount">-20%</div>
-                            </div>
-                            <div class="card-body p-2">
-                                <h5 class="product-title">CAMISETA ESTAMPADA</h5>
-                                <div class="product-price">R$ 199,90</div>
-                                <div class="product-installments">ou 6x de R$ 33,32</div>
-                                <div class="product-colors">
-                                    <div class="color-option" style="background-color: gray;"></div>
-                                    <div class="color-option" style="background-color: black;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Produto 3 -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <div class="card product-card border-0">
-                            <div class="position-relative">
-                                <a href="#" class="text-decoration-none">
-                                    <img src="/api/placeholder/300/400" alt="Camiseta 3" class="card-img-top">
-                                </a>
-                                <button class="wishlist-btn">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                            <div class="card-body p-2">
-                                <h5 class="product-title">CAMISETA GOLA V SLIM</h5>
-                                <div class="product-price">R$ 249,90</div>
-                                <div class="product-installments">ou 6x de R$ 41,65</div>
-                                <div class="product-colors">
-                                    <div class="color-option" style="background-color: white;"></div>
-                                    <div class="color-option" style="background-color: blue;"></div>
-                                    <div class="color-option" style="background-color: black;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Produto 4 -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <div class="card product-card border-0">
-                            <div class="position-relative">
-                                <a href="#" class="text-decoration-none">
-                                    <img src="/api/placeholder/300/400" alt="Camiseta 4" class="card-img-top">
-                                </a>
-                                <button class="wishlist-btn">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                            <div class="card-body p-2">
-                                <h5 class="product-title">CAMISETA MANGA LONGA</h5>
-                                <div class="product-price">R$ 279,90</div>
-                                <div class="product-installments">ou 6x de R$ 46,65</div>
-                                <div class="product-colors">
-                                    <div class="color-option" style="background-color: navy;"></div>
-                                    <div class="color-option" style="background-color: maroon;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Produto 5 -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <div class="card product-card border-0">
-                            <div class="position-relative">
-                                <a href="#" class="text-decoration-none">
-                                    <img src="/api/placeholder/300/400" alt="Camiseta 5" class="card-img-top">
-                                </a>
-                                <button class="wishlist-btn">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                            <div class="card-body p-2">
-                                <h5 class="product-title">CAMISETA LISTRADA</h5>
-                                <div class="product-price">R$ 239,90</div>
-                                <div class="product-installments">ou 6x de R$ 39,98</div>
-                                <div class="product-colors">
-                                    <div class="color-option" style="background-color: lightblue;"></div>
-                                    <div class="color-option" style="background-color: gray;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Produto 6 -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <div class="card product-card border-0">
-                            <div class="position-relative">
-                                <a href="#" class="text-decoration-none">
-                                    <img src="/api/placeholder/300/400" alt="Camiseta 6" class="card-img-top">
-                                </a>
-                                <button class="wishlist-btn">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                                <div class="badge-discount">-15%</div>
-                            </div>
-                            <div class="card-body p-2">
-                                <h5 class="product-title">CAMISETA ESTAMPA FLORAL</h5>
-                                <div class="product-price">R$ 219,90</div>
-                                <div class="product-installments">ou 6x de R$ 36,65</div>
-                                <div class="product-colors">
-                                    <div class="color-option" style="background-color: black;"></div>
-                                    <div class="color-option" style="background-color: white;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Produto 7 -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <div class="card product-card border-0">
-                            <div class="position-relative">
-                                <a href="#" class="text-decoration-none">
-                                    <img src="/api/placeholder/300/400" alt="Camiseta 7" class="card-img-top">
-                                </a>
-                                <button class="wishlist-btn">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                            <div class="card-body p-2">
-                                <h5 class="product-title">CAMISETA BÁSICA GOLA REDONDA</h5>
-                                <div class="product-price">R$ 199,90</div>
-                                <div class="product-installments">ou 6x de R$ 33,32</div>
-                                <div class="product-colors">
-                                    <div class="color-option" style="background-color: black;"></div>
-                                    <div class="color-option" style="background-color: gray;"></div>
-                                    <div class="color-option" style="background-color: navy;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Produto 8 -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <div class="card product-card border-0">
-                            <div class="position-relative">
-                                <a href="#" class="text-decoration-none">
-                                    <img src="/api/placeholder/300/400" alt="Camiseta 8" class="card-img-top">
-                                </a>
-                                <button class="wishlist-btn">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                            <div class="card-body p-2">
-                                <h5 class="product-title">CAMISETA COM BORDADO</h5>
-                                <div class="product-price">R$ 259,90</div>
-                                <div class="product-installments">ou 6x de R$ 43,32</div>
-                                <div class="product-colors">
-                                    <div class="color-option" style="background-color: white;"></div>
-                                    <div class="color-option" style="background-color: navy;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-
                 <!-- Paginação -->
                 <div class="d-flex justify-content-center my-5">
                     <nav aria-label="Navegação de páginas">
@@ -369,21 +204,4 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Newsletter -->
-    <section class="newsletter-section mt-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 text-center">
-                    <h3 class="mb-3">CADASTRE-SE E RECEBA NOVIDADES</h3>
-                    <p class="mb-4">Receba em primeira mão nossas novidades e promoções exclusivas.</p>
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Seu e-mail" aria-label="Seu e-mail">
-                        <button class="btn btn-dark" type="button">CADASTRAR</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-@endsection
+    @endsection
