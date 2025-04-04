@@ -46,6 +46,6 @@ class AuthenticatedSessionController extends Controller
 
         session()->regenerateToken();
 
-        return redirect()->route('home.home');
+        return redirect()->route('home.home')->with('erro', 'Logout feito com sucesso!');
     }
 }

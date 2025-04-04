@@ -20,8 +20,7 @@
                             class="nav-link">%OFF</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('category.categorias', ['nome' => 'camisas']) }}"
-                            class="nav-link">Roupas</a>
+                        <a href="{{ route('category.categorias', ['nome' => 'camisas']) }}" class="nav-link">Roupas</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('category.categorias', ['nome' => 'calcados']) }}"
@@ -96,8 +95,16 @@
                     </div>
                 </div>
                 @auth
-                    <a class="navbar-brand text-secondary" href="{{ route('logout') }}">Olá
-                        {{ Auth::user()->name }}</a>
+                    <div class="dropdown p-1 mr-1">
+                        <button class="btn btn-secundary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Olá {{ Auth::user()->name }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item text-secondary" href="#">Meus dados</a></li>
+                            <li><a class="dropdown-item text-secondary" href="{{ route('logout') }}">Sair</a></li>
+                        </ul>
+                    </div>
                     <a class="navbar-brand text-secondary" href="{{ route('home.home') }}"><i
                             class="fa-solid fa-heart"></i></a>
                     <a class="navbar-brand text-secondary" href="{{ route('cart.cart') }}"><i

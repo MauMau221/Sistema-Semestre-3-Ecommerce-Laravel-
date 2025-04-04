@@ -2,7 +2,7 @@
 
 :root {
   --font-primary: 'Moderat Extended', arial;
-  --font-card: 15px; 
+  --font-card: 15px;
 }
 
 * {
@@ -97,6 +97,7 @@
 
 }
 
+
 @keyframes sale-text {
   0% {
     color: rgb(183, 179, 179);
@@ -149,8 +150,10 @@
 
 .card-product img {
   width: 100%;
-  height: 380px; /* Define uma altura fixa */
-  object-fit: cover; /* Mantém a proporção e cobre todo o espaço */
+  height: 380px;
+  /* Define uma altura fixa */
+  object-fit: cover;
+  /* Mantém a proporção e cobre todo o espaço */
   border: solid 1px rgb(183, 179, 179);
 }
 
