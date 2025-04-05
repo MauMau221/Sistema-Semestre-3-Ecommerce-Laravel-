@@ -13,10 +13,12 @@
                         <img src="/css/image/card/image.png" alt="Miniatura 2" class="img-fluid border border-secondary mb-2">
                     </div>
                     <div class="product-thumbnail">
-                        <img src="/css/image/card/image.png" alt="Miniatura 3" class="img-fluid border border-secondary mb-2">
+                        <img src="/css/image/card/image.png" alt="Miniatura 3"
+                            class="img-fluid border border-secondary mb-2">
                     </div>
                     <div class="product-thumbnail">
-                        <img src="/css/image/card/image.png" alt="Miniatura 4" class="img-fluid border border-secondary mb-2">
+                        <img src="/css/image/card/image.png" alt="Miniatura 4"
+                            class="img-fluid border border-secondary mb-2">
                     </div>
                 </div>
 
@@ -34,42 +36,59 @@
                         <div class="product-installments">em até 6x de R$
                             {{ number_format($produto['preco'] / 6, 2, ',', '.') }} sem juros</div>
                     </div>
+                    <form action="/cart/add" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="produto_id" value="{{ $produto->id }}">
 
-                    <div class="mb-4">
-                        <div class="fw-bold mb-2">Cor: Azul</div>
-                        <div class="d-flex mb-3">
-                            <div class="me-2"
-                                style="width: 30px; height: 30px; background-color: navy; border-radius: 50%;"></div>
-                            <div class="me-2"
-                                style="width: 30px; height: 30px; background-color: black; border-radius: 50%;"></div>
-                            <div class="me-2"
-                                style="width: 30px; height: 30px; background-color: white; border: 1px solid #dee2e6; border-radius: 50%;">
+                        <div class="mb-4">
+                            <div class="fw-bold mb-2">Cor: Azul</div>
+                            <div class="d-flex mb-3">
+                                <div class="me-2"
+                                    style="width: 30px; height: 30px; background-color: navy; border-radius: 50%;"></div>
+                                <div class="me-2"
+                                    style="width: 30px; height: 30px; background-color: black; border-radius: 50%;"></div>
+                                <div class="me-2"
+                                    style="width: 30px; height: 30px; background-color: white; border: 1px solid #dee2e6; border-radius: 50%;">
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="mb-4">
-                        <div class="fw-bold mb-2">Tamanho:</div>
-                        <div class="d-flex flex-wrap">
-                            <button class="size-btn btn btn-outline-dark rounded-0">P</button>
-                            <button class="size-btn btn btn-outline-dark rounded-0">M</button>
-                            <button class="size-btn btn btn-outline-dark rounded-0">G</button>
-                            <button class="size-btn btn btn-outline-dark rounded-0">GG</button>
+                        <div class="mb-4">
+                            <div class="fw-bold mb-2">Tamanho:</div>
+                            <div class="d-flex flex-wrap">
+                                <button class="size-btn btn btn-outline-dark rounded-0">P</button>
+                                <button class="size-btn btn btn-outline-dark rounded-0">M</button>
+                                <button class="size-btn btn btn-outline-dark rounded-0">G</button>
+                                <button class="size-btn btn btn-outline-dark rounded-0">GG</button>
+                            </div>
+                            <div class="mt-2">
+                                <a href="#" class="text-decoration-none text-dark">Guia de tamanhos</a>
+                            </div>
                         </div>
-                        <div class="mt-2">
-                            <a href="#" class="text-decoration-none text-dark">Guia de tamanhos</a>
-                        </div>
-                    </div>
 
-                    <div class="mb-4">
-                        <button class="add-to-cart w-100 mb-3 btn btn-outline-dark rounded-0">ADICIONAR À SACOLA</button>
-                        <div class="d-flex justify-content-between">
-                            <a href="#" class="text-decoration-none text-dark"><i
-                                    class="fa-regular fa-heart fa-lg p-1"></i></i>Adicionar aos favoritos</a>
-                            <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-share fa-lg p-1"></i></i>Compartilhar</a>
+                        <div class="mb-4">
+                            <div class="fw-bold mb-2">Quantidade:</div>
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-outline-dark rounded-0 quantity-btn"
+                                    onclick="btnDiminuirQtd()">-</button>
+                                <input type="number" id="quantidade" class="form-control rounded-0 text-center mx-2"
+                                    value="1" min="1" max="10" style="width: 70px;">
+                                <button class="btn btn-outline-dark rounded-0 quantity-btn"
+                                    onclick="btnAumentarQtd()">+</button>
+                            </div>
                         </div>
-                    </div>
 
+                        <div class="mb-4">
+                            <button type="submit" class="add-to-cart w-100 mb-3 btn btn-outline-dark rounded-0">ADICIONAR À
+                                SACOLA</button>
+                            <div class="d-flex justify-content-between">
+                                <a href="#" class="text-decoration-none text-dark"><i
+                                        class="fa-regular fa-heart fa-lg p-1"></i></i>Adicionar aos favoritos</a>
+                                <a href="#" class="text-decoration-none text-dark"><i
+                                        class="fa-solid fa-share fa-lg p-1"></i></i>Compartilhar</a>
+                            </div>
+                        </div>
+                    </form>
                     <div class="mb-4">
                         <div class="fw-bold mb-2">Descrição:</div>
                         <p>{{ $produto['desc'] }}.</p>

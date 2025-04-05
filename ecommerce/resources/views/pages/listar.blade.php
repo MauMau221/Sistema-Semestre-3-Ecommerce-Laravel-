@@ -10,8 +10,7 @@
     <div class="container mt-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-secondary">Home</a></li>
-                <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-secondary">Roupas</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home.home') }}" class="text-decoration-none text-secondary">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($categoria) }}</li>
                 <!-- ucfisrt deixa a primeira letra maiuscula -->
             </ol>

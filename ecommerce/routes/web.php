@@ -11,7 +11,7 @@ Route::get('/',[HomeController::class, 'index' ])->name('home.home');
 
 
 Route::get('/cart',[CartController::class, 'index' ])->name('cart.cart');
-Route::get('/cart/add',[CartController::class, 'adicionar' ])->name('cart.add');
+Route::post('/cart/add',[CartController::class, 'adicionar' ])->name('cart.add');
 Route::get('/cart/update',[CartController::class, 'atualizar' ])->name('cart.update');
 Route::get('/cart/remove',[CartController::class, 'remover' ])->name('cart.remove');
 Route::get('/cart/checkout',[CartController::class, 'checkout' ])->name('cart.checkout');

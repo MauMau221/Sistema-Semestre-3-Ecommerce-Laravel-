@@ -28,6 +28,6 @@ class Produto extends Model
 
     public function estoque()
     {
-        return $this->hasOne(Estoque::class);
+        return $this->hasMany(Estoque::class);
     }
 }

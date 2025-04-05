@@ -25,3 +25,24 @@ const swiper = new Swiper('.swiper', {
       }
     }
   })
+
+
+
+function btnAumentarQtd() {
+  const quantidadeInput = document.getElementById('quantidade');
+  const elementValue = parseInt(quantidadeInput.value);
+
+  if(elementValue < 10 ){
+    quantidadeInput.value = elementValue + 1;
+  }
+}
+
+function btnDiminuirQtd() {
+  const quantidadeInput = document.getElementById('quantidade');
+  const elementValue = parseInt(quantidadeInput.value);
+
+  if(elementValue > 1 ){
+    quantidadeInput.value = elementValue - 1;
+  }
+}
+

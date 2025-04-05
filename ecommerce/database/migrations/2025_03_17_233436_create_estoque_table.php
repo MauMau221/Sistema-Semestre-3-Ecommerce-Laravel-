@@ -14,10 +14,15 @@ return new class extends Migration
         Schema::create('estoques', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('produto_id');
+            $table->string('cor')->nullable();
+            $table->string('tamanho')->nullable();
             $table->integer('quantidade')->default(0);
             $table->timestamps();
 
             $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+
+            // Evita duplicidade do mesmo produto com mesma cor e tamanho
+            $table->unique(['produto_id', 'cor', 'tamanho']);
         });
     }
 
@@ -26,8 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('estoque', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('estoques');
     }
 };
