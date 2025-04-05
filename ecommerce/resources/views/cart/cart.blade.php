@@ -8,106 +8,46 @@
                 <div class="col-lg-8 mb-4">
                     <div class="card border-0 shadow-sm">
                         <div class="card-body p-4">
-                            <div class="cart-header d-flex justify-content-between align-items-center">
+                            <div class="cart-header d-flex justify-content-between align-items-center p-2 ">
                                 <h2 class="h4 mb-0">Meu Carrinho</h2>
                                 <span class="text-muted">3 itens</span>
                             </div>
 
-                            <!-- Cart Item 1 -->
-                            <div class="row mb-4 pb-3 border-bottom">
-                                <div class="col-md-2 col-4 mb-3 mb-md-0">
-                                    <img src="/api/placeholder/100/120" alt="Produto" class="cart-item-img img-fluid">
-                                </div>
-                                <div class="col-md-10 col-8">
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <div>
-                                            <h3 class="product-title">Camisa Casual Listrada</h3>
-                                            <p class="product-code mb-1">Código: AR2023001</p>
-                                            <p class="product-size mb-2">Tamanho: M | Cor: Azul</p>
-                                        </div>
-                                        <div class="d-none d-md-block">
-                                            <span class="remove-item"><i class="fas fa-times"></i></span>
-                                        </div>
+                            <!-- Cart Item -->
+                            @foreach ($cart as $produto)
+                                <div class="row mb-4 pb-3 border-bottom">
+                                    <div class="col-md-2 col-4 mb-3 mb-md-0">
+                                        <img src="{{ $produto['url'] ?? asset('https://cdn-icons-png.flaticon.com/512/2071/2071149.png') }}"
+                                            alt="Camiseta 1" class="card-img-top">
                                     </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <div class="input-group qty-selector me-3">
-                                                <button class="btn btn-outline-secondary" type="button">-</button>
-                                                <input type="text" class="form-control text-center" value="1">
-                                                <button class="btn btn-outline-secondary" type="button">+</button>
+                                    <div class="col-md-10 col-8">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <div>
+                                                <h3 class="product-title">{{ $produto['nome'] }}</h3>
+                                                <p class="product-code mb-1">Código: AR2023001</p>
+                                                <p class="product-size mb-2">Tamanho: M | Cor: Azul</p>
                                             </div>
-                                            <div class="d-md-none">
+                                            <div class="d-none d-md-block">
                                                 <span class="remove-item"><i class="fas fa-times"></i></span>
                                             </div>
                                         </div>
-                                        <div class="product-price">R$ 299,90</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Cart Item 2 -->
-                            <div class="row mb-4 pb-3 border-bottom">
-                                <div class="col-md-2 col-4 mb-3 mb-md-0">
-                                    <img src="/api/placeholder/100/120" alt="Produto" class="cart-item-img img-fluid">
-                                </div>
-                                <div class="col-md-10 col-8">
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <div>
-                                            <h3 class="product-title">Calça Jeans Slim</h3>
-                                            <p class="product-code mb-1">Código: AR2023002</p>
-                                            <p class="product-size mb-2">Tamanho: 42 | Cor: Azul Escuro</p>
-                                        </div>
-                                        <div class="d-none d-md-block">
-                                            <span class="remove-item"><i class="fas fa-times"></i></span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <div class="input-group qty-selector me-3">
-                                                <button class="btn btn-outline-secondary" type="button">-</button>
-                                                <input type="text" class="form-control text-center" value="1">
-                                                <button class="btn btn-outline-secondary" type="button">+</button>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <div class="input-group qty-selector me-3">
+                                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                                    <input type="text" class="form-control text-center" value="1">
+                                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                                </div>
+                                                <div class="d-md-none">
+                                                    <span class="remove-item"><i class="fas fa-times"></i></span>
+                                                </div>
                                             </div>
-                                            <div class="d-md-none">
-                                                <span class="remove-item"><i class="fas fa-times"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="product-price">R$ 359,90</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Cart Item 3 -->
-                            <div class="row">
-                                <div class="col-md-2 col-4 mb-3 mb-md-0">
-                                    <img src="/api/placeholder/100/120" alt="Produto" class="cart-item-img img-fluid">
-                                </div>
-                                <div class="col-md-10 col-8">
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <div>
-                                            <h3 class="product-title">Blazer Slim Fit</h3>
-                                            <p class="product-code mb-1">Código: AR2023003</p>
-                                            <p class="product-size mb-2">Tamanho: 50 | Cor: Preto</p>
-                                        </div>
-                                        <div class="d-none d-md-block">
-                                            <span class="remove-item"><i class="fas fa-times"></i></span>
+                                            <div class="product-price">R$
+                                                {{ number_format($produto['preco'], 2, ',', '.') }}</div>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <div class="input-group qty-selector me-3">
-                                                <button class="btn btn-outline-secondary" type="button">-</button>
-                                                <input type="text" class="form-control text-center" value="1">
-                                                <button class="btn btn-outline-secondary" type="button">+</button>
-                                            </div>
-                                            <div class="d-md-none">
-                                                <span class="remove-item"><i class="fas fa-times"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="product-price">R$ 599,90</div>
-                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
