@@ -29,6 +29,7 @@ const swiper = new Swiper('.swiper', {
 
 
 function btnAumentarQtd() {
+  event.preventDefault(); // Evita o submit nos botãoes de quantidade
   const quantidadeInput = document.getElementById('quantidade');
   const elementValue = parseInt(quantidadeInput.value);
 
@@ -38,6 +39,7 @@ function btnAumentarQtd() {
 }
 
 function btnDiminuirQtd() {
+  event.preventDefault(); // Evita o submit nos botãoes de quantidade
   const quantidadeInput = document.getElementById('quantidade');
   const elementValue = parseInt(quantidadeInput.value);
 

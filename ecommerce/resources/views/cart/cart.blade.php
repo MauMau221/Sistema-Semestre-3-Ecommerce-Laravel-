@@ -8,9 +8,9 @@
                 <div class="col-lg-8 mb-4">
                     <div class="card border-0 shadow-sm">
                         <div class="card-body p-4">
-                            <div class="cart-header d-flex justify-content-between align-items-center p-2 ">
-                                <h2 class="h4 mb-0">Meu Carrinho</h2>
-                                <span class="text-muted">3 itens</span>
+                            <div class="cart-header d-flex justify-content-between align-items-center p-2 mb-2 ">
+                                <h2 class="h4">Meu Carrinho</h2>
+                                <span class="text-muted">{{ count($cart) }} itens</span>
                             </div>
 
                             <!-- Cart Item -->
@@ -34,9 +34,9 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex align-items-center">
                                                 <div class="input-group qty-selector me-3">
-                                                    <button class="btn btn-outline-secondary" type="button">-</button>
-                                                    <input type="text" class="form-control text-center" value="1">
-                                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                                    <button class="btn btn-outline-secondary quantity-btn" onclick="btnDiminuirQtd(event)">-</button>
+                                                    <input type="number" id="quantidade" name="quantidade" class="form-control text-center" value="{{ $produto['quantidade'] }}">
+                                                    <button class="btn btn-outline-secondary quantity-btn" onclick="btnAumentarQtd(event)">+</button>
                                                 </div>
                                                 <div class="d-md-none">
                                                     <span class="remove-item"><i class="fas fa-times"></i></span>

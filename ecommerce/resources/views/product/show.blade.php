@@ -70,11 +70,11 @@
                             <div class="fw-bold mb-2">Quantidade:</div>
                             <div class="d-flex align-items-center">
                                 <button class="btn btn-outline-dark rounded-0 quantity-btn"
-                                    onclick="btnDiminuirQtd()">-</button>
-                                <input type="number" id="quantidade" class="form-control rounded-0 text-center mx-2"
+                                    onclick="btnDiminuirQtd(event)">-</button>
+                                <input type="number" id="quantidade" name="quantidade" class="form-control rounded-0 text-center mx-2"
                                     value="1" min="1" max="10" style="width: 70px;">
                                 <button class="btn btn-outline-dark rounded-0 quantity-btn"
-                                    onclick="btnAumentarQtd()">+</button>
+                                    onclick="btnAumentarQtd(event)">+</button>
                             </div>
                         </div>
 
