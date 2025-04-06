@@ -9,7 +9,7 @@
                     <div class="card border-0 shadow-sm">
                         <div class="card-body p-4">
                             <div class="cart-header d-flex justify-content-between align-items-center p-2 mb-2 ">
-                                <h2 class="h4">Meu Carrinho</h2>
+                                <h2 class="h4">Minha Sacola</h2>
                                 <span class="text-muted">{{ count($cart) }} itens</span>
                             </div>
 

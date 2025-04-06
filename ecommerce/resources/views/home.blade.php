@@ -81,10 +81,17 @@
                                         <div class="image-container position-relative">
                                             <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}"
                                                 class="card-img-top">
-                                            <a href="#"
-                                                class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
-                                                <i class="fa-solid fa-cart-plus fa-xl"></i>
-                                            </a>
+                                            <form action="/cart/add" method="POST">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="hidden" name="produto_id" value="{{ $produto->id }}">
+
+                                                <a href="{{ route('product.show', $produto['id']) }}"
+                                                    class="p-2 text-dark cart-icon position-absolute bottom-0 end-0">
+                                                    <button type="submit" class="border-0">
+                                                        <i class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(93, 92, 92);"></i>
+                                                    </button>
+                                                </a>
+                                            </form>
                                         </div>
                                         <div class="card d-flex flex-column p-2 border-0">
                                             <div class="star">

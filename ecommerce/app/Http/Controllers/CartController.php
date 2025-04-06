@@ -39,7 +39,7 @@ class CartController extends Controller
 
         Session::put('cart', $cart);
 
-        return redirect()->route('cart.cart')->with('success', 'Produto adicionado ao carrinho');
+        return redirect()->back()->with('success', 'Produto adicionado na sacola de compras');
     }
 
     public function update(Request $request, string $id)

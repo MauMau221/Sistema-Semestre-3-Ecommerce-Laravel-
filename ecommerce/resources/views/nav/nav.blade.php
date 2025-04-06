@@ -107,8 +107,9 @@
                     </div>
                     <a class="navbar-brand text-secondary" href="{{ route('home.home') }}"><i
                             class="fa-solid fa-heart"></i></a>
-                    <a class="navbar-brand text-secondary" href="{{ route('cart.cart') }}"><i
-                            class="fa-solid fa-cart-shopping"></i></a>
+                    <a class="navbar-brand text-secondary" href="{{ route('cart.cart') }}"> <i
+                            class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(93, 92, 92);"></i>
+                    </a>
                 @endauth
 
                 @guest
@@ -116,8 +117,9 @@
                             class="fa-solid fa-user"></i></a>
                     <a class="navbar-brand text-secondary" href="{{ route('home.home') }}"><i
                             class="fa-solid fa-heart"></i></a>
-                    <a class="navbar-brand text-secondary" href="{{ route('cart.cart') }}"><i
-                            class="fa-solid fa-cart-shopping"></i></a>
+                    <a class="navbar-brand text-secondary" href="{{ route('cart.cart') }}"> <i
+                            class="fa-solid fa-bag-shopping "></i>
+                    </a>
                 @endguest
             </div>
         </div>
