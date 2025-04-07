@@ -15,52 +15,50 @@
 
                             <!-- Cart Item -->
                             @foreach ($cart as $produto)
-                                <div class="row mb-4 pb-3 border-bottom">
-                                    <div class="col-md-2 col-4 mb-3 mb-md-0">
-                                        <img src="{{ $produto['url'] ?? asset('https://cdn-icons-png.flaticon.com/512/2071/2071149.png') }}"
-                                            alt="Camiseta 1" class="card-img-top">
-                                    </div>
-                                    <div class="col-md-10 col-8">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <div>
-                                                <h3 class="product-title">{{ $produto['nome'] }}</h3>
-                                                <p class="product-code mb-1">Código: AR2023001</p>
-                                                <p class="product-size mb-2">Tamanho: M | Cor: Azul</p>
-                                            </div>
-                                            <div class="d-none d-md-block">
-                                                <form action="/cart/remove" method="POST">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <input type="hidden" name="produto_id" value="{{ $produto['id'] }}">
-
+                                <form action="/cart/remove" method="POST">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="produto_id" value="{{ $produto['id'] }}">
+                                    <div class="row mb-4 pb-3 border-bottom">
+                                        <div class="col-md-2 col-4 mb-3 mb-md-0">
+                                            <img src="{{ $produto['url'] ?? asset('https://cdn-icons-png.flaticon.com/512/2071/2071149.png') }}"
+                                                alt="Camiseta 1" class="card-img-top">
+                                        </div>
+                                        <div class="col-md-10 col-8">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <div>
+                                                    <h3 class="product-title">{{ $produto['nome'] }}</h3>
+                                                    <p class="product-code mb-1">Código: AR2023001</p>
+                                                    <p class="product-size mb-2">Tamanho: M | Cor: Azul</p>
+                                                </div>
+                                                <div class="d-none d-md-block">
                                                     <span class="remove-item">
-                                                        <button type="submit">
+                                                        <button type="submit" class="border-0 bg-transparent">
                                                             <i class="fas fa-times"></i>
                                                         </button>
                                                     </span>
-
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <div class="input-group qty-selector me-3">
-                                                    <button class="btn btn-outline-secondary quantity-btn"
-                                                        onclick="btnDiminuirQtd(event)">-</button>
-                                                    <input type="number" id="quantidade" name="quantidade"
-                                                        class="form-control text-center"
-                                                        value="{{ $produto['quantidade'] }}">
-                                                    <button class="btn btn-outline-secondary quantity-btn"
-                                                        onclick="btnAumentarQtd(event)">+</button>
-                                                </div>
-                                                <div class="d-md-none">
-                                                    <span class="remove-item"><i class="fas fa-times"></i></span>
                                                 </div>
                                             </div>
-                                            <div class="product-price">R$
-                                                {{ number_format($produto['preco'], 2, ',', '.') }}</div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="input-group qty-selector me-3">
+                                                        <button class="btn btn-outline-secondary quantity-btn"
+                                                            onclick="btnDiminuirQtd(event)">-</button>
+                                                        <input type="number" id="quantidade" name="quantidade"
+                                                            class="form-control text-center"
+                                                            value="{{ $produto['quantidade'] }}">
+                                                        <button class="btn btn-outline-secondary quantity-btn"
+                                                            onclick="btnAumentarQtd(event)">+</button>
+                                                    </div>
+                                                    <div class="d-md-none">
+                                                        <span class="remove-item"><i class="fas fa-times"></i></span>
+                                                    </div>
+                                                </div>
+                                                <div class="product-price">R$
+                                                    {{ number_format($produto['preco'], 2, ',', '.') }}</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             @endforeach
                         </div>
                     </div>

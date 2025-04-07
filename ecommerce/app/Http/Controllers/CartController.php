@@ -18,7 +18,7 @@ class CartController extends Controller
         $total = 0;
         foreach ($cart as $id => $item) { //Traz os valores correspondente ao ID e coloca dentro e $item
             $subtotal = $item['preco'] * $item['quantidade'];
-            
+
             $total += $subtotal;
         }
         return view('cart.cart', compact('cart', 'total'));
@@ -40,6 +40,9 @@ class CartController extends Controller
                 'preco' => $produto->preco,
                 'quantidade' => $request->quantidade,
             ];
+            if ($request->quantidade == 0) {
+                $cart[$produto->id]['quantidade'] += 1;
+            }
         }
 
         Session::put('cart', $cart);
