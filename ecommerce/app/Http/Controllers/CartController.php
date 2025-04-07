@@ -15,8 +15,13 @@ class CartController extends Controller
     public function index()
     {
         $cart = Session::get('cart', []);
-        return view('cart.cart', compact('cart'));
-
+        $total = 0;
+        foreach ($cart as $id => $item) { //Traz os valores correspondente ao ID e coloca dentro e $item
+            $subtotal = $item['preco'] * $item['quantidade'];
+            
+            $total += $subtotal;
+        }
+        return view('cart.cart', compact('cart', 'total'));
     }
 
     public function adicionar(Request $request)
@@ -25,7 +30,7 @@ class CartController extends Controller
         $cart = Session::get('cart', []);
 
         //Se o produto ja existe no carrinho aumenta a quantidade
-        if(isset($cart[$produto->id])) {
+        if (isset($cart[$produto->id])) {
             $cart[$produto->id]['quantidade'] += $request->quantidade;
         } else {
             //Se não adiciona um item novo
@@ -42,14 +47,28 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Produto adicionado na sacola de compras');
     }
 
-    public function update(Request $request, string $id)
+    public function atualizar(Request $request)
     {
-        //
+        $cart = Session::get('cart', []);
+
+        if (isset($cart[$request->produto_id])) {
+            $cart[$request->produto_id]['quantidade'] = $request->quantidade;
+            Session::put('cart', $cart);
+        }
+
+        redirect()->back()->with('success', 'Sacola atualizada!');
     }
 
-    public function destroy(string $id)
+    public function remover(Request $request)
     {
-        //
+        $cart = Session::get('cart', []);
+
+        if (isset($cart[$request->produto_id])) {
+            unset($cart[$request->produto_id]); //Se existir remove ele do carrinho
+            Session::put('cart', $cart);
+        }
+
+        return redirect()->back()->with('success', 'Produto removido da sacola!');
     }
 
     public function checkout(string $id)

@@ -105,10 +105,10 @@
                             <li><a class="dropdown-item text-secondary" href="{{ route('logout') }}">Sair</a></li>
                         </ul>
                     </div>
-                    <a class="navbar-brand text-secondary" href="{{ route('home.home') }}"><i
+                    <a class="navbar-brand text-secondary p-1" href="{{ route('home.home') }}"><i
                             class="fa-solid fa-heart"></i></a>
                     <a class="navbar-brand text-secondary" href="{{ route('cart.cart') }}"> <i
-                            class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(93, 92, 92);"></i>
+                            class="fa-solid fa-bag-shopping"></i>
                     </a>
                 @endauth
 

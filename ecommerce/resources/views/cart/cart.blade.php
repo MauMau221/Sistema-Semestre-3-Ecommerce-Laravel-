@@ -28,15 +28,29 @@
                                                 <p class="product-size mb-2">Tamanho: M | Cor: Azul</p>
                                             </div>
                                             <div class="d-none d-md-block">
-                                                <span class="remove-item"><i class="fas fa-times"></i></span>
+                                                <form action="/cart/remove" method="POST">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" name="produto_id" value="{{ $produto['id'] }}">
+
+                                                    <span class="remove-item">
+                                                        <button type="submit">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                    </span>
+
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex align-items-center">
                                                 <div class="input-group qty-selector me-3">
-                                                    <button class="btn btn-outline-secondary quantity-btn" onclick="btnDiminuirQtd(event)">-</button>
-                                                    <input type="number" id="quantidade" name="quantidade" class="form-control text-center" value="{{ $produto['quantidade'] }}">
-                                                    <button class="btn btn-outline-secondary quantity-btn" onclick="btnAumentarQtd(event)">+</button>
+                                                    <button class="btn btn-outline-secondary quantity-btn"
+                                                        onclick="btnDiminuirQtd(event)">-</button>
+                                                    <input type="number" id="quantidade" name="quantidade"
+                                                        class="form-control text-center"
+                                                        value="{{ $produto['quantidade'] }}">
+                                                    <button class="btn btn-outline-secondary quantity-btn"
+                                                        onclick="btnAumentarQtd(event)">+</button>
                                                 </div>
                                                 <div class="d-md-none">
                                                     <span class="remove-item"><i class="fas fa-times"></i></span>
@@ -97,10 +111,9 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="d-flex justify-content-between mb-2">
                                 <span>Subtotal</span>
-                                <span>R$ 1.259,70</span>
+                                <span>R$ {{ number_format($total, 2, ',', '.') }}</span>
                             </div>
 
                             <div class="d-flex justify-content-between mb-2">
