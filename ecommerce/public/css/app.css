@@ -142,10 +142,18 @@
   object-fit: cover;
 }
 
+.card-product a:hover {
+  text-decoration: none;
+}
+
 .card {
   text-align: start;
   padding: 5px;
   border: none;
+}
+
+.card h5 {
+  font-size: var(--font-card);
 }
 
 .card-product img {
@@ -163,13 +171,10 @@
 
 .cart-icon {
   position: absolute;
-  bottom: 10px;
+  bottom: 100px;
   right: 8px;
   padding: 10px;
-}
-
-.card h5 {
-  font-size: var(--font-card);
+  
 }
 
 .card .card-price s {

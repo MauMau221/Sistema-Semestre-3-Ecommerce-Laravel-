@@ -75,23 +75,13 @@
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
                         @foreach ($produtos as $produto)
-                            <a href="{{ route('product.show', $produto['id']) }}">
-                                <div class="swiper-slide">
-                                    <div class="card-product">
-                                        <div class="image-container position-relative">
+                            <div class="swiper-slide">
+                                <div class="card-product position-relative">
+                                    <a href="{{ route('product.show', $produto['id']) }}"
+                                        class="stretched-link text-decoration-none text-dark">
+                                        <div class="image-container">
                                             <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}"
                                                 class="card-img-top">
-                                            <form action="/cart/add" method="POST">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <input type="hidden" name="produto_id" value="{{ $produto->id }}">
-
-                                                <a href="{{ route('product.show', $produto['id']) }}"
-                                                    class="p-2 text-dark cart-icon position-absolute bottom-0 end-0">
-                                                    <button type="submit" class="border-0">
-                                                        <i class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(93, 92, 92);"></i>
-                                                    </button>
-                                                </a>
-                                            </form>
                                         </div>
                                         <div class="card d-flex flex-column p-2 border-0">
                                             <div class="star">
@@ -107,10 +97,23 @@
                                                 <strong>R${{ $produto['preco'] }}</strong>
                                             </p>
                                         </div>
+                                    </a>
+
+                                    <div class="cart-icon">
+                                        <form action="/cart/add" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="produto_id" value="{{ $produto->id }}">
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                <i class="fa-solid fa-bag-shopping fa-xl"
+                                                    style="color: rgb(93, 92, 92); cursor: pointer;"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         @endforeach
+
+
                     </div>
                 </div>
             </div>

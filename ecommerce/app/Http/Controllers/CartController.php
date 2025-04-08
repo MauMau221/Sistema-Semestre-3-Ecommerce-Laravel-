@@ -40,6 +40,7 @@ class CartController extends Controller
                 'preco' => $produto->preco,
                 'quantidade' => $request->quantidade,
             ];
+            
             if ($request->quantidade == 0 || $request->quantidade === null) {
                 $cart[$produto->id]['quantidade'] += 1;
             }
