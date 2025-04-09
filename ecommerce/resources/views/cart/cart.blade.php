@@ -152,6 +152,10 @@
                                 juros</div>
                             <a href="{{ route('cart.checkout') }}" class=" btn btn-dark checkout-btn mb-3">FINALIZAR
                                 COMPRA</a>
+                            <a href="{{ session('url_anterior', url('/')) }}"
+                                class="btn btn-light checkout-btn bg-light text-dark">
+                                CONTINUAR COMPRANDO
+                            </a>
                             <div class="secure-checkout">
                                 <i class="bi bi-lock-fill"></i>
                                 <span>Pagamento 100% seguro</span>

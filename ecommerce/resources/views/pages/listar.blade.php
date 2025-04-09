@@ -10,7 +10,8 @@
     <div class="container mt-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('home.home') }}" class="text-decoration-none text-secondary">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home.home') }}"
+                        class="text-decoration-none text-secondary">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($categoria) }}</li>
                 <!-- ucfisrt deixa a primeira letra maiuscula -->
             </ol>
@@ -165,6 +166,18 @@
                                         <img src="{{ $produto['url'] ?? asset('https://cdn-icons-png.flaticon.com/512/2071/2071149.png') }}"
                                             alt="Camiseta 1" class="card-img-top">
                                     </a>
+                                    <div class="position-relative">
+                                        <div class="d-flex justify-content-end">
+                                            <form action="/cart/add" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="produto_id" value="{{ $produto->id }}">
+                                                <button type="submit" class="border-0 bg-transparent">
+                                                    <i class="fa-solid fa-bag-shopping fa-xl"
+                                                        style="color: rgb(93, 92, 92); cursor: pointer;"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-body p-2">
                                     <h5 class="product-title font-weight-bold">{{ $produto['nome'] }}</h5>

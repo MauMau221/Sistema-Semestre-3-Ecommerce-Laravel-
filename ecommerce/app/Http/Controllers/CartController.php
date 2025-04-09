@@ -40,11 +40,13 @@ class CartController extends Controller
                 'preco' => $produto->preco,
                 'quantidade' => $request->quantidade,
             ];
-            
+
             if ($request->quantidade == 0 || $request->quantidade === null) {
                 $cart[$produto->id]['quantidade'] += 1;
             }
         }
+        // salva a URL anterior antes de redirecionar pro carrinho
+        session(['url_anterior' => url()->previous()]);
 
         Session::put('cart', $cart);
 
@@ -77,6 +79,13 @@ class CartController extends Controller
 
     public function checkout()
     {
-        return view('cart.checkout');
+        $cart = Session::get('cart', []);
+        $total = 0;
+        foreach ($cart as $id => $item) { //Traz os valores correspondente ao ID e coloca dentro e $item
+            $subtotal = $item['preco'] * $item['quantidade'];
+
+            $total += $subtotal;
+        }
+        return view('cart.checkout', compact('cart', 'total'));
     }
 }

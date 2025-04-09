@@ -8,7 +8,7 @@
             <!-- Etapas do checkout -->
             <div class="checkout-steps mb-5">
                 <div class="checkout-step">
-                    <div class="step-number">1</div>
+                    <div class="step-number"><a href="/cart" class="text-dark">1</a></div>
                     <div class="step-text">CARRINHO</div>
                 </div>
                 <div class="checkout-step active">
@@ -198,8 +198,8 @@
                         <h3 class="mb-4">RESUMO DO PEDIDO</h3>
 
                         <div class="summary-item">
-                            <span>Subtotal (2 itens)</span>
-                            <span>R$ 589,80</span>
+                            <span>Subtotal ({{ count($cart) }} itens)</span>
+                            <span>R$ {{ number_format($total, 2, ',', '.') }}</span>
                         </div>
                         <div class="summary-item">
                             <span>Frete</span>
@@ -215,14 +215,21 @@
                         </div>
 
                         <div class="mt-4">
-                            <div class="text-muted mb-2 small">ou 6x de R$ 102,62 sem juros</div>
-                            <button class="checkout-btn mb-3">FINALIZAR COMPRA</button>
+                            <div class="text-muted mb-2 small">ou 6x de R$ {{ number_format($total / 6, 2, ',', '.') }} sem
+                                juros</div>
+                            <a href="{{ route('cart.checkout') }}" class=" btn btn-dark checkout-btn mb-3">FINALIZAR
+                                COMPRA</a>
+                            <a href="{{ session('url_anterior', url('/')) }}"
+                                class="btn btn-light checkout-btn bg-light text-dark">
+                                CONTINUAR COMPRANDO
+                            </a>
                             <div class="secure-checkout">
                                 <i class="bi bi-lock-fill"></i>
                                 <span>Pagamento 100% seguro</span>
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
