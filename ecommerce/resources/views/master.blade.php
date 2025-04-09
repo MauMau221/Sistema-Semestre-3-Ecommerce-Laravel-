@@ -12,6 +12,7 @@
     
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/login/login.css">
+    <link rel="stylesheet" href="/css/cart/checkout.css">
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 

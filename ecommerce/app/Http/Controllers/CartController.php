@@ -75,8 +75,8 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Produto removido da sacola!');
     }
 
-    public function checkout(string $id)
+    public function checkout()
     {
-        //
+        return view('cart.checkout');
     }
 }

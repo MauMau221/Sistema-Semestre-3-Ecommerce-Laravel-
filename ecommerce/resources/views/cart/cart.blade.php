@@ -2,154 +2,164 @@
 
 @section('content')
     <section>
-        <div class="container py-5">
+        <div class="container py-4">
+            <h1 class="mb-4">FINALIZAR COMPRA</h1>
+
+            <!-- Etapas do checkout -->
+            <div class="checkout-steps mb-5">
+                <div class="checkout-step active">
+                    <div class="step-number">1</div>
+                    <div class="step-text">CARRINHO</div>
+                </div>
+                <div class="checkout-step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">IDENTIFICAÇÃO</div>
+                </div>
+                <div class="checkout-step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">PAGAMENTO</div>
+                </div>
+                <div class="checkout-step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">CONFIRMAÇÃO</div>
+                </div>
+            </div>
+
             <div class="row">
-                <!-- Cart Items Section -->
-                <div class="col-lg-8 mb-4">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="cart-header d-flex justify-content-between align-items-center p-2 mb-2 ">
-                                <h2 class="h4">Minha Sacola</h2>
-                                <span class="text-muted">{{ count($cart) }} itens</span>
-                            </div>
+                <!-- Coluna da esquerda - Itens do carrinho e formulários -->
+                <div class="col-lg-8">
+                    <!-- Seção do carrinho -->
+                    <div class="mb-5">
+                        <h2 class="section-title">ITENS DO CARRINHO</h2>
 
-                            <!-- Cart Item -->
-                            @foreach ($cart as $produto)
-                                <form action="/cart/remove" method="POST">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" name="produto_id" value="{{ $produto['id'] }}">
-                                    <div class="row mb-4 pb-3 border-bottom">
-                                        <div class="col-md-2 col-4 mb-3 mb-md-0">
+                        <!-- Item do carrinho -->
+                        @foreach ($cart as $produto)
+                            <form action="/cart/remove" method="POST">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="produto_id" value="{{ $produto['id'] }}">
+                                <div class="cart-item">
+                                    <div class="row align-items-center">
+                                        <div class="col-3 col-md-2">
                                             <img src="{{ $produto['url'] ?? asset('https://cdn-icons-png.flaticon.com/512/2071/2071149.png') }}"
-                                                alt="Camiseta 1" class="card-img-top">
+                                                alt="Camiseta 1" class="product-thumbnail img-fluid">
                                         </div>
-                                        <div class="col-md-10 col-8">
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <div>
-                                                    <h3 class="product-title">{{ $produto['nome'] }}</h3>
-                                                    <p class="product-code mb-1">Código: AR2023001</p>
-                                                    <p class="product-size mb-2">Tamanho: M | Cor: Azul</p>
-                                                </div>
-                                                <div class="d-none d-md-block">
-                                                    <span class="remove-item">
-                                                        <button type="submit" class="border-0 bg-transparent">
-                                                            <i class="fas fa-times"></i>
-                                                        </button>
-                                                    </span>
-                                                </div>
+                                        <div class="col-9 col-md-4">
+                                            <h5 class="mb-1">{{ $produto['nome'] }}</h5>
+                                            <p class="text-muted mb-1">Tamanho: M | Cor: Azul</p>
+                                            <p class="text-muted mb-0">Código: 8121423</p>
+                                        </div>
+                                        <div class="col-6 col-md-3 mt-3 mt-md-0">
+                                            <div class="quantity-selector">
+                                                <button class="quantity-btn" onclick="btnDiminuirQtd(event)">-</button>
+                                                <input type="text" id="quantidade" name="quantidade"
+                                                    class="quantity-input" value="{{ $produto['quantidade'] }}" readonly>
+                                                <button class="quantity-btn" onclick="btnAumentarQtd(event)">+</button>
                                             </div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="input-group qty-selector me-3">
-                                                        <button class="btn btn-outline-secondary quantity-btn"
-                                                            onclick="btnDiminuirQtd(event)">-</button>
-                                                        <input type="number" id="quantidade" name="quantidade"
-                                                            class="form-control text-center"
-                                                            value="{{ $produto['quantidade'] }}">
-                                                        <button class="btn btn-outline-secondary quantity-btn"
-                                                            onclick="btnAumentarQtd(event)">+</button>
-                                                    </div>
-                                                    <div class="d-md-none">
-                                                        <span class="remove-item"><i class="fas fa-times"></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-price">R$
-                                                    {{ number_format($produto['preco'], 2, ',', '.') }}</div>
-                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-3 mt-3 mt-md-0 text-end">
+                                            <div class="fw-bold mb-1 product-price">R$
+                                                {{ number_format($produto['preco'], 2, ',', '.') }}</div>
+                                            <button type="submit"
+                                                class="text-danger small btn-link-hover border-0 bg-transparent">Remover</button>
                                         </div>
                                     </div>
-                                </form>
-                            @endforeach
+                                </div>
+                            </form>
+                        @endforeach
+
+                    </div>
+
+                    <!-- Seção de cupom de desconto -->
+                    <div class="mb-5">
+                        <h2 class="section-title">CUPOM DE DESCONTO</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Digite seu cupom">
+                                    <button class="btn btn-dark" type="button">APLICAR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Seção de frete -->
+                    <div class="mb-5">
+                        <h2 class="section-title">CALCULAR FRETE</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Digite seu CEP">
+                                    <button class="btn btn-dark" type="button">CALCULAR</button>
+                                </div>
+                                <div class="small mb-3">
+                                    <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank"
+                                        class="text-decoration-none text-dark">Não sei meu CEP</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Opções de frete após cálculo -->
+                        <div class="mt-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="shippingOption" id="sedex" checked>
+                                <label class="form-check-label d-flex justify-content-between w-100" for="sedex">
+                                    <span>SEDEX (2-3 dias úteis)</span>
+                                    <span>R$ 25,90</span>
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="shippingOption" id="pac">
+                                <label class="form-check-label d-flex justify-content-between w-100" for="pac">
+                                    <span>PAC (5-8 dias úteis)</span>
+                                    <span>R$ 18,50</span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="shippingOption" id="freeShipping">
+                                <label class="form-check-label d-flex justify-content-between w-100" for="freeShipping">
+                                    <span>FRETE GRÁTIS (7-10 dias úteis)</span>
+                                    <span>R$ 0,00</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Order Summary Section -->
+                <!-- Coluna da direita - Resumo do pedido -->
                 <div class="col-lg-4">
-                    <div class="card border-0 shadow-sm mb-4">
-                        <div class="card-body p-4">
-                            <h3 class="h5 mb-4">Resumo do Pedido</h3>
+                    <div class="order-summary">
+                        <h3 class="mb-4">RESUMO DO PEDIDO</h3>
 
-                            <!-- Shipping Calculator -->
-                            <div class="mb-4">
-                                <h4 class="h6 mb-3">Calcular Frete</h4>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Digite seu CEP" maxlength="9"
-                                        id="cep-input">
-                                    <button class="btn btn-dark" type="button" id="calc-shipping">Calcular</button>
-                                </div>
-                                <div class="mt-1">
-                                    <small><a href="https://buscacepinter.correios.com.br/app/endereco/index.php"
-                                            target="_blank" class="text-decoration-none">Não sei meu CEP</a></small>
-                                </div>
-
-                                <!-- Shipping options (initially hidden, will be shown via JS) -->
-                                <div class="shipping-options mt-3" id="shipping-options" style="display: none;">
-                                    <div class="shipping-option d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <input type="radio" name="shipping" id="shipping1" class="shipping-radio"
-                                                checked>
-                                            <label for="shipping1">Entrega Padrão (7-10 dias úteis)</label>
-                                        </div>
-                                        <span class="text-success">Grátis</span>
-                                    </div>
-                                    <div class="shipping-option d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <input type="radio" name="shipping" id="shipping2" class="shipping-radio">
-                                            <label for="shipping2">Entrega Expressa (3-5 dias úteis)</label>
-                                        </div>
-                                        <span>R$ 19,90</span>
-                                    </div>
-                                    <div class="shipping-option d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <input type="radio" name="shipping" id="shipping3" class="shipping-radio">
-                                            <label for="shipping3">Entrega Rápida (1-2 dias úteis)</label>
-                                        </div>
-                                        <span>R$ 39,90</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between mb-2">
-                                <span>Subtotal</span>
-                                <span>R$ {{ number_format($total, 2, ',', '.') }}</span>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-2">
-                                <span>Frete</span>
-                                <span class="shipping-cost text-success">Grátis</span>
-                            </div>
-
-                            <hr>
-
-                            <div class="d-flex justify-content-between mb-4">
-                                <span class="fw-bold">Total</span>
-                                <span class="fw-bold total-amount">R$ 1.259,70</span>
-                            </div>
-
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control promo-input" placeholder="Cupom de desconto">
-                                <button class="btn btn-outline-secondary promo-button" type="button">Aplicar</button>
-                            </div>
-
-                            <button class="btn btn-dark w-100 checkout-btn py-3">Finalizar Compra</button>
+                        <div class="summary-item">
+                            <span>Subtotal ({{ count($cart) }} itens)</span>
+                            <span>R$ {{ number_format($total, 2, ',', '.') }}</span>
                         </div>
-                    </div>
+                        <div class="summary-item">
+                            <span>Frete</span>
+                            <span>R$ 25,90</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Desconto</span>
+                            <span>R$ 0,00</span>
+                        </div>
+                        <div class="summary-item summary-total">
+                            <span>Total</span>
+                            <span>R$ 615,70</span>
+                        </div>
 
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <h3 class="h5 mb-3">Formas de Pagamento</h3>
-                            <div class="d-flex flex-wrap gap-2 mb-3">
-                                <img src="/api/placeholder/40/25" alt="Visa" class="payment-icon">
-                                <img src="/api/placeholder/40/25" alt="Mastercard" class="payment-icon">
-                                <img src="/api/placeholder/40/25" alt="American Express" class="payment-icon">
-                                <img src="/api/placeholder/40/25" alt="Elo" class="payment-icon">
-                                <img src="/api/placeholder/40/25" alt="Boleto" class="payment-icon">
-                                <img src="/api/placeholder/40/25" alt="Pix" class="payment-icon">
+                        <div class="mt-4">
+                            <div class="text-muted mb-2 small">ou 6x de R$ {{ number_format($total / 6, 2, ',', '.') }} sem
+                                juros</div>
+                            <a href="{{ route('cart.checkout') }}" class=" btn btn-dark checkout-btn mb-3">FINALIZAR
+                                COMPRA</a>
+                            <div class="secure-checkout">
+                                <i class="bi bi-lock-fill"></i>
+                                <span>Pagamento 100% seguro</span>
                             </div>
-                            <p class="text-muted small mb-0">Compra segura. Criptografia SSL.</p>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
