@@ -33,6 +33,13 @@
                         <h2 class="section-title">ITENS DO CARRINHO</h2>
 
                         <!-- Item do carrinho -->
+                        @if (empty($cart))
+                            <h4 class="text-center">Sua sacola esta vazia!</h4>
+                            <a href="{{ session('url_anterior', url('/')) }}"
+                                class="btn btn-light checkout-btn bg-light text-dark">
+                                CONTINUAR COMPRANDO
+                            </a>
+                        @endif
                         @foreach ($cart as $produto)
                             <form action="/cart/remove" method="POST">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">

@@ -93,7 +93,7 @@
                                             </div>
                                             <h5 class="font-weight-bold">{{ $produto['nome'] }}</h5>
                                             <p class="card-price">
-                                                <s>R$399,99</s>
+                                                <s>R${{ number_format($produto['preco'] + 99.99, 2, ',', '.') }}</s>
                                                 <strong>R${{ $produto['preco'] }}</strong>
                                             </p>
                                         </div>
