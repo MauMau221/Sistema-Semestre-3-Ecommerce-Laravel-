@@ -35,13 +35,9 @@
                         <!-- Item do carrinho -->
                         @if (empty($cart))
                             <h4 class="text-center">Sua sacola esta vazia!</h4>
-                            <a href="{{ session('url_anterior', url('/')) }}"
-                                class="btn btn-light checkout-btn bg-light text-dark">
-                                CONTINUAR COMPRANDO
-                            </a>
                         @endif
                         @foreach ($cart as $produto)
-                            <form action="/cart/remove" method="POST">
+                            <form action="/cart/remove" method="POST" class="cart-item-form">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="produto_id" value="{{ $produto['id'] }}">
                                 <div class="cart-item">
@@ -57,15 +53,22 @@
                                         </div>
                                         <div class="col-6 col-md-3 mt-3 mt-md-0">
                                             <div class="quantity-selector">
-                                                <button class="quantity-btn" onclick="btnDiminuirQtd(event)">-</button>
-                                                <input type="text" id="quantidade" name="quantidade"
-                                                    class="quantity-input" value="{{ $produto['quantidade'] }}" readonly>
-                                                <button class="quantity-btn" onclick="btnAumentarQtd(event)">+</button>
+                                                <button type="button" class="quantity-btn" onclick="btnDiminuirQtd(event)">-</button>
+                                                <input type="text" name="quantidade" class="quantity-input" 
+                                                    value="{{ $produto['quantidade'] }}" 
+                                                    data-price="{{ $produto['preco'] }}"
+                                                    data-produto-id="{{ $produto['id'] }}"
+                                                    readonly>
+                                                <button type="button" class="quantity-btn" onclick="btnAumentarQtd(event)">+</button>
                                             </div>
                                         </div>
                                         <div class="col-6 col-md-3 mt-3 mt-md-0 text-end">
-                                            <div class="fw-bold mb-1 product-price">R$
-                                                {{ number_format($produto['preco'], 2, ',', '.') }}</div>
+                                            <div class="fw-bold mb-1 product-price" data-price="{{ $produto['preco'] }}">
+                                                R$ {{ number_format($produto['preco'], 2, ',', '.') }}
+                                            </div>
+                                            <div class="fw-bold mb-1 subtotal-price" data-produto-id="{{ $produto['id'] }}">
+                                                R$ {{ number_format($produto['preco'] * $produto['quantidade'], 2, ',', '.') }}
+                                            </div>
                                             <button type="submit"
                                                 class="text-danger small btn-link-hover border-0 bg-transparent">Remover</button>
                                         </div>
@@ -73,7 +76,6 @@
                                 </div>
                             </form>
                         @endforeach
-
                     </div>
 
                     <!-- Seção de cupom de desconto -->
@@ -138,27 +140,31 @@
                         <h3 class="mb-4">RESUMO DO PEDIDO</h3>
 
                         <div class="summary-item">
-                            <span>Subtotal ({{ count($cart) }} itens)</span>
-                            <span>R$ {{ number_format($total, 2, ',', '.') }}</span>
+                            <span>Subtotal (<span id="total-items">{{ count($cart) }}</span> itens)</span>
+                            <span id="subtotal-price">R$ {{ number_format($total, 2, ',', '.') }}</span>
                         </div>
                         <div class="summary-item">
                             <span>Frete</span>
-                            <span>R$ 25,90</span>
+                            <span id="shipping-price">R$ 25,90</span>
                         </div>
                         <div class="summary-item">
                             <span>Desconto</span>
-                            <span>R$ 0,00</span>
+                            <span id="discount-price">R$ 0,00</span>
                         </div>
                         <div class="summary-item summary-total">
                             <span>Total</span>
-                            <span>R$ 615,70</span>
+                            <span id="total-price">R$ {{ number_format($total + 25.90, 2, ',', '.') }}</span>
                         </div>
 
                         <div class="mt-4">
-                            <div class="text-muted mb-2 small">ou 6x de R$ {{ number_format($total / 6, 2, ',', '.') }} sem
-                                juros</div>
-                            <a href="{{ route('cart.checkout') }}" class=" btn btn-dark checkout-btn mb-3">FINALIZAR
-                                COMPRA</a>
+                            <div class="text-muted mb-2 small">ou 6x de <span id="installment-price">R$ {{ number_format(($total + 25.90) / 6, 2, ',', '.') }}</span> sem juros</div>
+                            @if (empty($cart))
+                                <div class="alert alert-danger">
+                                    Adicione produtos para continuar.
+                                </div>
+                            @else
+                                <a href="{{ route('cart.checkout') }}" class="btn btn-dark checkout-btn mb-3">FINALIZAR COMPRA</a>
+                            @endif
                             <a href="{{ session('url_anterior', url('/')) }}"
                                 class="btn btn-light checkout-btn bg-light text-dark">
                                 CONTINUAR COMPRANDO
@@ -170,8 +176,61 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
+
+    @push('scripts')
+    <script>
+        function updateCartTotals() {
+            let totalItems = 0;
+            let subtotal = 0;
+            
+            // Calcula subtotal e total de itens
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                const quantity = parseInt(input.value);
+                const price = parseFloat(input.dataset.price);
+                const produtoId = input.dataset.produtoId;
+                
+                totalItems += quantity;
+                const itemSubtotal = quantity * price;
+                subtotal += itemSubtotal;
+                
+                // Atualiza o subtotal do item
+                document.querySelector(`.subtotal-price[data-produto-id="${produtoId}"]`).textContent = 
+                    `R$ ${itemSubtotal.toFixed(2).replace('.', ',')}`;
+            });
+            
+            // Atualiza os totais no resumo
+            const shippingPrice = parseFloat(document.getElementById('shipping-price').textContent.replace('R$ ', '').replace(',', '.'));
+            const discountPrice = parseFloat(document.getElementById('discount-price').textContent.replace('R$ ', '').replace(',', '.'));
+            const total = subtotal + shippingPrice - discountPrice;
+            
+            document.getElementById('total-items').textContent = totalItems;
+            document.getElementById('subtotal-price').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            document.getElementById('total-price').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            document.getElementById('installment-price').textContent = 
+                `R$ ${(total / 6).toFixed(2).replace('.', ',')}`;
+        }
+
+        function btnAumentarQtd(event) {
+            event.preventDefault();
+            const input = event.target.parentElement.querySelector('.quantity-input');
+            input.value = parseInt(input.value) + 1;
+            updateCartTotals();
+        }
+
+        function btnDiminuirQtd(event) {
+            event.preventDefault();
+            const input = event.target.parentElement.querySelector('.quantity-input');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+                updateCartTotals();
+            }
+        }
+
+        // Atualiza os totais quando a página carrega
+        document.addEventListener('DOMContentLoaded', updateCartTotals);
+    </script>
+    @endpush
 @endsection

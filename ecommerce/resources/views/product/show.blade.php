@@ -74,9 +74,9 @@
                             <div class="d-flex align-items-center">
                                 <button class="btn btn-outline-dark rounded-0 quantity-btn"
                                     onclick="btnDiminuirQtd(event)">-</button>
-                                <input type="number" id="quantidade" name="quantidade" class="form-control rounded-0 text-center mx-2"
+                                <input type="number" id="quantidade" name="quantidade" class="form-control rounded-0 text-center mx-2 quantity-input"
                                     value="1" min="1" max="10" style="width: 70px;">
-                                <button class="btn btn-outline-dark rounded-0 quantity-btn"
+                                <button class="btn btn-outline-dark rounded-0 quantity-input"
                                     onclick="btnAumentarQtd(event)">+</button>
                             </div>
                         </div>
