@@ -24,12 +24,6 @@
     flex-direction: row;
   }
 
-  .testando {
-    position: absolute;
-    right: 20px;
-    top: 0px;
-  }
-
   .navbar-toggler {
     display: block;
   }

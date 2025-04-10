@@ -5,28 +5,31 @@
         <section class="container py-4">
             <div class="row">
                 <!-- Imagens do produto -->
-                <div class="col-md-1 d-none d-md-block">
-                    <div class="product-thumbnail active">
-                        <img src="/css/image/card/image.png" alt="Miniatura 1" class="img-fluid border border-secondary mb-2">
+                <div class="col-md-6 d-flex flex-md-row flex-column">
+                    <!-- Miniaturas -->
+                    <div class="d-none d-md-block me-2">
+                        <div class="product-thumbnail mb-2">
+                            <img src="/css/image/card/image.png" alt="Miniatura 1" class="img-fluid border border-secondary">
+                        </div>
+                        <div class="product-thumbnail mb-2">
+                            <img src="/css/image/card/image.png" alt="Miniatura 2" class="img-fluid border border-secondary">
+                        </div>
+                        <div class="product-thumbnail mb-2">
+                            <img src="/css/image/card/image.png" alt="Miniatura 3" class="img-fluid border border-secondary">
+                        </div>
+                        <div class="product-thumbnail mb-2">
+                            <img src="/css/image/card/image.png" alt="Miniatura 4" class="img-fluid border border-secondary">
+                        </div>
                     </div>
-                    <div class="product-thumbnail">
-                        <img src="/css/image/card/image.png" alt="Miniatura 2" class="img-fluid border border-secondary mb-2">
-                    </div>
-                    <div class="product-thumbnail">
-                        <img src="/css/image/card/image.png" alt="Miniatura 3"
-                            class="img-fluid border border-secondary mb-2">
-                    </div>
-                    <div class="product-thumbnail">
-                        <img src="/css/image/card/image.png" alt="Miniatura 4"
-                            class="img-fluid border border-secondary mb-2">
+                
+                    <!-- Imagem principal -->
+                    <div class="flex-grow-1 ml-2">
+                        <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}"
+                             alt="Imagem principal"
+                             class="img-fluid border border-secondary w-100">
                     </div>
                 </div>
-
-                <!-- Imagem principal -->
-                <div class="col-md-5">
-                    <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}" alt="Camiseta Manga Curta"
-                        class="img-fluid border border-secondary">
-                </div>
+                
 
                 <!-- Detalhes do produto -->
                 <div class="col-md-6 product-details">
@@ -120,7 +123,6 @@
                                         <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}"
                                             class="card-img-top">
                                         <a href="#" class="p-3 text-dark cart-icon position-absolute bottom-0 end-0">
-                                            <i class="fa-solid fa-cart-plus fa-xl"></i>
                                         </a>
                                     </div>
                                     <div class="card d-flex flex-column p-2 border-0">
@@ -135,6 +137,16 @@
                                         <p class="card-price">
                                             <strong>R${{ $produto['preco'] }}</strong>
                                         </p>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <form action="/cart/add" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="produto_id" value="{{ $produto->id }}">
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                <i class="fa-solid fa-bag-shopping fa-xl"
+                                                    style="color: rgb(93, 92, 92); cursor: pointer;"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
