@@ -88,4 +88,16 @@ class CartController extends Controller
         }
         return view('cart.checkout', compact('cart', 'total'));
     }
+    public function buy()
+    {
+        $cart = Session::get('cart', []);
+        $total = 0;
+        foreach ($cart as $id => $item) { //Traz os valores correspondente ao ID e coloca dentro e $item
+            $subtotal = $item['preco'] * $item['quantidade'];
+
+            $total += $subtotal;
+        }
+        return view('cart.buy', compact('cart', 'total'));
+    }
 }
+

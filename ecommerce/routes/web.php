@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart/checkout',[CartController::class, 'checkout' ])->name('cart.checkout');
+    Route::get('/cart/buy',[CartController::class, 'buy' ])->name('cart.buy');
 });
 
 Route::get('/',[HomeController::class, 'index' ])->name('home.home');

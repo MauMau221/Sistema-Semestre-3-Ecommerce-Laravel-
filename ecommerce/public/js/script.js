@@ -28,6 +28,7 @@ const swiper = new Swiper('.swiper', {
 
 
 
+  //Botões de quantidade em produtos
 function btnAumentarQtd() {
   event.preventDefault(); // Evita o submit nos botãoes de quantidade
   const quantidadeInput = document.getElementById('quantidade');
@@ -47,4 +48,3 @@ function btnDiminuirQtd() {
     quantidadeInput.value = elementValue - 1;
   }
 }
-
