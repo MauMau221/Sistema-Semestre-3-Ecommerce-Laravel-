@@ -174,3 +174,15 @@
 .card .card-price s {
   font-size: 11px;
 }
+
+@media (max-width: 575px) {
+  .cart-icon {
+    position: relative;
+    left: 100px;
+    bottom: 150px;
+  }
+  .border-top {
+    position: relative;
+  }
+  
+}
