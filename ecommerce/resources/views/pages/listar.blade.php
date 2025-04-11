@@ -195,22 +195,11 @@
                     @endforeach
                 </div>
                 <!-- Paginação -->
+
                 <div class="d-flex justify-content-center my-5">
                     <nav aria-label="Navegação de páginas">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" aria-label="Anterior">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Próximo">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
+                        <ul class="pagination p-2">
+                            {{ $itens->links() }}
                         </ul>
                     </nav>
                 </div>

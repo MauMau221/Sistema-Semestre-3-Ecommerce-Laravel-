@@ -19,8 +19,11 @@ class CategoryController extends Controller
         $nomeCategoria = $request->query('nome');
         $categoria = Categoria::where('nome', $nomeCategoria)->firstOrFail();
         
-        $produtos = $categoria->produtos;
-        return view('pages.listar', ['itens' => $produtos, 'categoria' => $nomeCategoria]);
+        $produtos = $categoria->produtos()->paginate(8)->withQueryString();
+        return view('pages.listar', [
+            'itens' => $produtos,
+            'categoria' => $nomeCategoria
+        ]);
     }
 
 }

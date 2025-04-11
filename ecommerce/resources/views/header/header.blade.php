@@ -9,11 +9,11 @@
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
-                    <div>Frete grátis para compras acima de R$ 499</div>
+                    <div>Frete grátis para compras acima de R$ 299,99</div>
                 </div>
                 <div class="col-md-4 text-end">
                     <div>
-                        <span class="me-3">Atendimento</span>
+                        <span>Atendimento</span>
                         <span>Central do Cliente</span>
                     </div>
                 </div>

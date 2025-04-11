@@ -108,7 +108,7 @@
                         </div>
 
                         <!-- Opções de frete após cálculo -->
-                        <div class="mt-3">
+                        <div class="mt-3 d-none">
                             <div class="form-check mb-2">
                                 <input class="form-check-input" type="radio" name="shippingOption" id="sedex" checked>
                                 <label class="form-check-label d-flex justify-content-between w-100" for="sedex">
