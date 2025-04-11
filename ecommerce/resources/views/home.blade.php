@@ -12,8 +12,8 @@
     <main>
         <div class="container">
             {{-- Categorias --}}
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-4 col-md-4 col-sm-6
+            <div class="row justify-content-center container-category">
+                <div class="col-6 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'camisas']) }}" class="">
@@ -21,7 +21,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 col-md-4 col-sm-6
+                <div class="col-6 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'camisetas']) }}" class="">
@@ -29,7 +29,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 col-md-4 col-sm-6
+                <div class="col-6 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'calcas']) }}" class="">
@@ -37,7 +37,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 col-md-4 col-sm-6
+                <div class="col-6 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'calcados']) }}" class="">
@@ -45,7 +45,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 col-md-4 col-sm-6
+                <div class="col-6 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'polos']) }}" class="">
@@ -53,7 +53,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 col-md-4 col-sm-6
+                <div class="col-6 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'jaquetas']) }}" class="">
