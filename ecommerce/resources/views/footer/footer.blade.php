@@ -1,7 +1,7 @@
-<div style="height: 153px;" class="d-none d-md-block d-lg-none"></div>
+<div style="height: 120px;" class="d-none d-md-block d-lg-none"></div>
 <div style="height: 129px;" class="d-none d-lg-block"></div>
 
-<footer class="border-top fixed-bottom text-muted bg-light">
+<footer class="border-top text-muted bg-light">
     <div class="container">
         <div class="row py-1">
             <div class="col-12 col-md-4 text-center text-md-left">

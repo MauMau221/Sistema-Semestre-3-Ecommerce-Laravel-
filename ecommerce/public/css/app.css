@@ -181,8 +181,14 @@
     left: 100px;
     bottom: 150px;
   }
-  .border-top {
+  
+}
+
+@media (max-width: 484px) {
+  .cart-icon {
     position: relative;
+    left: 35%;
+    bottom: 150px;
   }
   
 }
