@@ -12,7 +12,7 @@
     <main>
         <div class="container">
             {{-- Categorias --}}
-            <div class="row justify-content-center container-category">
+            <div class="row justify-content-center">
                 <div class="col-6 col-lg-4 col-md-4 col-sm-6
                 my-2">
                     <div class="card text-center">

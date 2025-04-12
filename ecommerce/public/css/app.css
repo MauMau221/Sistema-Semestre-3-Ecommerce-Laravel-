@@ -136,27 +136,60 @@
   object-fit: cover;
 }
 
-.card-product a:hover {
-  text-decoration: none;
+.card-product {
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
 }
 
-.card {
-  text-align: start;
-  padding: 5px;
-  border: none;
-}
-
-.card h5 {
-  font-size: var(--font-card);
+.card-product:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .card-product img {
-  width: 100%;
-  height: 380px;
-  /* Define uma altura fixa */
-  object-fit: cover;
-  /* Mantém a proporção e cobre todo o espaço */
-  border: solid 1px rgb(183, 179, 179);
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.card-product .card-title {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+.card-product .card-text {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+    text-align: center;
+}
+
+.card-product .star {
+    color: #ffc107;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.card-product .cart-icon {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-product:hover .cart-icon {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .card-product .card-title {
+        font-size: 0.8rem;
+    }
+    
+    .card-product .card-text {
+        font-size: 0.75rem;
+    }
+    
+    .card-product .cart-icon {
+        opacity: 1;
+    }
 }
 
 .image-container {
@@ -191,4 +224,106 @@
     bottom: 150px;
   }
   
+}
+
+.recommendations-section {
+    margin: 4rem 0;
+}
+
+.recommendations-section h2 {
+    font-size: 1.75rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.recommendations-section .nav-tabs {
+    border: none;
+    margin-bottom: 2rem;
+}
+
+.recommendations-section .nav-link {
+    color: #6c757d;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    margin: 0 1rem;
+    border: none;
+    position: relative;
+}
+
+.recommendations-section .nav-link:hover {
+    color: #000;
+}
+
+.recommendations-section .nav-link.active {
+    color: #000;
+    background: none;
+}
+
+.recommendations-section .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+}
+
+.recommendations-section .product-card {
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.recommendations-section .product-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.recommendations-section .product-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.recommendations-section .card-title {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+.recommendations-section .card-text {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+.recommendations-section .star {
+    color: #ffc107;
+    margin-bottom: 0.5rem;
+}
+
+.recommendations-section .cart-icon {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.recommendations-section .product-card:hover .cart-icon {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .recommendations-section .nav-link {
+        margin: 0 0.5rem;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .recommendations-section .card-title {
+        font-size: 0.8rem;
+    }
+    
+    .recommendations-section .card-text {
+        font-size: 0.75rem;
+    }
+    
+    .recommendations-section .cart-icon {
+        opacity: 1;
+    }
 }
