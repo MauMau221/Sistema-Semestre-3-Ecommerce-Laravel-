@@ -1,10 +1,3 @@
-    <div class="container">
-        <div class="d-flex justify-content-center">
-            <div class="">
-                <a class="navbar-brand text-secondary" href="{{ route('home.home') }}"><strong>Ecommerce</strong></a>
-            </div>
-        </div>
-    </div>
     <nav class="navbar navbar-expand-md navbar-light border-bottom shadow-sm bg-white">
         <div class="container py-2">
             <div class="d-flex align-items-center w-100">
