@@ -145,6 +145,14 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
+.card-product a {
+    text-decoration: none !important;
+}
+
+.card-product a:hover {
+    text-decoration: none !important;
+}
+
 .card-product img {
     width: 100%;
     height: auto;
@@ -155,18 +163,21 @@
     font-size: 0.9rem;
     margin: 0.5rem 0;
     text-align: center;
+    text-decoration: none !important;
 }
 
 .card-product .card-text {
     font-size: 0.85rem;
     margin-bottom: 0.25rem;
     text-align: center;
+    text-decoration: none !important;
 }
 
 .card-product .star {
-    color: #ffc107;
+    color: #353535;
     margin-bottom: 0.5rem;
     text-align: center;
+    text-decoration: none !important;
 }
 
 .card-product .cart-icon {

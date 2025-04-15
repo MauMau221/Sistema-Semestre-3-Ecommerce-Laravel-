@@ -163,17 +163,17 @@
                             <div class="card product-card border-0">
                                 <div class="position-relative">
                                     <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
-                                        <img src="{{ $produto['url'] ?? asset('https://cdn-icons-png.flaticon.com/512/2071/2071149.png') }}"
+                                        <img src="{{ $produto['url'] ?? asset('css/image/card/plantateste.jpg') }}"
                                             alt="Camiseta 1" class="card-img-top">
                                     </a>
-                                    <div class="position-relative">
+                                    <div class="position-absolute" style="right: 10px; bottom: 10px;">
                                         <div class="d-flex justify-content-end">
                                             <form action="/cart/add" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="produto_id" value="{{ $produto->id }}">
                                                 <button type="submit" class="border-0 bg-transparent">
                                                     <i class="fa-solid fa-bag-shopping fa-xl"
-                                                        style="color: rgb(93, 92, 92); cursor: pointer;"></i>
+                                                        style="color: rgb(255, 255, 255); cursor: pointer;"></i>
                                                 </button>
                                             </form>
                                         </div>

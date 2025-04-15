@@ -78,7 +78,7 @@
                             <div class="swiper-slide">
                                 <div class="card-product position-relative">
                                     <a href="{{ route('product.show', $produto['id']) }}"
-                                        class="stretched-link text-decoration-none text-dark">
+                                        class="text-decoration-none text-dark">
                                         <div class="image-container">
                                             <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}"
                                                 class="card-img-top">

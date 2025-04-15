@@ -4,7 +4,7 @@ const swiper = new Swiper('.swiper', {
     prevEl: ".button-prev",
   },
   // Default parameters
-  slidesPerView: 2,
+  slidesPerView: 1,
   spaceBetween: 10,
   // Responsive breakpoints
   breakpoints: {
