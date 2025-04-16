@@ -2,7 +2,7 @@
         <div class="container py-2">
             <div class="d-flex align-items-center w-100">
                 <!-- Logo -->
-                <a class="navbar-brand text-secondary me-3" href="{{ route('home.home') }}">
+                <a class="navbar-brand text-secondary" href="{{ route('home.home') }}">
                     <strong>Ecommerce</strong>
                 </a>
 
@@ -55,33 +55,4 @@
     </nav>
     
     <!-- Submenu de categorias -->
-    <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
-                aria-label="Abrir menu de navegação">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav justify-content-center">
-                    <li class="nav-item sale-nav">
-                        <a id="sale-text" href="{{ route('home.home', ['nome' => 'camisas']) }}"
-                            class="nav-link">%OFF</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('category.categorias', ['nome' => 'camisas']) }}" class="nav-link">Roupas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('category.categorias', ['nome' => 'calcados']) }}"
-                            class="nav-link">Calçados</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('category.categorias', ['nome' => 'acessorios']) }}"
-                            class="nav-link">Acessórios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link">Outlet</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    
