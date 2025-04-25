@@ -27,7 +27,6 @@
                         <div class="dropdown">
                             <button class="btn text-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-user me-1"></i>
                                 {{ Auth::user()->name }}
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
