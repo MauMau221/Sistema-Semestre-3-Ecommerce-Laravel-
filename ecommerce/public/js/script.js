@@ -75,5 +75,27 @@ function btnDiminuirQtd(event) {
   }
 }
 
+
+function buscarCep(event) {
+  const input = event.target.parentElement.querySelector('.form-cep');
+  const cep = input.value.replace(/\D/g, ''); // Remove tudo que não é numero
+
+  if (cep.length !== 8) {
+    alert('CEP inválido!');
+    return;
+  }
+
+  fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.erro) {
+        alert('CEP não encontrado!');
+      } else {
+        console.log(data);
+      }
+    });
+    
+}
+
 // Atualiza os totais quando a página carrega
 document.addEventListener('DOMContentLoaded', updateCartTotals);

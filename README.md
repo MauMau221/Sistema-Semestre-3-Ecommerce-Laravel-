@@ -20,10 +20,18 @@ composer install <br>
 php artisan key:generate <br>  
 - Rodar as migrations para iniciar o banco de dados <br>  
 php artisan migrate --seed <br>  
+
+- Para funcionar login com o google devemos adicionar em .env <br>  
+GOOGLE_CLIENT_ID="client_id" <br>  
+GOOGLE_CLIENT_SECRET="client_secret" <br>  
+
+- Agora devemos incluir as dependências do googleApi em nosso composer <br>  
+composer require google/apiclient
+
 - Agora é só iniciar o servidor: <br>  
 php artisan serve <br>
 
--Comandos para gerar dados fictícios: <br>  
+- Comandos para gerar dados fictícios: <br>  
 php artisan db:seed --class=CategoriasSeeder <br>  
 php artisan db:seed --class=ProdutosSeeder <br>  
 

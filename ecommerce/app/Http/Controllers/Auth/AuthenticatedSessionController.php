@@ -3,15 +3,26 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Library\Authenticate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Library\GoogleClient;
+
 
 class AuthenticatedSessionController extends Controller
 {
-    
+
     public function index()
     {
-        return view('login.login');
+        $googleClient = new GoogleClient();
+        $googleClient->init();
+
+        if ($googleClient->authorized()) {
+            $auth = new Authenticate();
+            return $auth->authGoogle($googleClient->getData()); // getData() retorna os dados que o google tras apos realizar o login 
+        }
+
+        return view('login.login', ['authUrl' => $googleClient->generateAuthLink()]);
     }
 
     public function create()
