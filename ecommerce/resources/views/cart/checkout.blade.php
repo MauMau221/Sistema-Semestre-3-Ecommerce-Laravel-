@@ -59,7 +59,7 @@
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label for="cep" class="form-label">CEP*</label>
-                                <input type="text" class="form-control" id="cep" required>
+                                <input type="text" class="form-control form-cep" id="cep" required>
                             </div>
                             <div class="col-md-8">
                                 <label for="street" class="form-label">Endereço*</label>
