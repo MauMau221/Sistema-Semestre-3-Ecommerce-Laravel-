@@ -107,11 +107,13 @@ function buscarCep(event) {
           inputCep.setCustomValidity('Só aceitamos CEPs de SP');
 
         } else {
+          
           console.log(data);
-          console.log(data.bairro);
-          console.log(data.estado);
-          console.log(data.logradouro);
-          console.log(data.uf);
+          document.getElementById('logradouro').value = data.logradouro || '';
+          document.getElementById('bairro').value = data.bairro || '';
+          document.getElementById('localidade').value = data.localidade || '';
+          document.getElementById('uf').value = data.uf || '';
+
         }
       }
     });
@@ -128,11 +130,11 @@ input.addEventListener('input', function () {
     mensagemExistente.remove();
   }
   //Torna o input valido novamente
-  
+
   if (valorSemTracos.length === 8) {
     buscarCep(event);
   }
-  inputCep.setCustomValidity('');  
+  inputCep.setCustomValidity('');
 });
 
 // Atualiza os totais quando a página carrega
