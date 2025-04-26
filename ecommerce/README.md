@@ -20,9 +20,11 @@ composer install <br>
 php artisan key:generate <br>  
 - Rodar as migrations para iniciar o banco de dados <br>  
 php artisan migrate --seed <br>  
+
 -Para funcionar login com o google devemos adicionar em .env <br>  
 GOOGLE_CLIENT_ID="client_id" <br>  
 GOOGLE_CLIENT_SECRET="client_secret" <br>  
+
 - Agora é só iniciar o servidor: <br>  
 php artisan serve <br>
 

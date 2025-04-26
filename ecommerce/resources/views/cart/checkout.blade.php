@@ -60,10 +60,12 @@
                             <div class="col-md-4">
                                 <label for="cep" class="form-label">CEP*</label>
                                 <input type="text" class="form-control form-cep" id="cep" required>
+                                <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank"
+                                    class="text-decoration-none text-dark">Não sei meu CEP</a>
                             </div>
                             <div class="col-md-8">
-                                <label for="street" class="form-label">Endereço*</label>
-                                <input type="text" class="form-control" id="street" required>
+                                <label for="logradouro" class="form-label">Endereço*</label>
+                                <input type="text" class="form-control" id="logradouro" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="number" class="form-label">Número*</label>
@@ -74,16 +76,16 @@
                                 <input type="text" class="form-control" id="complement">
                             </div>
                             <div class="col-md-5">
-                                <label for="neighborhood" class="form-label">Bairro*</label>
-                                <input type="text" class="form-control" id="neighborhood" required>
+                                <label for="bairro" class="form-label">Bairro*</label>
+                                <input type="text" class="form-control" id="bairro" required>
                             </div>
                             <div class="col-md-5">
-                                <label for="city" class="form-label">Cidade*</label>
-                                <input type="text" class="form-control" id="city" required>
+                                <label for="localidade" class="form-label">Cidade*</label>
+                                <input type="text" class="form-control" id="localidade" required>
                             </div>
                             <div class="col-md-2">
-                                <label for="state" class="form-label">Estado*</label>
-                                <select class="form-select" id="state" required>
+                                <label for="uf" class="form-label">Estado*</label>
+                                <select class="form-select" id="uf" required>
                                     <option selected disabled value="">UF</option>
                                     <option>SP</option>
                                     <option>RJ</option>

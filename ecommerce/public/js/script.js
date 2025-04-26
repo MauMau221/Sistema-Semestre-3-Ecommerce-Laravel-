@@ -27,7 +27,7 @@ const swiper = new Swiper('.swiper', {
 })
 
 
-
+//Logica de preços do carrinho
 function updateCartTotals() {
   let totalItems = 0;
   let subtotal = 0;
@@ -75,7 +75,7 @@ function btnDiminuirQtd(event) {
   }
 }
 
-
+//Logica da API com o buscador de CEP
 function buscarCep(event) {
   const input = event.target.parentElement.querySelector('.form-cep');
   const cep = input.value.replace(/\D/g, ''); // Remove tudo que não é numero
@@ -91,11 +91,49 @@ function buscarCep(event) {
       if (data.erro) {
         alert('CEP não encontrado!');
       } else {
-        console.log(data);
+        if (data.uf != 'SP') {
+          const mensagem = document.createElement('p');
+          mensagem.textContent = 'Não atendemos fora de SP';
+          mensagem.classList.add('text-danger', 'mt-2');
+          mensagem.classList.add('text-danger', 'mt-2', 'mensagem-erro-cep');
+
+          const linkCep = document.querySelector('a[href*="buscacepinter"]');
+
+          if (linkCep) {
+            linkCep.parentNode.appendChild(mensagem);
+          }
+          // Deixa o input inválido
+          const inputCep = document.getElementById('cep');
+          inputCep.setCustomValidity('Só aceitamos CEPs de SP');
+
+        } else {
+          console.log(data);
+          console.log(data.bairro);
+          console.log(data.estado);
+          console.log(data.logradouro);
+          console.log(data.uf);
+        }
       }
     });
-    
 }
+
+//Ignorando quando o usuario coloca - no meio do cep, verificando se tem mensagem de não atendimento de um determinado local e chamando o fetch via cep
+const input = document.getElementById('cep');
+
+input.addEventListener('input', function () {
+  const valorSemTracos = input.value.replace(/-/g, '');
+  const mensagemExistente = document.querySelector('.mensagem-erro-cep');
+
+  if (mensagemExistente) {
+    mensagemExistente.remove();
+  }
+  //Torna o input valido novamente
+  
+  if (valorSemTracos.length === 8) {
+    buscarCep(event);
+  }
+  inputCep.setCustomValidity('');  
+});
 
 // Atualiza os totais quando a página carrega
 document.addEventListener('DOMContentLoaded', updateCartTotals);
