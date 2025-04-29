@@ -27,6 +27,7 @@ class GoogleClient
         $this->client->setRedirectUri('http://localhost:8000/login');
         $this->client->addScope('email');
         $this->client->addScope('profile');
+        $this->client->setPrompt('select_account');
     }
 
     public function authorized()
