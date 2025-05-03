@@ -52,7 +52,7 @@
                     </button>
                 </div>
                 <p class="signup">Já tem conta?
-                    <a rel="noopener noreferrer" href="#" class="">Faça seu login aqui</a>
+                    <a rel="noopener noreferrer" href="{{ route('home.login') }}" class="">Faça seu login aqui</a>
                 </p>
             </div>
         </div>

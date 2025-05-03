@@ -53,13 +53,14 @@
                                         </div>
                                         <div class="col-6 col-md-3 mt-3 mt-md-0">
                                             <div class="quantity-selector">
-                                                <button type="button" class="quantity-btn" onclick="btnDiminuirQtd(event)">-</button>
-                                                <input type="text" name="quantidade" class="quantity-input" 
-                                                    value="{{ $produto['quantidade'] }}" 
+                                                <button type="button" class="quantity-btn"
+                                                    onclick="btnDiminuirQtd(event)">-</button>
+                                                <input type="text" name="quantidade" class="quantity-input"
+                                                    value="{{ $produto['quantidade'] }}"
                                                     data-price="{{ $produto['preco'] }}"
-                                                    data-produto-id="{{ $produto['id'] }}"
-                                                    readonly>
-                                                <button type="button" class="quantity-btn" onclick="btnAumentarQtd(event)">+</button>
+                                                    data-produto-id="{{ $produto['id'] }}" readonly>
+                                                <button type="button" class="quantity-btn"
+                                                    onclick="btnAumentarQtd(event)">+</button>
                                             </div>
                                         </div>
                                         <div class="col-6 col-md-3 mt-3 mt-md-0 text-end">
@@ -67,7 +68,8 @@
                                                 R$ {{ number_format($produto['preco'], 2, ',', '.') }}
                                             </div>
                                             <div class="fw-bold mb-1 subtotal-price" data-produto-id="{{ $produto['id'] }}">
-                                                R$ {{ number_format($produto['preco'] * $produto['quantidade'], 2, ',', '.') }}
+                                                R$
+                                                {{ number_format($produto['preco'] * $produto['quantidade'], 2, ',', '.') }}
                                             </div>
                                             <button type="submit"
                                                 class="text-danger small btn-link-hover border-0 bg-transparent">Remover</button>
@@ -97,7 +99,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control form-cep" placeholder="Digite seu CEP">
+                                    <input type="text" id="cep" class="form-control form-cep"
+                                        placeholder="Digite seu CEP">
                                     <button class="btn btn-dark" type="button" onclick="buscarCep(event)">CALCULAR</button>
                                 </div>
                                 <div class="small mb-3">
@@ -153,17 +156,19 @@
                         </div>
                         <div class="summary-item summary-total">
                             <span>Total</span>
-                            <span id="total-price">R$ {{ number_format($total + 25.90, 2, ',', '.') }}</span>
+                            <span id="total-price">R$ {{ number_format($total + 25.9, 2, ',', '.') }}</span>
                         </div>
 
                         <div class="mt-4">
-                            <div class="text-muted mb-2 small">ou 6x de <span id="installment-price">R$ {{ number_format(($total + 25.90) / 6, 2, ',', '.') }}</span> sem juros</div>
+                            <div class="text-muted mb-2 small">ou 6x de <span id="installment-price">R$
+                                    {{ number_format(($total + 25.9) / 6, 2, ',', '.') }}</span> sem juros</div>
                             @if (empty($cart))
                                 <div class="alert alert-danger">
                                     Adicione produtos para continuar.
                                 </div>
                             @else
-                                <a href="{{ route('cart.checkout') }}" class="btn btn-dark checkout-btn mb-3">FINALIZAR COMPRA</a>
+                                <a href="{{ route('cart.checkout') }}" class="btn btn-dark checkout-btn mb-3">FINALIZAR
+                                    COMPRA</a>
                             @endif
                             <a href="{{ session('url_anterior', url('/')) }}"
                                 class="btn btn-light checkout-btn bg-light text-dark">
