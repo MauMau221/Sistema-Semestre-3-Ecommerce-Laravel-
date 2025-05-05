@@ -80,7 +80,7 @@
                                     <a href="{{ route('product.show', $produto['id']) }}"
                                         class="text-decoration-none text-dark">
                                         <div class="image-container">
-                                            <img src="{{ $produto['url'] ?? asset('/css/image/card/image.png') }}"
+                                            <img src="{{ $produto['url'] ?? asset('css/image/card/image' . rand(1, 5) . '.png') }}"
                                                 class="card-img-top">
                                         </div>
                                         <div class="card d-flex flex-column p-2 border-0">

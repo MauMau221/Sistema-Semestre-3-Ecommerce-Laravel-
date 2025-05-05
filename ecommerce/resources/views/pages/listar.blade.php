@@ -163,7 +163,7 @@
                             <div class="card product-card border-0">
                                 <div class="position-relative">
                                     <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
-                                        <img src="{{ $produto['url'] ?? asset('css/image/card/plantateste.jpg') }}"
+                                        <img src="{{ $produto['url'] ?? asset('css/image/card/image' . rand(1, 5) . '.png') }}"
                                             alt="Camiseta 1" class="card-img-top">
                                     </a>
                                     <div class="position-absolute" style="right: 10px; bottom: 10px;">
@@ -172,8 +172,7 @@
                                                 @csrf
                                                 <input type="hidden" name="produto_id" value="{{ $produto->id }}">
                                                 <button type="submit" class="border-0 bg-transparent">
-                                                    <i class="fa-solid fa-bag-shopping fa-xl"
-                                                        style="color: rgb(255, 255, 255); cursor: pointer;"></i>
+                                                    <i class="fa-solid fa-bag-shopping fa-xl"></i>
                                                 </button>
                                             </form>
                                         </div>
