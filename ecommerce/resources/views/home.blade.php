@@ -80,8 +80,12 @@
                                     <a href="{{ route('product.show', $produto['id']) }}"
                                         class="text-decoration-none text-dark">
                                         <div class="image-container">
-                                            <img src="{{ $produto['url'] ?? asset('css/image/card/image' . rand(1, 5) . '.png') }}"
-                                                class="card-img-top">
+                                            @php
+                                                $imagemProduto = "/css/image/card/camisa{$produto->id}.jpg";
+                                                $imagemPadrao = "/css/image/card/image" . rand(1, 5) . ".png";
+                                                $imagem = file_exists(public_path($imagemProduto)) ? $imagemProduto : $imagemPadrao;
+                                            @endphp
+                                            <img src="{{ asset($imagem) }}" class="card-img-top" alt="{{ $produto->nome }}">
                                         </div>
                                         <div class="card d-flex flex-column p-2 border-0">
                                             <div class="star">
@@ -100,14 +104,9 @@
                                     </a>
 
                                     <div class="cart-icon">
-                                        <form action="/cart/add" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="produto_id" value="{{ $produto->id }}">
-                                            <button type="submit" class="border-0 bg-transparent">
-                                                <i class="fa-solid fa-bag-shopping fa-xl"
-                                                    style="color: rgb(93, 92, 92); cursor: pointer;"></i>
-                                            </button>
-                                        </form>
+                                        <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
+                                            <i class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(93, 92, 92); cursor: pointer;"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

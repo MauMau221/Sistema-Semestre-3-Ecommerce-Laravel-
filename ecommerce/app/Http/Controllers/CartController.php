@@ -4,11 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Produto;
+use App\Services\EstoqueService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
+    protected $estoqueService;
+
+    public function __construct(EstoqueService $estoqueService)
+    {
+        $this->estoqueService = $estoqueService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -29,9 +38,31 @@ class CartController extends Controller
         $produto = Produto::find($request->produto_id);
         $cart = Session::get('cart', []);
 
+        // Verifica se existe estoque disponível
+        if (!$this->estoqueService->verificarDisponibilidade(
+            $produto->id,
+            $request->quantidade,
+            $request->cor,
+            $request->tamanho
+        )) {
+            return redirect()->back()->with('error', 'Quantidade indisponível em estoque');
+        }
+
         //Se o produto ja existe no carrinho aumenta a quantidade
         if (isset($cart[$produto->id])) {
-            $cart[$produto->id]['quantidade'] += $request->quantidade;
+            $novaQuantidade = $cart[$produto->id]['quantidade'] + $request->quantidade;
+            
+            // Verifica se a nova quantidade total não excede o estoque
+            if (!$this->estoqueService->verificarDisponibilidade(
+                $produto->id,
+                $novaQuantidade,
+                $request->cor,
+                $request->tamanho
+            )) {
+                return redirect()->back()->with('error', 'Quantidade indisponível em estoque');
+            }
+            
+            $cart[$produto->id]['quantidade'] = $novaQuantidade;
         } else {
             //Se não adiciona um item novo
             $cart[$produto->id] = [
@@ -39,10 +70,12 @@ class CartController extends Controller
                 'nome' => $produto->nome,
                 'preco' => $produto->preco,
                 'quantidade' => $request->quantidade,
+                'cor' => $request->cor,
+                'tamanho' => $request->tamanho
             ];
 
             if ($request->quantidade == 0 || $request->quantidade === null) {
-                $cart[$produto->id]['quantidade'] += 1;
+                $cart[$produto->id]['quantidade'] = 1;
             }
         }
         // salva a URL anterior antes de redirecionar pro carrinho
@@ -58,11 +91,23 @@ class CartController extends Controller
         $cart = Session::get('cart', []);
 
         if (isset($cart[$request->produto_id])) {
+            $produto = Produto::find($request->produto_id);
+            
+            // Verifica se a nova quantidade está disponível em estoque
+            if (!$this->estoqueService->verificarDisponibilidade(
+                $produto->id,
+                $request->quantidade,
+                $cart[$request->produto_id]['cor'],
+                $cart[$request->produto_id]['tamanho']
+            )) {
+                return redirect()->back()->with('error', 'Quantidade indisponível em estoque');
+            }
+
             $cart[$request->produto_id]['quantidade'] = $request->quantidade;
             Session::put('cart', $cart);
         }
 
-        redirect()->back()->with('success', 'Sacola atualizada!');
+        return redirect()->back()->with('success', 'Sacola atualizada!');
     }
 
     public function remover(Request $request)
@@ -98,6 +143,40 @@ class CartController extends Controller
             $total += $subtotal;
         }
         return view('cart.buy', compact('cart', 'total'));
+    }
+
+    public function finalizar(Request $request)
+    {
+        $cart = Session::get('cart', []);
+        
+        try {
+            // Iniciar transação para garantir a integridade dos dados
+            DB::beginTransaction();
+            
+            // Processar cada item do carrinho
+            foreach ($cart as $id => $item) {
+                // Atualizar o estoque para cada item
+                $this->estoqueService->atualizarEstoque(
+                    $item['id'],
+                    $item['quantidade'],
+                    $item['cor'] ?? null,
+                    $item['tamanho'] ?? null
+                );
+            }
+            
+            // Finaliza a transação
+            DB::commit();
+            
+            // Limpa o carrinho
+            Session::forget('cart');
+            
+            return redirect()->route('home.home')->with('success', 'Seu pedido foi realizado com sucesso!');
+        } catch (\Exception $e) {
+            // Em caso de erro, desfaz as alterações no banco
+            DB::rollBack();
+            
+            return redirect()->back()->with('error', 'Erro ao finalizar pedido: ' . $e->getMessage());
+        }
     }
 }
 

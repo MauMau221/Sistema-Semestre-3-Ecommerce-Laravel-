@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Services\EstoqueService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    protected $estoqueService;
+
+    public function __construct(EstoqueService $estoqueService)
+    {
+        $this->estoqueService = $estoqueService;
+    }
     
     public function index()
     {
@@ -31,5 +38,18 @@ class ProductController extends Controller
         $pesquisa = $request->search;
         $produtos = Produto::where('nome', 'LIKE', "%{$pesquisa}%")->paginate(5);
         return view('pages.listar', ['itens' => $produtos, 'categoria' => $pesquisa]);
+    }
+
+    public function verificarEstoque(Request $request, $id)
+    {
+        $produto = Produto::findOrFail($id);
+        $estoque = $produto->estoque()
+            ->where('cor', $request->cor)
+            ->where('tamanho', $request->tamanho)
+            ->first();
+
+        return response()->json([
+            'quantidade' => $estoque ? $estoque->quantidade : 0
+        ]);
     }
 }

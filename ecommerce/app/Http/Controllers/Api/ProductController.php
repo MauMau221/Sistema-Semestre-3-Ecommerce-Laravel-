@@ -4,10 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Produto;
+use App\Services\EstoqueService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    protected $estoqueService;
+
+    public function __construct(EstoqueService $estoqueService)
+    {
+        $this->estoqueService = $estoqueService;
+    }
 
     public function index()
     {
@@ -47,5 +54,18 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function verificarEstoque(Request $request, $id)
+    {
+        $produto = Produto::findOrFail($id);
+        $estoque = $produto->estoque()
+            ->where('cor', $request->cor)
+            ->where('tamanho', $request->tamanho)
+            ->first();
+
+        return response()->json([
+            'quantidade' => $estoque ? $estoque->quantidade : 0
+        ]);
     }
 }

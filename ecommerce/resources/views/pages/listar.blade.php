@@ -163,18 +163,18 @@
                             <div class="card product-card border-0">
                                 <div class="position-relative">
                                     <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
-                                        <img src="{{ $produto['url'] ?? asset('css/image/card/image' . rand(1, 5) . '.png') }}"
-                                            alt="Camiseta 1" class="card-img-top">
+                                        @php
+                                            $imagemProduto = "/css/image/card/camisa{$produto->id}.jpg";
+                                            $imagemPadrao = "/css/image/card/image" . rand(1, 5) . ".png";
+                                            $imagem = file_exists(public_path($imagemProduto)) ? $imagemProduto : $imagemPadrao;
+                                        @endphp
+                                        <img src="{{ asset($imagem) }}" alt="{{ $produto->nome }}" class="card-img-top">
                                     </a>
                                     <div class="position-absolute" style="right: 10px; bottom: 10px;">
                                         <div class="d-flex justify-content-end">
-                                            <form action="/cart/add" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="produto_id" value="{{ $produto->id }}">
-                                                <button type="submit" class="border-0 bg-transparent">
-                                                    <i class="fa-solid fa-bag-shopping fa-xl"></i>
-                                                </button>
-                                            </form>
+                                            <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
+                                                <i class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(93, 92, 92); cursor: pointer;"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
