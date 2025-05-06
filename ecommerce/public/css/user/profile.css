@@ -1,0 +1,61 @@
+/* Estilos para as páginas do perfil do usuário */
+.list-group-item.active {
+    background-color: #212529;
+    border-color: #212529;
+}
+
+.badge {
+    padding: 0.5em 0.7em;
+    font-weight: 500;
+}
+
+/* Timeline (para histórico de pedidos) */
+.timeline {
+    position: relative;
+    padding-left: 30px;
+    list-style: none;
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -30px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #212529;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 2px #212529;
+}
+
+.timeline-item:not(:last-child):after {
+    content: '';
+    position: absolute;
+    left: -23px;
+    top: 15px;
+    height: calc(100% - 15px);
+    width: 2px;
+    background-color: #e0e0e0;
+}
+
+.timeline-title {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+/* Animações */
+.btn-hover-scale:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+
+/* Responsividade */
+@media (max-width: 767px) {
+    .order-summary {
+        margin-top: 2rem;
+    }
+} 

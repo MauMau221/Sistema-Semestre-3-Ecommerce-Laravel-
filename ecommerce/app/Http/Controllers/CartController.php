@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Produto;
+use App\Models\Pedido;
+use App\Models\OrdemPedido;
 use App\Services\EstoqueService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
@@ -131,7 +134,16 @@ class CartController extends Controller
 
             $total += $subtotal;
         }
-        return view('cart.checkout', compact('cart', 'total'));
+        
+        $user = null;
+        $mainAddress = null;
+        
+        if (Auth::check()) {
+            $user = Auth::user();
+            $mainAddress = $user->addresses()->where('endereco_principal', true)->first();
+        }
+        
+        return view('cart.checkout', compact('cart', 'total', 'user', 'mainAddress'));
     }
     public function buy()
     {
@@ -148,13 +160,37 @@ class CartController extends Controller
     public function finalizar(Request $request)
     {
         $cart = Session::get('cart', []);
+        $total = 0;
+        
+        // Calcular o total
+        foreach ($cart as $item) {
+            $total += $item['preco'] * $item['quantidade'];
+        }
         
         try {
             // Iniciar transação para garantir a integridade dos dados
             DB::beginTransaction();
             
+            // Criar o pedido
+            $pedido = new Pedido();
+            $pedido->user_id = Auth::check() ? Auth::id() : null;
+            $pedido->total = $total;
+            $pedido->status_id = 1; // Status inicial (pendente)
+            $pedido->save();
+            
             // Processar cada item do carrinho
             foreach ($cart as $id => $item) {
+                // Criar o item do pedido
+                OrdemPedido::create([
+                    'pedido_id' => $pedido->id,
+                    'produto_id' => $item['id'],
+                    'quantidade' => $item['quantidade'],
+                    'preco_unitario' => $item['preco'],
+                    'subtotal' => $item['preco'] * $item['quantidade'],
+                    'cor' => $item['cor'] ?? null,
+                    'tamanho' => $item['tamanho'] ?? null
+                ]);
+            
                 // Atualizar o estoque para cada item
                 $this->estoqueService->atualizarEstoque(
                     $item['id'],
@@ -170,7 +206,7 @@ class CartController extends Controller
             // Limpa o carrinho
             Session::forget('cart');
             
-            return redirect()->route('home.home')->with('success', 'Seu pedido foi realizado com sucesso!');
+            return redirect()->route('user.orders')->with('success', 'Seu pedido foi realizado com sucesso! Você pode acompanhar o status pelo menu "Meus Pedidos".');
         } catch (\Exception $e) {
             // Em caso de erro, desfaz as alterações no banco
             DB::rollBack();

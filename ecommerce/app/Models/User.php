@@ -46,4 +46,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    /**
+     * Get the addresses for the user.
+     */
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+    
+    /**
+     * Get the user's main address.
+     */
+    public function mainAddress()
+    {
+        return $this->hasMany(Address::class)->where('endereco_principal', true)->first();
+    }
 }

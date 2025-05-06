@@ -1,0 +1,36 @@
+/* Estilos para a página de endereços */
+.list-group-item.active {
+    background-color: #212529 !important;
+    border-color: #212529 !important;
+    color: white !important;
+}
+
+.list-group-item.active i {
+    color: white !important;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Estilo para o dropdown */
+.dropdown-menu {
+    border-radius: 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
+    padding: 0.5rem 0;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1.5rem;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: #212529 !important;
+    color: white !important;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #212529 !important;
+    color: white !important;
+} 

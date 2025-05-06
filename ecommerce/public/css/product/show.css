@@ -1,0 +1,191 @@
+/* Estilo para cor selecionada */
+input[type="radio"].cor-input {
+    display: none;
+}
+
+input[type="radio"].cor-input:checked + label.cor-label {
+    border: 2px solid black !important;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+/* Cores específicas */
+input[type="radio"].cor-input[value="Azul"] + label.cor-label {
+    background-color: #0000ff;
+}
+
+input[type="radio"].cor-input[value="Preto"] + label.cor-label {
+    background-color: #000000;
+}
+
+input[type="radio"].cor-input[value="Branco"] + label.cor-label {
+    background-color: #ffffff;
+}
+
+input[type="radio"].cor-input[value="Vermelho"] + label.cor-label {
+    background-color: #ff0000;
+}
+
+input[type="radio"].cor-input[value="Verde"] + label.cor-label {
+    background-color: #008000;
+}
+
+/* Estilo para tamanho selecionado */
+input[type="radio"].tamanho-input {
+    display: none;
+}
+
+input[type="radio"].tamanho-input:checked + label.tamanho-label {
+    background-color: #212529;
+    color: white;
+}
+
+/* Estilos para miniaturas */
+.product-thumbnail {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.product-thumbnail:hover {
+    opacity: 0.8;
+}
+
+.thumbnail-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+/* Ajustes para o carrossel em mobile */
+@media (max-width: 576px) {
+    .swiper-slide {
+        height: auto !important;
+        padding-bottom: 30px;
+        display: flex;
+        align-items: stretch;
+    }
+
+    .card-product {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin: 0 10px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        position: relative;
+        z-index: 1;
+        overflow: visible;
+    }
+
+    .card-product .image-container {
+        height: 400px;
+        overflow: hidden;
+        border-radius: 8px 8px 0 0;
+        position: relative;
+    }
+
+    .card-product .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card-product .card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 20px !important;
+        min-height: 200px;
+        background: white;
+        position: relative;
+        z-index: 2;
+        overflow: visible;
+    }
+
+    .card-product .card h5 {
+        font-size: 18px;
+        margin: 15px 0;
+        line-height: 1.4;
+        height: auto;
+        overflow: visible;
+    }
+
+    .card-product .card-price {
+        margin-top: auto;
+        font-size: 18px;
+        padding-top: 15px;
+        height: auto;
+        overflow: visible;
+    }
+
+    .card-product .card-price s {
+        font-size: 16px;
+        margin-right: 10px;
+        display: inline-block;
+    }
+
+    .card-product .card-price strong {
+        display: inline-block;
+    }
+
+    .card-product .star {
+        font-size: 16px;
+        margin-bottom: 10px;
+        height: auto;
+        overflow: visible;
+    }
+
+    .cart-icon {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 3;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    }
+
+    .cart-icon i {
+        font-size: 20px !important;
+        color: rgb(93, 92, 92);
+        background: white;
+        padding: 8px;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .cart-icon i:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Ajuste do Swiper para mobile */
+    .swiper {
+        padding-bottom: 50px;
+        margin-bottom: 50px;
+        position: relative;
+        z-index: 1;
+        overflow: visible;
+    }
+
+    .swiper-wrapper {
+        align-items: stretch;
+    }
+
+    /* Ajuste da seção de produtos similares */
+    .container.py-5 {
+        position: relative;
+        z-index: 1;
+        background: white;
+        margin-bottom: 50px;
+        overflow: visible;
+    }
+
+    /* Ajuste do link do card */
+    .card-product a {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: visible;
+    }
+} 

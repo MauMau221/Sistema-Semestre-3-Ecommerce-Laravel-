@@ -13,6 +13,8 @@ class OrdemPedido extends Model
         'quantidade',
         'preco_unitario',
         'subtotal',
+        'cor',
+        'tamanho',
     ];
 
     public function pedido()

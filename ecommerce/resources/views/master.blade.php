@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/login/login.css">
     <link rel="stylesheet" href="/css/cart/checkout.css">
+    <link rel="stylesheet" href="/css/user/addresses.css">
+    @stack('styles')
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 
@@ -60,6 +62,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> <!--  Swiper slides/carrossel -->
 
     <script src="/js/script.js"></script>
+    @stack('scripts')
 
 </body>
 

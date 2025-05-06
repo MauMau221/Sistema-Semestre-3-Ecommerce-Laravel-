@@ -30,8 +30,11 @@
                                 {{ Auth::user()->name }}
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item text-secondary" href="#">Meus dados</a></li>
-                                <li><a class="dropdown-item text-secondary" href="{{ route('logout') }}">Sair</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.profile') }}">Meus dados</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.addresses.index') }}">Meus endereços</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.orders') }}">Meus pedidos</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}">Sair</a></li>
                             </ul>
                         </div>
                     @endauth

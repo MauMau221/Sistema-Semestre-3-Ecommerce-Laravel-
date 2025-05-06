@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('status', function (Blueprint $table) {
+        Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->decimal('total', 10, 2);
+            $table->foreignId('status_id')->default(1)->constrained('status');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('status');
+        Schema::dropIfExists('pedidos');
     }
-};
+}; 

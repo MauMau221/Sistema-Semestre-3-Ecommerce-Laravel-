@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('ordem_pedidos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pedido_id');
-            $table->unsignedBigInteger('produto_id');
+            $table->foreignId('pedido_id')->constrained('pedidos')->onDelete('cascade');
+            $table->foreignId('produto_id')->constrained('produtos')->onDelete('restrict');
             $table->integer('quantidade');
             $table->decimal('preco_unitario', 10, 2);
             $table->decimal('subtotal', 10, 2);
+            $table->string('cor')->nullable();
+            $table->string('tamanho')->nullable();
             $table->timestamps();
-
-            $table->foreign('pedido_id')->references('id')->on('pedidos')->onDelete('cascade');
-            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
         });
     }
 
@@ -32,4 +31,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('ordem_pedidos');
     }
-};
+}; 

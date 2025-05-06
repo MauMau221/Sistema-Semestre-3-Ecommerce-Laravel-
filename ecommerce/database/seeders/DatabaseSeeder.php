@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             CategoriasSeeder::class,
             ProdutosSeeder::class,
             EstoqueSeeder::class,
+            StatusSeeder::class,
         ]);
 
 

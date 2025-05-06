@@ -10,6 +10,7 @@ class Status extends Model
 
     protected $fillable = [
         'nome',
+        'descricao',
     ];
 
     public function pedidos()

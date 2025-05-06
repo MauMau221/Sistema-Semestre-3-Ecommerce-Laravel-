@@ -144,191 +144,62 @@
         <!-- Produtos similares -->
         <section class="container py-5">
             <h2 class="text-center mb-4">VOCÊ TAMBÉM PODE GOSTAR</h2>
-            <div class="swiper mySwiper">
+            <div class="container">
                 <div class="d-flex justify-content-end m-2">
                     <div class="button-prev p-2"><i class="fa-solid fa-circle-chevron-right fa-flip-horizontal fa-2xl"></i>
                     </div>
                     <div class="button-next p-2"><i class="fa-solid fa-circle-chevron-right fa-2xl"></i></div>
                 </div>
-                <div class="swiper-wrapper">
-                    @foreach ($relacionados as $prod)
-                        <a href="{{ route('product.show', $prod['id']) }}">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($relacionados as $prod)
                             <div class="swiper-slide">
-                                <div class="card-product">
-                                    <div class="image-container position-relative">
-                                        <img src="{{ asset('/css/image/card/camisa'.$prod->id.'.jpg') }}"
-                                            class="card-img-top" alt="{{ $prod->nome }}">
-                                    </div>
-                                    <div class="card d-flex flex-column p-2 border-0">
-                                        <div class="star">
-                                            <i class="fa-solid fa-star fa-2xs"></i>
-                                            <i class="fa-solid fa-star fa-2xs"></i>
-                                            <i class="fa-solid fa-star fa-2xs"></i>
-                                            <i class="fa-solid fa-star fa-2xs"></i>
-                                            <i class="fa-regular fa-star fa-2xs"></i>
+                                <div class="card-product position-relative">
+                                    <a href="{{ route('product.show', $prod['id']) }}"
+                                        class="text-decoration-none text-dark">
+                                        <div class="image-container">
+                                            @php
+                                                $imagemProduto = "/css/image/card/camisa{$prod->id}.jpg";
+                                                $imagemPadrao = "/css/image/card/image" . rand(1, 5) . ".png";
+                                                $imagem = file_exists(public_path($imagemProduto)) ? $imagemProduto : $imagemPadrao;
+                                            @endphp
+                                            <img src="{{ asset($imagem) }}" class="card-img-top" alt="{{ $prod->nome }}">
                                         </div>
-                                        <h5 class="font-weight-bold">{{ $prod['nome'] }}</h5>
-                                        <p class="card-price">
-                                            <strong>R${{ $prod['preco'] }}</strong>
-                                        </p>
+                                        <div class="card d-flex flex-column p-2 border-0">
+                                            <div class="star">
+                                                <i class="fa-solid fa-star fa-2xs"></i>
+                                                <i class="fa-solid fa-star fa-2xs"></i>
+                                                <i class="fa-solid fa-star fa-2xs"></i>
+                                                <i class="fa-solid fa-star fa-2xs"></i>
+                                                <i class="fa-regular fa-star fa-2xs"></i>
+                                            </div>
+                                            <h5 class="font-weight-bold">{{ $prod['nome'] }}</h5>
+                                            <p class="card-price">
+                                                <s>R${{ number_format($prod['preco'] + 99.99, 2, ',', '.') }}</s>
+                                                <strong>R${{ number_format($prod['preco'], 2, ',', '.') }}</strong>
+                                            </p>
+                                        </div>
+                                    </a>
+
+                                    <div class="cart-icon">
+                                        <a href="{{ route('product.show', $prod['id']) }}" class="text-decoration-none">
+                                            <i class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(93, 92, 92); cursor: pointer;"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        </a>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </section>
     </section>
-
-    <style>
-        /* Estilo para cor selecionada */
-        input[type="radio"].cor-input {
-            display: none;
-        }
-        
-        input[type="radio"].cor-input:checked + label.cor-label {
-            border: 2px solid black !important;
-            box-shadow: 0 0 5px rgba(0,0,0,0.5);
-        }
-        
-        /* Cores específicas */
-        input[type="radio"].cor-input[value="Azul"] + label.cor-label {
-            background-color: #0000ff;
-        }
-        
-        input[type="radio"].cor-input[value="Preto"] + label.cor-label {
-            background-color: #000000;
-        }
-        
-        input[type="radio"].cor-input[value="Branco"] + label.cor-label {
-            background-color: #ffffff;
-        }
-        
-        input[type="radio"].cor-input[value="Vermelho"] + label.cor-label {
-            background-color: #ff0000;
-        }
-        
-        input[type="radio"].cor-input[value="Verde"] + label.cor-label {
-            background-color: #008000;
-        }
-        
-        /* Estilo para tamanho selecionado */
-        input[type="radio"].tamanho-input {
-            display: none;
-        }
-        
-        input[type="radio"].tamanho-input:checked + label.tamanho-label {
-            background-color: #212529;
-            color: white;
-        }
-        
-        /* Estilos para miniaturas */
-        .product-thumbnail {
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .product-thumbnail:hover {
-            opacity: 0.8;
-        }
-        
-        .thumbnail-image {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-        }
-    </style>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const corInputs = document.querySelectorAll('input[name="cor"]');
-            const tamanhoInputs = document.querySelectorAll('input[name="tamanho"]');
-            const quantidadeInput = document.getElementById('quantidade');
-            const estoqueDisponivel = document.getElementById('estoque-disponivel');
-            const corSelecionada = document.getElementById('cor-selecionada');
-            const addToCartBtn = document.getElementById('addToCartBtn');
-            const addToCartForm = document.getElementById('addToCartForm');
-            const diminuirBtn = document.getElementById('diminuir-quantidade');
-            const aumentarBtn = document.getElementById('aumentar-quantidade');
-            const produtoId = {{ $produto->id }};
-            
-            let estoqueAtual = 0;
-
-            function atualizarEstoqueDisponivel() {
-                const cor = document.querySelector('input[name="cor"]:checked')?.value;
-                const tamanho = document.querySelector('input[name="tamanho"]:checked')?.value;
-
-                if (cor) {
-                    corSelecionada.textContent = `Cor selecionada: ${cor}`;
-                }
-
-                if (cor && tamanho) {
-                    fetch(`/produto/${produtoId}/estoque?cor=${cor}&tamanho=${tamanho}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            estoqueAtual = data.quantidade;
-                            estoqueDisponivel.textContent = estoqueAtual;
-                            quantidadeInput.max = estoqueAtual;
-                            
-                            // Ajusta a quantidade se necessário
-                            if (parseInt(quantidadeInput.value) > estoqueAtual) {
-                                quantidadeInput.value = estoqueAtual > 0 ? estoqueAtual : 1;
-                            }
-                        });
-                } else {
-                    estoqueDisponivel.textContent = 'Selecione cor e tamanho';
-                }
-            }
-
-            // Adicionar listeners para os botões de quantidade
-            diminuirBtn.addEventListener('click', function() {
-                const currentValue = parseInt(quantidadeInput.value);
-                if (currentValue > 1) {
-                    quantidadeInput.value = currentValue - 1;
-                }
-            });
-
-            aumentarBtn.addEventListener('click', function() {
-                const currentValue = parseInt(quantidadeInput.value);
-                if (currentValue < estoqueAtual) {
-                    quantidadeInput.value = currentValue + 1;
-                }
-            });
-
-            corInputs.forEach(input => {
-                input.addEventListener('change', atualizarEstoqueDisponivel);
-            });
-
-            tamanhoInputs.forEach(input => {
-                input.addEventListener('change', atualizarEstoqueDisponivel);
-            });
-
-            // Validação do formulário antes do envio
-            addToCartForm.addEventListener('submit', function(event) {
-                const cor = document.querySelector('input[name="cor"]:checked');
-                const tamanho = document.querySelector('input[name="tamanho"]:checked');
-                
-                if (!cor || !tamanho) {
-                    event.preventDefault();
-                    alert('Por favor, selecione cor e tamanho');
-                    return;
-                }
-
-                const quantidade = parseInt(quantidadeInput.value);
-                
-                if (quantidade > estoqueAtual) {
-                    event.preventDefault();
-                    alert('Quantidade indisponível em estoque');
-                    return;
-                }
-            });
-        });
-        
-        // Função para alterar a imagem principal
-        function alterarImagemPrincipal(elemento) {
-            const imagemPrincipal = document.getElementById('imagem-principal');
-            imagemPrincipal.src = elemento.getAttribute('data-image');
-        }
-    </script>
 @endsection
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/product/show.css') }}">
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('js/product/show.js') }}"></script>
+@endpush

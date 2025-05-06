@@ -28,6 +28,6 @@ class Pedido extends Model
 
     public function itens()
     {
-        return $this->belongsTo(OrdemPedido::class, 'pedido_id'); // Pedido pertence a uma ordem de pedido
+        return $this->hasMany(OrdemPedido::class, 'pedido_id'); // Um pedido tem muitos itens
     }
 }
