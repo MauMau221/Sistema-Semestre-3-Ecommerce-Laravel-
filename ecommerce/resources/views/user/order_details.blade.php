@@ -23,6 +23,9 @@
                 <a href="{{ route('user.orders') }}" class="list-group-item list-group-item-action active">
                     <i class="fa-solid fa-box me-2"></i> Meus Pedidos
                 </a>
+                <a href="{{ route('user.favorites') }}" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-heart me-2"></i> Meus Favoritos
+                </a>
             </div>
             
             <div class="card mb-4">

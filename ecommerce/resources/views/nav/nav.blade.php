@@ -33,6 +33,7 @@
                                 <li><a class="dropdown-item" href="{{ route('user.profile') }}">Meus dados</a></li>
                                 <li><a class="dropdown-item" href="{{ route('user.addresses.index') }}">Meus endereços</a></li>
                                 <li><a class="dropdown-item" href="{{ route('user.orders') }}">Meus pedidos</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.favorites') }}">Meus favoritos</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}">Sair</a></li>
                             </ul>
@@ -45,7 +46,7 @@
                         </a>
                     @endguest
 
-                    <a class="text-secondary mx-3" href="{{ route('home.home') }}">
+                    <a class="text-secondary mx-3" href="{{ route('user.favorites') }}">
                         <i class="fa-solid fa-heart"></i>
                     </a>
                     <a class="text-secondary mx-3" href="{{ route('cart.cart') }}">

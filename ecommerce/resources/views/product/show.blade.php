@@ -125,8 +125,37 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-dark w-100 mb-3" id="addToCartBtn">Adicionar ao Carrinho</button>
+                        <div class="d-flex mb-3 align-items-center">
+                            <button type="submit" class="btn btn-dark flex-grow-1 rounded-0 me-2" id="addToCartBtn">Adicionar ao Carrinho</button>
+                            
+                            @if(Auth::check())
+                                <button type="button" class="btn btn-outline-danger rounded-0 favorite-btn" style="width: 46px;" id="favoriteBtn">
+                                    <i class="fa-{{ $produto->isFavoritedBy(Auth::id()) ? 'solid' : 'regular' }} fa-heart"></i>
+                                </button>
+                            @else
+                                <a href="{{ route('home.login') }}" class="btn btn-outline-danger rounded-0" style="width: 46px;">
+                                    <i class="fa-regular fa-heart"></i>
+                                </a>
+                            @endif
+                        </div>
                     </form>
+
+                    @if(Auth::check())
+                    <!-- Formulário de favoritos separado, fora do formulário de adicionar ao carrinho -->
+                    <form action="{{ route('favorites.toggle') }}" method="POST" id="favoriteForm" class="d-none">
+                        @csrf
+                        <input type="hidden" name="produto_id" value="{{ $produto->id }}">
+                    </form>
+                    
+                    <!-- Script para manipular o favorito via JavaScript -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            document.getElementById('favoriteBtn').addEventListener('click', function() {
+                                document.getElementById('favoriteForm').submit();
+                            });
+                        });
+                    </script>
+                    @endif
 
                     <div class="mb-4">
                         <div class="fw-bold mb-2">Descrição:</div>

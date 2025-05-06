@@ -62,4 +62,21 @@ class User extends Authenticatable
     {
         return $this->hasMany(Address::class)->where('endereco_principal', true)->first();
     }
+    
+    /**
+     * Get the user's favorites.
+     */
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+    
+    /**
+     * Get the favorite products for the user.
+     */
+    public function favoriteProducts()
+    {
+        return $this->belongsToMany(Produto::class, 'favorites', 'user_id', 'produto_id')
+                    ->withTimestamps();
+    }
 }
