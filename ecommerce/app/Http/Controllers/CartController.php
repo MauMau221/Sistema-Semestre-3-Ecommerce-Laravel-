@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Produto;
 use App\Models\Pedido;
 use App\Models\OrdemPedido;
+use App\Models\Address;
 use App\Services\EstoqueService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -145,7 +146,7 @@ class CartController extends Controller
         
         return view('cart.checkout', compact('cart', 'total', 'user', 'mainAddress'));
     }
-    public function buy()
+    public function buy(Request $request)
     {
         $cart = Session::get('cart', []);
         $total = 0;
@@ -154,6 +155,53 @@ class CartController extends Controller
 
             $total += $subtotal;
         }
+        
+        // Armazenar os dados do cliente na sessão para uso posterior na finalização do pedido
+        if ($request->has('name')) {
+            $customerData = [
+                'name' => $request->name,
+                'cpf' => $request->cpf,
+                'email' => $request->email,
+                'phone' => $request->phone
+            ];
+            
+            // Se o usuário está usando o endereço principal
+            if ($request->has('use_main_address') && $request->use_main_address) {
+                // Recuperar o endereço principal do usuário
+                if (Auth::check()) {
+                    $user = Auth::user();
+                    $mainAddress = Address::where('user_id', $user->id)
+                                         ->where('endereco_principal', true)
+                                         ->first();
+                    
+                    if ($mainAddress) {
+                        $customerData['address'] = [
+                            'cep' => $mainAddress->cep,
+                            'logradouro' => $mainAddress->logradouro,
+                            'numero' => $mainAddress->numero,
+                            'complemento' => $mainAddress->complemento,
+                            'bairro' => $mainAddress->bairro,
+                            'cidade' => $mainAddress->cidade,
+                            'estado' => $mainAddress->estado
+                        ];
+                    }
+                }
+            } else {
+                // Usar os dados de endereço informados no formulário
+                $customerData['address'] = [
+                    'cep' => $request->cep,
+                    'logradouro' => $request->logradouro,
+                    'numero' => $request->numero,
+                    'complemento' => $request->complemento,
+                    'bairro' => $request->bairro,
+                    'cidade' => $request->cidade,
+                    'estado' => $request->estado
+                ];
+            }
+            
+            Session::put('customer_data', $customerData);
+        }
+        
         return view('cart.buy', compact('cart', 'total'));
     }
 
