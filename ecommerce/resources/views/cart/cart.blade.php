@@ -45,21 +45,25 @@
                                         <div class="col-3 col-md-2">
                                             @php
                                                 $imagemProduto = "/css/image/card/camisa{$produto['id']}.jpg";
-                                                $imagemPadrao = "/css/image/card/image" . rand(1, 5) . ".png";
-                                                $imagem = file_exists(public_path($imagemProduto)) ? $imagemProduto : $imagemPadrao;
+                                                $imagemPadrao = '/css/image/card/image' . rand(1, 5) . '.png';
+                                                $imagem = file_exists(public_path($imagemProduto))
+                                                    ? $imagemProduto
+                                                    : $imagemPadrao;
                                             @endphp
-                                            <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}" class="product-thumbnail img-fluid">
+                                            <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}"
+                                                class="product-thumbnail img-fluid">
                                         </div>
                                         <div class="col-9 col-md-4">
                                             <h5 class="mb-1">{{ $produto['nome'] }}</h5>
                                             <p class="text-muted mb-1">
-                                                Tamanho: {{ $produto['tamanho'] ?? 'Não informado' }} | 
+                                                Tamanho: {{ $produto['tamanho'] ?? 'Não informado' }} |
                                                 Cor: {{ $produto['cor'] ?? 'Não informada' }}
                                             </p>
                                             <p class="text-muted mb-0">Código: #{{ $produto['id'] }}</p>
                                         </div>
                                         <div class="col-6 col-md-3 mt-3 mt-md-0">
-                                            <form action="{{ route('cart.update') }}" method="POST" class="update-cart-form">
+                                            <form action="{{ route('cart.update') }}" method="POST"
+                                                class="update-cart-form">
                                                 @csrf
                                                 <input type="hidden" name="produto_id" value="{{ $produto['id'] }}">
                                                 <div class="quantity-selector">
@@ -72,14 +76,16 @@
                                                     <button type="button" class="quantity-btn"
                                                         onclick="btnAumentarQtd(event)">+</button>
                                                 </div>
-                                                <button type="submit" class="btn btn-sm btn-link text-dark mt-2">Atualizar</button>
+                                                <button type="submit"
+                                                    class="btn btn-sm btn-link text-dark mt-2">Atualizar</button>
                                             </form>
                                         </div>
                                         <div class="col-6 col-md-3 mt-3 mt-md-0 text-end">
                                             <div class="fw-bold mb-1 product-price" data-price="{{ $produto['preco'] }}">
                                                 R$ {{ number_format($produto['preco'], 2, ',', '.') }}
                                             </div>
-                                            <div class="fw-bold mb-1 subtotal-price" data-produto-id="{{ $produto['id'] }}">
+                                            <div class="fw-bold mb-1 subtotal-price"
+                                                data-produto-id="{{ $produto['id'] }}">
                                                 R$
                                                 {{ number_format($produto['preco'] * $produto['quantidade'], 2, ',', '.') }}
                                             </div>
@@ -90,19 +96,6 @@
                                 </div>
                             </form>
                         @endforeach
-                    </div>
-
-                    <!-- Seção de cupom de desconto -->
-                    <div class="mb-5">
-                        <h2 class="section-title">CUPOM DE DESCONTO</h2>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Digite seu cupom">
-                                    <button class="btn btn-dark" type="button">APLICAR</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Seção de frete -->
@@ -123,30 +116,27 @@
                         </div>
 
                         <!-- Opções de frete após cálculo -->
-                        <div class="mt-3 d-none">
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="shippingOption" id="sedex" checked>
-                                <label class="form-check-label d-flex justify-content-between w-100" for="sedex">
-                                    <span>SEDEX (2-3 dias úteis)</span>
-                                    <span>R$ 25,90</span>
-                                </label>
+                        <div id="shipping-options" class="mt-3 d-none">
+                            <div id="shipping-options-content">
+                                <!-- Shipping options will be dynamically inserted here -->
                             </div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="shippingOption" id="pac">
-                                <label class="form-check-label d-flex justify-content-between w-100" for="pac">
-                                    <span>PAC (5-8 dias úteis)</span>
-                                    <span>R$ 18,50</span>
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="shippingOption" id="freeShipping">
-                                <label class="form-check-label d-flex justify-content-between w-100" for="freeShipping">
-                                    <span>FRETE GRÁTIS (7-10 dias úteis)</span>
-                                    <span>R$ 0,00</span>
-                                </label>
+                        </div>
+                        <input type="hidden" id="frete-calculado" value="0">
+                    </div>
+
+                    <!-- Seção de cupom de desconto -->
+                    <div class="mb-5">
+                        <h2 class="section-title">CUPOM DE DESCONTO</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Digite seu cupom">
+                                    <button class="btn btn-dark" type="button">APLICAR</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Coluna da direita - Resumo do pedido -->
@@ -179,7 +169,7 @@
                                     Adicione produtos para continuar.
                                 </div>
                             @else
-                                <a href="{{ route('cart.checkout') }}" class="btn btn-dark checkout-btn mb-3">FINALIZAR
+                                <a href="{{ route('cart.checkout') }}" class="btn btn-dark checkout-btn mb-3" id="btn-finalizar" onclick="return validarFrete(event)">FINALIZAR
                                     COMPRA</a>
                             @endif
                             <a href="{{ session('url_anterior', url('/')) }}"
@@ -204,16 +194,26 @@
             object-fit: cover;
             border-radius: 4px;
         }
-        
+
         .cart-item {
             padding: 15px;
             margin-bottom: 15px;
             border: 1px solid #e9e9e9;
             border-radius: 4px;
         }
-        
+
         .update-cart-form {
             display: inline-block;
+        }
+
+        .form-cep.invalid {
+            border: 2px solid #dc3545 !important;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+        }
+
+        .form-cep.invalid:focus {
+            border-color: #dc3545 !important;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
         }
     </style>
 
@@ -233,6 +233,27 @@
             updateCartTotals();
         }
 
+        function validarFrete(event) {
+            const freteCalculado = document.getElementById('frete-calculado').value;
+            const cepInput = document.getElementById('cep');
+            
+            if (freteCalculado === '0') {
+                event.preventDefault();
+                cepInput.classList.add('invalid');
+                cepInput.focus();
+                
+                // Scroll suave até o input do CEP
+                cepInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return false;
+            }
+            return true;
+        }
+
+        // Remove a classe invalid quando o usuário começar a digitar
+        document.getElementById('cep').addEventListener('input', function() {
+            this.classList.remove('invalid');
+        });
+
         function updateCartTotals() {
             // Recalcular os subtotais de cada item
             const quantityInputs = document.querySelectorAll('.quantity-input');
@@ -242,7 +263,7 @@
                 const price = parseFloat(input.getAttribute('data-price'));
                 const quantity = parseInt(input.value);
                 const produtoId = input.getAttribute('data-produto-id');
-                
+
                 const itemSubtotal = price * quantity;
                 subtotal += itemSubtotal;
 

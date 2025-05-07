@@ -90,52 +90,127 @@ function buscarCep(event) {
     .then(data => {
       if (data.erro) {
         alert('CEP não encontrado!');
+        document.getElementById('frete-calculado').value = '0';
       } else {
-        if (data.uf != 'SP') {
-          const mensagem = document.createElement('p');
-          mensagem.textContent = 'Não atendemos fora de SP';
-          mensagem.classList.add('text-danger', 'mt-2');
-          mensagem.classList.add('text-danger', 'mt-2', 'mensagem-erro-cep');
-
-          const linkCep = document.querySelector('a[href*="buscacepinter"]');
-
-          if (linkCep) {
-            linkCep.parentNode.appendChild(mensagem);
+        const shippingOptions = document.getElementById('shipping-options');
+        const shippingOptionsContent = document.getElementById('shipping-options-content');
+        
+        if (data.uf === 'SP') {
+          // Atualiza o preço do frete para SP
+          const shippingPriceElement = document.getElementById('shipping-price');
+          if (shippingPriceElement) {
+            shippingPriceElement.textContent = 'R$ 25,90';
           }
-          // Deixa o input inválido
-          const inputCep = document.getElementById('cep');
-          inputCep.setCustomValidity('Só aceitamos CEPs de SP');
-
-        } else {
           
-          console.log(data);
-          document.getElementById('logradouro').value = data.logradouro || '';
-          document.getElementById('bairro').value = data.bairro || '';
-          document.getElementById('localidade').value = data.localidade || '';
-          document.getElementById('uf').value = data.uf || '';
-
+          // Atualiza as opções de frete
+          if (shippingOptionsContent) {
+            shippingOptionsContent.innerHTML = `
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="shippingOption" id="standardShipping" checked>
+                <label class="form-check-label d-flex justify-content-between w-100" for="standardShipping">
+                  <span>Entrega para São Paulo</span>
+                  <span>R$ 25,90</span>
+                </label>
+              </div>
+            `;
+          }
+          
+          // Preenche os campos do endereço se existirem
+          const campos = ['logradouro', 'bairro', 'localidade', 'uf'];
+          campos.forEach(campo => {
+            const elemento = document.getElementById(campo);
+            if (elemento) {
+              elemento.value = data[campo] || '';
+            }
+          });
+          
+          // Remove mensagem de erro se existir
+          const mensagemExistente = document.querySelector('.mensagem-erro-cep');
+          if (mensagemExistente) {
+            mensagemExistente.remove();
+          }
+          
+          // Torna o input válido
+          input.setCustomValidity('');
+          
+          // Marca o frete como calculado
+          document.getElementById('frete-calculado').value = '1';
+        } else {
+          // Atualiza o preço do frete para outros estados
+          const shippingPriceElement = document.getElementById('shipping-price');
+          if (shippingPriceElement) {
+            shippingPriceElement.textContent = 'R$ 48,90';
+          }
+          
+          // Atualiza as opções de frete
+          if (shippingOptionsContent) {
+            shippingOptionsContent.innerHTML = `
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="shippingOption" id="standardShipping" checked>
+                <label class="form-check-label d-flex justify-content-between w-100" for="standardShipping">
+                  <span>Entrega para outras regiões fora de São Paulo</span>
+                  <span>R$ 48,90</span>
+                </label>
+              </div>
+            `;
+          }
+          
+          // Preenche os campos do endereço se existirem
+          const campos = ['logradouro', 'bairro', 'localidade', 'uf'];
+          campos.forEach(campo => {
+            const elemento = document.getElementById(campo);
+            if (elemento) {
+              elemento.value = data[campo] || '';
+            }
+          });
+          
+          // Remove mensagem de erro se existir
+          const mensagemExistente = document.querySelector('.mensagem-erro-cep');
+          if (mensagemExistente) {
+            mensagemExistente.remove();
+          }
+          
+          // Torna o input válido
+          input.setCustomValidity('');
+          
+          // Marca o frete como calculado
+          document.getElementById('frete-calculado').value = '1';
         }
+        
+        // Mostra as opções de frete
+        if (shippingOptions) {
+          shippingOptions.classList.remove('d-none');
+        }
+        
+        // Atualiza o total
+        updateCartTotals();
       }
+    })
+    .catch(error => {
+      console.error('Erro ao buscar CEP:', error);
+      alert('Erro ao calcular o frete. Tente novamente.');
+      document.getElementById('frete-calculado').value = '0';
     });
 }
 
 //Ignorando quando o usuario coloca - no meio do cep, verificando se tem mensagem de não atendimento de um determinado local e chamando o fetch via cep
-const input = document.getElementById('cep');
+const inputCep = document.getElementById('cep');
 
-input.addEventListener('input', function () {
-  const valorSemTracos = input.value.replace(/-/g, '');
-  const mensagemExistente = document.querySelector('.mensagem-erro-cep');
+if (inputCep) {
+  inputCep.addEventListener('input', function () {
+    const valorSemTracos = inputCep.value.replace(/-/g, '');
+    const mensagemExistente = document.querySelector('.mensagem-erro-cep');
 
-  if (mensagemExistente) {
-    mensagemExistente.remove();
-  }
-  //Torna o input valido novamente
+    if (mensagemExistente) {
+      mensagemExistente.remove();
+    }
 
-  if (valorSemTracos.length === 8) {
-    buscarCep(event);
-  }
-  inputCep.setCustomValidity('');
-});
+    if (valorSemTracos.length === 8) {
+      buscarCep({ target: { parentElement: { querySelector: () => inputCep } } });
+    }
+    inputCep.setCustomValidity('');
+  });
+}
 
 // Atualiza os totais quando a página carrega
 document.addEventListener('DOMContentLoaded', updateCartTotals);
