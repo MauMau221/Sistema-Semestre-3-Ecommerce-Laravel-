@@ -9,10 +9,23 @@
                     <!-- Miniaturas -->
                     <div class="d-none d-md-block me-2">
                         @php
-                            $imagemPrincipal = "/css/image/card/camisa{$produto->id}.jpg";
+                            // Se o produto tem URL definida no banco de dados, usa ela
+                            if (!empty($produto->url)) {
+                                $imagemPrincipal = 'storage/' . $produto->url;
+                            } else {
+                                // Se não tem URL no banco, tenta um caminho alternativo antigo
+                                $imagemPrincipal = "/css/image/card/camisa{$produto->id}.jpg";
+                                
+                                // Se o arquivo alternativo não existir, usa uma imagem padrão aleatória
+                                if (!file_exists(public_path($imagemPrincipal))) {
+                                    $imagemPrincipal = '/css/image/card/image' . rand(1, 5) . '.png';
+                                }
+                            }
+
+                            // Imagens secundárias - poderia ser implementado com múltiplas imagens no banco
                             $imagensSecundarias = [];
-                            
-                            // Tenta encontrar até 4 imagens secundárias
+
+                            // Tenta encontrar até 4 imagens secundárias pelos métodos antigos
                             for ($i = 1; $i <= 4; $i++) {
                                 $path = "/css/image/card/camisa{$produto->id}-{$i}.jpg";
                                 if (file_exists(public_path($path))) {
@@ -20,34 +33,31 @@
                                 }
                             }
                         @endphp
-                        
+
                         <!-- Miniatura da imagem principal -->
                         <div class="product-thumbnail mb-2">
-                            <img src="{{ asset($imagemPrincipal) }}" alt="{{ $produto->nome }} principal" 
-                                class="img-fluid border border-secondary thumbnail-image" 
-                                data-image="{{ asset($imagemPrincipal) }}"
-                                onclick="alterarImagemPrincipal(this)">
+                            <img src="{{ asset($imagemPrincipal) }}" alt="{{ $produto->nome }} principal"
+                                class="img-fluid border border-secondary thumbnail-image"
+                                data-image="{{ asset($imagemPrincipal) }}" onclick="alterarImagemPrincipal(this)">
                         </div>
-                        
+
                         <!-- Miniaturas das imagens secundárias -->
-                        @foreach($imagensSecundarias as $index => $imagem)
+                        @foreach ($imagensSecundarias as $index => $imagem)
                             <div class="product-thumbnail mb-2">
-                                <img src="{{ asset($imagem) }}" alt="{{ $produto->nome }} {{ $index + 1 }}" 
-                                    class="img-fluid border border-secondary thumbnail-image" 
-                                    data-image="{{ asset($imagem) }}"
-                                    onclick="alterarImagemPrincipal(this)">
+                                <img src="{{ asset($imagem) }}" alt="{{ $produto->nome }} {{ $index + 1 }}"
+                                    class="img-fluid border border-secondary thumbnail-image"
+                                    data-image="{{ asset($imagem) }}" onclick="alterarImagemPrincipal(this)">
                             </div>
                         @endforeach
                     </div>
-                
+
                     <!-- Imagem principal -->
                     <div class="flex-grow-1 ml-2">
-                        <img id="imagem-principal" src="{{ asset($imagemPrincipal) }}"
-                             alt="{{ $produto->nome }}"
-                             class="img-fluid border border-secondary w-100">
+                        <img id="imagem-principal" src="{{ asset($imagemPrincipal) }}" alt="{{ $produto->nome }}"
+                            class="img-fluid border border-secondary w-100">
                     </div>
                 </div>
-                
+
                 <!-- Detalhes do produto -->
                 <div class="col-md-6 product-details">
                     <h1 class="product-title">{{ $produto['nome'] }}</h1>
@@ -57,13 +67,13 @@
                             {{ number_format($produto['preco'] / 6, 2, ',', '.') }} sem juros</div>
                     </div>
 
-                    @if(session('error'))
+                    @if (session('error'))
                         <div class="alert alert-danger">
                             {{ session('error') }}
                         </div>
                     @endif
 
-                    @if(session('success'))
+                    @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
                         </div>
@@ -76,10 +86,13 @@
                         <div class="mb-4">
                             <div class="fw-bold mb-2">Cor:</div>
                             <div class="d-flex mb-3">
-                                @foreach($produto->estoque->pluck('cor')->unique() as $cor)
+                                @foreach ($produto->estoque->pluck('cor')->unique() as $cor)
                                     <div class="me-2">
-                                        <input type="radio" name="cor" value="{{ $cor }}" id="cor_{{ $cor }}" class="cor-input">
-                                        <label for="cor_{{ $cor }}" class="cor-label" style="width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: inline-block; border: 2px solid #ddd;" title="{{ $cor }}">
+                                        <input type="radio" name="cor" value="{{ $cor }}"
+                                            id="cor_{{ $cor }}" class="cor-input">
+                                        <label for="cor_{{ $cor }}" class="cor-label"
+                                            style="width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: inline-block; border: 2px solid #ddd;"
+                                            title="{{ $cor }}">
                                             <span class="d-none">{{ $cor }}</span>
                                         </label>
                                     </div>
@@ -94,10 +107,12 @@
                         <div class="mb-4">
                             <div class="fw-bold mb-2">Tamanho:</div>
                             <div class="d-flex flex-wrap tamanho-container">
-                                @foreach($produto->estoque->pluck('tamanho')->unique() as $tamanho)
+                                @foreach ($produto->estoque->pluck('tamanho')->unique() as $tamanho)
                                     <div class="me-2 mb-2">
-                                        <input type="radio" name="tamanho" value="{{ $tamanho }}" id="tamanho_{{ $tamanho }}" class="tamanho-input">
-                                        <label for="tamanho_{{ $tamanho }}" class="tamanho-label btn btn-outline-dark rounded-0">{{ $tamanho }}</label>
+                                        <input type="radio" name="tamanho" value="{{ $tamanho }}"
+                                            id="tamanho_{{ $tamanho }}" class="tamanho-input">
+                                        <label for="tamanho_{{ $tamanho }}"
+                                            class="tamanho-label btn btn-outline-dark rounded-0">{{ $tamanho }}</label>
                                     </div>
                                 @endforeach
                             </div>
@@ -112,10 +127,13 @@
                         <div class="mb-4">
                             <div class="fw-bold mb-2">Quantidade:</div>
                             <div class="d-flex align-items-center">
-                                <button type="button" class="btn btn-outline-dark rounded-0 quantity-btn" id="diminuir-quantidade">-</button>
-                                <input type="number" id="quantidade" name="quantidade" class="form-control rounded-0 text-center mx-2 quantity-input"
-                                    value="1" min="1" max="10" style="width: 70px;" required>
-                                <button type="button" class="btn btn-outline-dark rounded-0 quantity-btn" id="aumentar-quantidade">+</button>
+                                <button type="button" class="btn btn-outline-dark rounded-0 quantity-btn"
+                                    id="diminuir-quantidade">-</button>
+                                <input type="number" id="quantidade" name="quantidade"
+                                    class="form-control rounded-0 text-center mx-2 quantity-input" value="1"
+                                    min="1" max="10" style="width: 70px;" required>
+                                <button type="button" class="btn btn-outline-dark rounded-0 quantity-btn"
+                                    id="aumentar-quantidade">+</button>
                             </div>
                             @error('quantidade')
                                 <div class="text-danger">{{ $message }}</div>
@@ -126,35 +144,39 @@
                         </div>
 
                         <div class="d-flex mb-3 align-items-center">
-                            <button type="submit" class="btn btn-dark flex-grow-1 rounded-0 me-2" id="addToCartBtn">Adicionar ao Carrinho</button>
-                            
-                            @if(Auth::check())
-                                <button type="button" class="btn btn-outline-danger rounded-0 favorite-btn" style="width: 46px;" id="favoriteBtn">
-                                    <i class="fa-{{ $produto->isFavoritedBy(Auth::id()) ? 'solid' : 'regular' }} fa-heart"></i>
+                            <button type="submit" class="btn btn-dark flex-grow-1 rounded-0 me-2"
+                                id="addToCartBtn">Adicionar ao Carrinho</button>
+
+                            @if (Auth::check())
+                                <button type="button" class="btn btn-outline-danger rounded-0 favorite-btn"
+                                    style="width: 46px;" id="favoriteBtn">
+                                    <i
+                                        class="fa-{{ $produto->isFavoritedBy(Auth::id()) ? 'solid' : 'regular' }} fa-heart"></i>
                                 </button>
                             @else
-                                <a href="{{ route('home.login') }}" class="btn btn-outline-danger rounded-0" style="width: 46px;">
+                                <a href="{{ route('home.login') }}" class="btn btn-outline-danger rounded-0"
+                                    style="width: 46px;">
                                     <i class="fa-regular fa-heart"></i>
                                 </a>
                             @endif
                         </div>
                     </form>
 
-                    @if(Auth::check())
-                    <!-- Formulário de favoritos separado, fora do formulário de adicionar ao carrinho -->
-                    <form action="{{ route('favorites.toggle') }}" method="POST" id="favoriteForm" class="d-none">
-                        @csrf
-                        <input type="hidden" name="produto_id" value="{{ $produto->id }}">
-                    </form>
-                    
-                    <!-- Script para manipular o favorito via JavaScript -->
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            document.getElementById('favoriteBtn').addEventListener('click', function() {
-                                document.getElementById('favoriteForm').submit();
+                    @if (Auth::check())
+                        <!-- Formulário de favoritos separado, fora do formulário de adicionar ao carrinho -->
+                        <form action="{{ route('favorites.toggle') }}" method="POST" id="favoriteForm" class="d-none">
+                            @csrf
+                            <input type="hidden" name="produto_id" value="{{ $produto->id }}">
+                        </form>
+
+                        <!-- Script para manipular o favorito via JavaScript -->
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                document.getElementById('favoriteBtn').addEventListener('click', function() {
+                                    document.getElementById('favoriteForm').submit();
+                                });
                             });
-                        });
-                    </script>
+                        </script>
                     @endif
 
                     <div class="mb-4">
@@ -175,7 +197,8 @@
             <h2 class="text-center mb-4">VOCÊ TAMBÉM PODE GOSTAR</h2>
             <div class="container">
                 <div class="d-flex justify-content-end m-2">
-                    <div class="button-prev p-2"><i class="fa-solid fa-circle-chevron-right fa-flip-horizontal fa-2xl"></i>
+                    <div class="button-prev p-2"><i
+                            class="fa-solid fa-circle-chevron-right fa-flip-horizontal fa-2xl"></i>
                     </div>
                     <div class="button-next p-2"><i class="fa-solid fa-circle-chevron-right fa-2xl"></i></div>
                 </div>
@@ -188,11 +211,18 @@
                                         class="text-decoration-none text-dark">
                                         <div class="image-container">
                                             @php
-                                                $imagemProduto = "/css/image/card/camisa{$prod->id}.jpg";
-                                                $imagemPadrao = "/css/image/card/image" . rand(1, 5) . ".png";
-                                                $imagem = file_exists(public_path($imagemProduto)) ? $imagemProduto : $imagemPadrao;
+                                                if (!empty($prod->url)) {
+                                                    $imagemProduto = 'storage/' . $prod->url;
+                                                } else {
+                                                    $imagemProduto = "/css/image/card/camisa{$prod->id}.jpg";
+                                                    $imagemPadrao = '/css/image/card/image' . rand(1, 5) . '.png';
+                                                    $imagem = file_exists(public_path($imagemProduto))
+                                                        ? $imagemProduto
+                                                        : $imagemPadrao;
+                                                }
                                             @endphp
-                                            <img src="{{ asset($imagem) }}" class="card-img-top" alt="{{ $prod->nome }}">
+                                            <img src="{{ asset($imagemProduto) }}" class="card-img-top"
+                                                alt="{{ $prod->nome }}">
                                         </div>
                                         <div class="card d-flex flex-column p-2 border-0">
                                             <div class="star">
@@ -212,7 +242,8 @@
 
                                     <div class="cart-icon">
                                         <a href="{{ route('product.show', $prod['id']) }}" class="text-decoration-none">
-                                            <i class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(93, 92, 92); cursor: pointer;"></i>
+                                            <i class="fa-solid fa-bag-shopping fa-xl"
+                                                style="color: rgb(93, 92, 92); cursor: pointer;"></i>
                                         </a>
                                     </div>
                                 </div>

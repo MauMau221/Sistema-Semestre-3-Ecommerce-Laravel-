@@ -1,31 +1,62 @@
-const swiper = new Swiper('.swiper', {
-  navigation: {
-    nextEl: ".button-next",
-    prevEl: ".button-prev",
-  },
-  // Default parameters
-  slidesPerView: 1,
-  spaceBetween: 10,
-  // Responsive breakpoints
-  breakpoints: {
-    // when window width is >= 320px
-    576: {
-      slidesPerView: 2,
-      spaceBetween: 20
+// Inicializar swipers quando o documento estiver pronto
+document.addEventListener('DOMContentLoaded', function() {
+  // Swiper principal (compatibilidade com o código antigo)
+  const swiper = new Swiper('.swiper', {
+    navigation: {
+      nextEl: ".button-next",
+      prevEl: ".button-prev",
     },
-    // when window width is >= 480px
-    768: {
-      slidesPerView: 3,
-      spaceBetween: 30
-    },
-    // when window width is >= 640px
-    992: {
-      slidesPerView: 4,
-      spaceBetween: 40
+    // Default parameters
+    slidesPerView: 1,
+    spaceBetween: 10,
+    // Responsive breakpoints
+    breakpoints: {
+      // when window width is >= 320px
+      576: {
+        slidesPerView: 2,
+        spaceBetween: 20
+      },
+      // when window width is >= 480px
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 30
+      },
+      // when window width is >= 640px
+      992: {
+        slidesPerView: 4,
+        spaceBetween: 40
+      }
     }
-  }
-})
+  });
 
+  // Inicializar swipers para cada categoria, se existirem categorias
+  if (window.categorias && window.categorias.length) {
+    window.categorias.forEach(categoria => {
+      new Swiper(`.mySwiper-${categoria}`, {
+        navigation: {
+          nextEl: `.button-next-${categoria}`,
+          prevEl: `.button-prev-${categoria}`,
+        },
+        slidesPerView: 1,
+        spaceBetween: 10,
+        breakpoints: {
+          576: {
+            slidesPerView: 2,
+            spaceBetween: 20
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          },
+          992: {
+            slidesPerView: 4,
+            spaceBetween: 40
+          }
+        }
+      });
+    });
+  }
+});
 
 //Logica de preços do carrinho
 function updateCartTotals() {

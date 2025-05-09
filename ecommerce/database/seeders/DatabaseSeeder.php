@@ -27,9 +27,23 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // UsersSeeder::class,
             CategoriasSeeder::class,
-            ProdutosSeeder::class,
-            EstoqueSeeder::class,
+            //ProdutosSeeder::class,
+            UsersSeeder::class,
             StatusSeeder::class,
+            EstoqueSeeder::class,
+            CamisasSeeder::class,
+            CamisetasSeeder::class,
+            PolosSeeder::class,
+            JaquetasSeeder::class,
+            CalcasSeeder::class,
+            CalcadosSeeder::class,
+            AcessoriosSeeder::class,
+            // Execute o ImagemProdutoSeeder após os outros seeders que criam produtos
+            ImagemProdutoSeeder::class,
+            // Processamento de imagens para as novas categorias
+            ImagensAdicionaisSeeder::class,
+            // Adiciona novos produtos para categorias sem produtos
+            NovosProdutosSeeder::class,
         ]);
 
 

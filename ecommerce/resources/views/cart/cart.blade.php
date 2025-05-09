@@ -44,11 +44,17 @@
                                     <div class="row align-items-center">
                                         <div class="col-3 col-md-2">
                                             @php
-                                                $imagemProduto = "/css/image/card/camisa{$produto['id']}.jpg";
-                                                $imagemPadrao = '/css/image/card/image' . rand(1, 5) . '.png';
-                                                $imagem = file_exists(public_path($imagemProduto))
-                                                    ? $imagemProduto
-                                                    : $imagemPadrao;
+                                                // Consulta o produto no banco para obter a URL
+                                                $produtoBanco = \App\Models\Produto::find($produto['id']);
+                                                if ($produtoBanco && !empty($produtoBanco->url)) {
+                                                    $imagem = "storage/" . $produtoBanco->url;
+                                                } else {
+                                                    $imagemProduto = "/css/image/card/camisa{$produto['id']}.jpg";
+                                                    $imagemPadrao = '/css/image/card/image' . rand(1, 5) . '.png';
+                                                    $imagem = file_exists(public_path($imagemProduto))
+                                                        ? $imagemProduto
+                                                        : $imagemPadrao;
+                                                }
                                             @endphp
                                             <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}"
                                                 class="product-thumbnail img-fluid">

@@ -164,9 +164,13 @@
                                 <div class="position-relative">
                                     <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
                                         @php
-                                            $imagemProduto = "/css/image/card/camisa{$produto->id}.jpg";
-                                            $imagemPadrao = "/css/image/card/image" . rand(1, 5) . ".png";
-                                            $imagem = file_exists(public_path($imagemProduto)) ? $imagemProduto : $imagemPadrao;
+                                            if (!empty($produto->url)) {
+                                                $imagem = "storage/" . $produto->url;
+                                            } else {
+                                                $imagemProduto = "/css/image/card/camisa{$produto->id}.jpg";
+                                                $imagemPadrao = "/css/image/card/image" . rand(1, 5) . ".png";
+                                                $imagem = file_exists(public_path($imagemProduto)) ? $imagemProduto : $imagemPadrao;
+                                            }
                                         @endphp
                                         <img src="{{ asset($imagem) }}" alt="{{ $produto->nome }}" class="card-img-top">
                                     </a>
