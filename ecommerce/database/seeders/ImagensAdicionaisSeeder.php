@@ -37,7 +37,7 @@ class ImagensAdicionaisSeeder extends Seeder
     {
         // Caminho para as imagens da categoria
         $path = "image/cards/$pastaImagens";
-        $fullPath = storage_path("app/public/$path");
+        $fullPath = public_path($path);
         
         // Verifica se o diretório existe usando File
         if (!File::exists($fullPath)) {
@@ -107,7 +107,7 @@ class ImagensAdicionaisSeeder extends Seeder
         // Associa imagens aos produtos
         foreach ($produtos as $index => $produto) {
             if (isset($imagens[$index])) {
-                // Cria o caminho relativo para o storage
+                // Cria o caminho relativo para o public
                 $relativePath = $path . '/' . File::basename($imagens[$index]);
                 
                 // Atualiza o produto com a URL da imagem

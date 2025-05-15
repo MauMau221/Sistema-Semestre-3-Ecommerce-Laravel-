@@ -36,9 +36,36 @@
                             @foreach ($cart as $produto)
                                 <div class="cart-product-item d-flex align-items-center mb-3 p-2 border">
                                     @php
-                                        $imagemProduto = "/css/image/card/camisa{$produto['id']}.jpg";
-                                        $imagemPadrao = "/css/image/card/image" . rand(1, 5) . ".png";
-                                        $imagem = file_exists(public_path($imagemProduto)) ? $imagemProduto : $imagemPadrao;
+                                        // Consulta o produto no banco para obter a URL e categoria
+                                        $produtoBanco = \App\Models\Produto::find($produto['id']);
+                                        if ($produtoBanco && !empty($produtoBanco->url)) {
+                                            $imagem = $produtoBanco->url;
+                                        } else {
+                                            // Tentar encontrar a categoria
+                                            $categoriaNome = '';
+                                            if ($produtoBanco && $produtoBanco->categoria_id) {
+                                                $categoria = \App\Models\Categoria::find($produtoBanco->categoria_id);
+                                                if ($categoria) {
+                                                    $categoriaNome = strtolower($categoria->nome);
+                                                }
+                                            }
+                                            
+                                            // Se não tiver categoria, tentar usar camisas como fallback
+                                            $categoriaNome = $categoriaNome ?: 'camisas';
+                                            
+                                            // Tentar com o caminho específico da categoria
+                                            $imagem = "/image/cards/{$categoriaNome}/camisa{$produto['id']}.jpg";
+                                            
+                                            // Se não existir, tentar com caminho genérico de camisas
+                                            if (!file_exists(public_path($imagem))) {
+                                                $imagem = "/image/cards/camisas/camisa{$produto['id']}.jpg";
+                                            }
+                                            
+                                            // Se ainda não existir, usar imagem padrão
+                                            if (!file_exists(public_path($imagem))) {
+                                                $imagem = '/css/image/card/image' . rand(1, 5) . '.png';
+                                            }
+                                        }
                                     @endphp
                                     <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}" class="product-thumbnail me-3" style="width: 60px; height: 60px; object-fit: cover;">
                                     <div class="flex-grow-1">

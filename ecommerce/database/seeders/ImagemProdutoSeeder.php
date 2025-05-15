@@ -17,7 +17,7 @@ class ImagemProdutoSeeder extends Seeder
     {
         // Caminho para as imagens de camisas
         $path = 'image/cards/camisas';
-        $fullPath = storage_path('app/public/' . $path);
+        $fullPath = public_path($path);
         
         // Verifica se o diretório existe usando File em vez de Storage
         if (!File::exists($fullPath)) {
@@ -60,7 +60,7 @@ class ImagemProdutoSeeder extends Seeder
         // Associa imagens aos produtos
         foreach ($produtos as $index => $produto) {
             if (isset($imagens[$index])) {
-                // Cria o caminho relativo para o storage
+                // Cria o caminho relativo para o public
                 $relativePath = $path . '/' . File::basename($imagens[$index]);
                 
                 // Atualiza o produto com a URL da imagem

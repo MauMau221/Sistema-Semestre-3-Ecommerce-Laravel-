@@ -11,12 +11,29 @@
                         @php
                             // Se o produto tem URL definida no banco de dados, usa ela
                             if (!empty($produto->url)) {
-                                $imagemPrincipal = 'storage/' . $produto->url;
+                                $imagemPrincipal = $produto->url;
                             } else {
-                                // Se não tem URL no banco, tenta um caminho alternativo antigo
-                                $imagemPrincipal = "/css/image/card/camisa{$produto->id}.jpg";
+                                // Tentar encontrar a categoria
+                                $categoriaNome = '';
+                                if ($produto->categoria_id) {
+                                    $categoria = \App\Models\Categoria::find($produto->categoria_id);
+                                    if ($categoria) {
+                                        $categoriaNome = strtolower($categoria->nome);
+                                    }
+                                }
                                 
-                                // Se o arquivo alternativo não existir, usa uma imagem padrão aleatória
+                                // Se não tiver categoria, tentar usar camisas como fallback
+                                $categoriaNome = $categoriaNome ?: 'camisas';
+                                
+                                // Tentar com o caminho específico da categoria
+                                $imagemPrincipal = "/image/cards/{$categoriaNome}/camisa{$produto->id}.jpg";
+                                
+                                // Se não existir, tentar com caminho genérico de camisas
+                                if (!file_exists(public_path($imagemPrincipal))) {
+                                    $imagemPrincipal = "/image/cards/camisas/camisa{$produto->id}.jpg";
+                                }
+                                
+                                // Se ainda não existir, usar imagem padrão
                                 if (!file_exists(public_path($imagemPrincipal))) {
                                     $imagemPrincipal = '/css/image/card/image' . rand(1, 5) . '.png';
                                 }
@@ -212,13 +229,32 @@
                                         <div class="image-container">
                                             @php
                                                 if (!empty($prod->url)) {
-                                                    $imagemProduto = 'storage/' . $prod->url;
+                                                    $imagemProduto = $prod->url;
                                                 } else {
-                                                    $imagemProduto = "/css/image/card/camisa{$prod->id}.jpg";
-                                                    $imagemPadrao = '/css/image/card/image' . rand(1, 5) . '.png';
-                                                    $imagem = file_exists(public_path($imagemProduto))
-                                                        ? $imagemProduto
-                                                        : $imagemPadrao;
+                                                    // Tentar encontrar a categoria
+                                                    $categoriaNome = '';
+                                                    if ($prod->categoria_id) {
+                                                        $categoria = \App\Models\Categoria::find($prod->categoria_id);
+                                                        if ($categoria) {
+                                                            $categoriaNome = strtolower($categoria->nome);
+                                                        }
+                                                    }
+                                                    
+                                                    // Se não tiver categoria, tentar usar camisas como fallback
+                                                    $categoriaNome = $categoriaNome ?: 'camisas';
+                                                    
+                                                    // Tentar com o caminho específico da categoria
+                                                    $imagemProduto = "/image/cards/{$categoriaNome}/camisa{$prod->id}.jpg";
+                                                    
+                                                    // Se não existir, tentar com caminho genérico de camisas
+                                                    if (!file_exists(public_path($imagemProduto))) {
+                                                        $imagemProduto = "/image/cards/camisas/camisa{$prod->id}.jpg";
+                                                    }
+                                                    
+                                                    // Se ainda não existir, usar imagem padrão
+                                                    if (!file_exists(public_path($imagemProduto))) {
+                                                        $imagemProduto = '/css/image/card/image' . rand(1, 5) . '.png';
+                                                    }
                                                 }
                                             @endphp
                                             <img src="{{ asset($imagemProduto) }}" class="card-img-top"

@@ -18,10 +18,10 @@ class CamisasSeeder extends Seeder
     {
         $categoriaId = 1; // ID da categoria "camisas"
         
-        // Busca todas as imagens disponíveis na pasta storage/app/public/image/camisas
+        // Busca todas as imagens disponíveis na pasta public/image/cards/camisas
         $imagensCamisas = [];
         $path = 'image/cards/camisas';
-        $fullPath = storage_path('app/public/' . $path);
+        $fullPath = public_path($path);
         
         if (File::exists($fullPath)) {
             $files = File::files($fullPath);
@@ -84,7 +84,7 @@ class CamisasSeeder extends Seeder
         // Associa imagens aos produtos
         foreach ($produtos as $index => &$produto) {
             if (isset($imagensCamisas[$index])) {
-                // Cria o caminho relativo para o storage
+                // Cria o caminho relativo para o public
                 $relativePath = $path . '/' . File::basename($imagensCamisas[$index]);
                 $produto['url'] = $relativePath;
             } else {

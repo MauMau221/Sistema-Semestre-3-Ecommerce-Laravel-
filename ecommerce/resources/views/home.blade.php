@@ -17,7 +17,7 @@
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'camisas']) }}" class="">
-                            <img src="{{ asset('storage/image/categorias/catCamisas.png') }}" class="card-img-top">
+                            <img src="image/categorias/catCamisas.png" class="card-img-top">
                         </a>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'camisetas']) }}" class="">
-                            <img src="{{ asset('storage/image/categorias/catCamisas1.png') }}" class="card-img-top">
+                            <img src="image/categorias/catCamisas1.png" class="card-img-top">
                         </a>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'calcas']) }}" class="">
-                            <img src="{{ asset('storage/image/categorias/catCamisas2.png') }}" class="card-img-top">
+                            <img src="image/categorias/catCamisas2.png" class="card-img-top">
                         </a>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'calcados']) }}" class="">
-                            <img src="{{ asset('storage/image/categorias/catCamisas3.png') }}" class="card-img-top">
+                            <img src="image/categorias/catCamisas3.png" class="card-img-top">
                         </a>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'polos']) }}" class="">
-                            <img src="{{ asset('storage/image/categorias/catCamisas4.png') }}" class="card-img-top">
+                            <img src="image/categorias/catCamisas4.png" class="card-img-top">
                         </a>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'jaquetas']) }}" class="">
-                            <img src="{{ asset('storage/image/categorias/catCamisas5.png') }}" class="card-img-top">
+                            <img src="image/categorias/catCamisas5.png" class="card-img-top">
                         </a>
                     </div>
                 </div>
@@ -82,9 +82,9 @@
                                             <div class="image-container">
                                                 @php
                                                     if (!empty($produto->url)) {
-                                                        $imagem = "storage/" . $produto->url;
+                                                        $imagem = $produto->url;
                                                     } else {
-                                                        $imagem = "storage/image/cards/" . $categoria . "/" . $produto['id'] . ".jpg";
+                                                        $imagem = "image/cards/" . $categoria . "/camisa" . $produto['id'] . ".jpg";
                                                         if (!file_exists(public_path($imagem))) {
                                                             $imagem = "/css/image/card/image" . rand(1, 5) . ".png";
                                                         }
@@ -142,9 +142,9 @@
                                             <div class="image-container">
                                                 @php
                                                     if (!empty($produto->url)) {
-                                                        $imagem = "storage/" . $produto->url;
+                                                        $imagem = $produto->url;
                                                     } else {
-                                                        $imagem = "storage/image/cards/camisas" . $produto['id'] . ".jpg";
+                                                        $imagem = "image/cards/camisas/camisa" . $produto['id'] . ".jpg";
                                                         if (!file_exists(public_path($imagem))) {
                                                             $imagem = "/css/image/card/image" . rand(1, 5) . ".png";
                                                         }
