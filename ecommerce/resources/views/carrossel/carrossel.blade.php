@@ -7,16 +7,16 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active text-center" data-interval="3000">
-                <img src="/css/image/carousel/carr1.png" alt="" class="img-fluid d-none d-md-block">
-                <img src="/css/image/carousel/carr1.png" alt="" class="img-fluid d-block d-md-none">
+                <img src="image/carousel/carr1.png" alt="" class="img-fluid d-none d-md-block">
+                <img src="image/carousel/carr1.png" alt="" class="img-fluid d-block d-md-none">
             </div>
             <div class="carousel-item text-center" data-interval="3000">
-                <img src="/css/image/carousel/carr2.png" alt="" class="img-fluid d-none d-md-block">
-                <img src="/css/image/carousel/carr2.png" alt="" class="img-fluid d-block d-md-none">
+                <img src="image/carousel/carr2.png" alt="" class="img-fluid d-none d-md-block">
+                <img src="image/carousel/carr2.png" alt="" class="img-fluid d-block d-md-none">
             </div>
             <div class="carousel-item text-center" data-interval="3000">
-                <img src="/css/image/carousel/carr3.png" alt="" class="img-fluid d-none d-md-block">
-                <img src="/css/image/carousel/carr3.png" alt="" class="img-fluid d-block d-md-none">
+                <img src="image/carousel/carr3.png" alt="" class="img-fluid d-none d-md-block">
+                <img src="image/carousel/carr3.png" alt="" class="img-fluid d-block d-md-none">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselMain" role="button" data-slide="prev">
