@@ -17,7 +17,7 @@
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'camisas']) }}" class="">
-                            <img src="/css/image/categorias/catCamisas.png" class="card-img-top">
+                            <img src="image/categorias/catCamisas.png" class="card-img-top">
                         </a>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'camisetas']) }}" class="">
-                            <img src="/css/image/categorias/catCamisas1.png" class="card-img-top">
+                            <img src="image/categorias/catCamisas1.png" class="card-img-top">
                         </a>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'calcas']) }}" class="">
-                            <img src="/css/image/categorias/catCamisas2.png" class="card-img-top">
+                            <img src="image/categorias/catCamisas2.png" class="card-img-top">
                         </a>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'calcados']) }}" class="">
-                            <img src="/css/image/categorias/catCamisas3.png" class="card-img-top">
+                            <img src="image/categorias/catCamisas3.png" class="card-img-top">
                         </a>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'polos']) }}" class="">
-                            <img src="/css/image/categorias/catCamisas4.png" class="card-img-top">
+                            <img src="image/categorias/catCamisas4.png" class="card-img-top">
                         </a>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                 my-2">
                     <div class="card text-center">
                         <a href="{{ route('category.categorias', ['nome' => 'jaquetas']) }}" class="">
-                            <img src="/css/image/categorias/catCamisas5.png" class="card-img-top">
+                            <img src="image/categorias/catCamisas5.png" class="card-img-top">
                         </a>
                     </div>
                 </div>
@@ -175,7 +175,8 @@
 
             <hr class="mt-3">
 
-            <h3 class="p-4">Camisas</h3>
+            @foreach($produtosPorCategoria as $categoria => $dados)
+                <h3 class="p-4">{{ $dados['nome'] }}</h3>
 
             <div class="container">
                 <div class="d-flex justify-content-end m-2">
@@ -224,10 +225,16 @@
                                             <i class="fa-solid fa-bag-shopping fa-xl"
                                                 style="color: rgb(93, 92, 92); cursor: pointer;"></i>
                                         </a>
+
+                                        <div class="cart-icon">
+                                            <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
+                                                <i class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(93, 92, 92); cursor: pointer;"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -283,3 +290,10 @@
         </div>
     </main>
 @endsection
+
+@push('scripts')
+<script>
+    // Passando as categorias para o JavaScript global
+    window.categorias = {!! json_encode(array_keys($produtosPorCategoria ?? [])) !!};
+</script>
+@endpush

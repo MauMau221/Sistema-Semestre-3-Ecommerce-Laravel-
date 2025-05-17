@@ -50,9 +50,15 @@ class Produto extends Model
             return false;
         }
         
-        // Verifica diretamente se existe um registro na tabela favorites
-        return Favorite::where('user_id', $userId)
-                      ->where('produto_id', $this->id)
-                      ->exists();
+        // Verificar se a tabela favorites existe antes de fazer a consulta
+        try {
+            // Verifica diretamente se existe um registro na tabela favorites
+            return Favorite::where('user_id', $userId)
+                         ->where('produto_id', $this->id)
+                         ->exists();
+        } catch (\Exception $e) {
+            // Se ocorrer algum erro (tabela não existe, etc.), retorna false
+            return false;
+        }
     }
 }
