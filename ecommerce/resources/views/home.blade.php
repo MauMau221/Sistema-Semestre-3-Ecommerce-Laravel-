@@ -175,70 +175,66 @@
 
             <hr class="mt-3">
 
+            {{-- Modified product carousel section --}}
             @foreach($produtosPorCategoria as $categoria => $dados)
                 <h3 class="p-4">{{ $dados['nome'] }}</h3>
 
-            <div class="container">
-                <div class="d-flex justify-content-end m-2">
-                    <div class="button-prev p-2"><i
-                            class="fa-solid fa-circle-chevron-right fa-flip-horizontal fa-2xl"></i>
+                <div class="container"> {{-- Container for this category's swiper --}}
+                    <div class="d-flex justify-content-end m-2">
+                        <div class="button-prev p-2"><i class="fa-solid fa-circle-chevron-right fa-flip-horizontal fa-2xl"></i>
+                        </div>
+                        <div class="button-next p-2"><i class="fa-solid fa-circle-chevron-right fa-2xl"></i></div>
                     </div>
-                    <div class="button-next p-2"><i class="fa-solid fa-circle-chevron-right fa-2xl"></i></div>
-                </div>
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        @foreach ($produtos as $produto)
-                            <div class="swiper-slide">
-                                <div class="card-product position-relative">
-                                    <a href="{{ route('product.show', $produto['id']) }}"
-                                        class="text-decoration-none text-dark">
-                                        <div class="image-container">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            @if (!empty($dados['produtos']) && count($dados['produtos']) > 0)
+                                @foreach($dados['produtos'] as $produto) {{-- INNER LOOP FOR PRODUCTS --}}
+                                    <div class="swiper-slide">
+                                        <div class="card-product position-relative">
                                             @php
-                                                $imagemProduto = "/css/image/card/camisa{$produto->id}.jpg";
+                                                // Assuming $produto is an array here based on usage below
+                                                $imagemProduto = "/css/image/card/camisa{$produto['id']}.jpg";
                                                 $imagemPadrao = '/css/image/card/image' . rand(1, 5) . '.png';
                                                 $imagem = file_exists(public_path($imagemProduto))
                                                     ? $imagemProduto
                                                     : $imagemPadrao;
                                             @endphp
-                                            <img src="{{ asset($imagem) }}" class="card-img-top"
-                                                alt="{{ $produto->nome }}">
-                                        </div>
-                                        <div class="card d-flex flex-column p-2 border-0">
-                                            <div class="star">
-                                                <i class="fa-solid fa-star fa-2xs"></i>
-                                                <i class="fa-solid fa-star fa-2xs"></i>
-                                                <i class="fa-solid fa-star fa-2xs"></i>
-                                                <i class="fa-solid fa-star fa-2xs"></i>
-                                                <i class="fa-regular fa-star fa-2xs"></i>
+                                            <img src="{{ asset($imagem) }}" class="card-img-top" alt="{{ $produto['nome'] }}">
+                                            
+                                            <div class="card d-flex flex-column p-2 border-0">
+                                                <div class="star">
+                                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                                    <i class="fa-regular fa-star fa-2xs"></i>
+                                                </div>
+                                                <h5 class="font-weight-bold">{{ $produto['nome'] }}</h5>
+                                                <p class="card-price">
+                                                    <s>R${{ number_format(floatval($produto['preco']) + 99.99, 2, ',', '.') }}</s>
+                                                    <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
+                                                </p>
                                             </div>
-                                            <h5 class="font-weight-bold">{{ $produto['nome'] }}</h5>
-                                            <p class="card-price">
-                                                <s>R${{ number_format($produto['preco'] + 99.99, 2, ',', '.') }}</s>
-                                                <strong>R${{ $produto['preco'] }}</strong>
-                                            </p>
-                                        </div>
-                                    </a>
 
-                                    <div class="cart-icon">
-                                        <a href="{{ route('product.show', $produto['id']) }}"
-                                            class="text-decoration-none">
-                                            <i class="fa-solid fa-bag-shopping fa-xl"
-                                                style="color: rgb(93, 92, 92); cursor: pointer;"></i>
-                                        </a>
-
-                                        <div class="cart-icon">
-                                            <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
-                                                <i class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(93, 92, 92); cursor: pointer;"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                            <div class="cart-icon"> {{-- Single cart icon --}}
+                                                <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
+                                                    <i class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(93, 92, 92); cursor: pointer;"></i>
+                                                </a>
+                                            </div>
+                                        </div> {{-- Closes card-product --}}
+                                    </div> {{-- Closes swiper-slide --}}
+                                @endforeach {{-- CLOSES INNER PRODUCT LOOP --}}
+                            @else
+                                <div class="swiper-slide">
+                                    <p class="text-center p-3">Nenhum produto encontrado para esta categoria.</p>
                                 </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr class="mt-3">
+                            @endif
+                        </div> {{-- Closes swiper-wrapper --}}
+                    </div> {{-- Closes swiper --}}
+                </div> {{-- Closes inner container for this category --}}
+                <hr class="mt-3"> {{-- HR for this category section --}}
+            @endforeach {{-- CLOSES OUTER CATEGORY LOOP ($produtosPorCategoria) --}}
+
             <section class="promo-section container my-5">
                 <div class="row align-items-center">
                     <div class="col-md-4 d-flex flex-column justify-content-center">
@@ -290,10 +286,3 @@
         </div>
     </main>
 @endsection
-
-@push('scripts')
-<script>
-    // Passando as categorias para o JavaScript global
-    window.categorias = {!! json_encode(array_keys($produtosPorCategoria ?? [])) !!};
-</script>
-@endpush
