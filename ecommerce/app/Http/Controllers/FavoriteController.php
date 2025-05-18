@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 class FavoriteController extends Controller
 {
     /**
-     * Display a listing of the user's favorite products.
+     * Exibe uma lista dos produtos favoritos do usuário.
      */
     public function index()
     {
@@ -27,7 +27,7 @@ class FavoriteController extends Controller
     }
 
     /**
-     * Add a product to user's favorites.
+     * Adiciona um produto aos favoritos do usuário.
      */
     public function add(Request $request)
     {
@@ -46,7 +46,7 @@ class FavoriteController extends Controller
     }
 
     /**
-     * Remove a product from user's favorites.
+     * Remove um produto dos favoritos do usuário.
      */
     public function remove(Request $request)
     {
@@ -62,7 +62,7 @@ class FavoriteController extends Controller
     }
 
     /**
-     * Toggle a product in user's favorites (add if not exists, remove if exists).
+     * Alterna um produto nos favoritos do usuário (adiciona se não existe, remove se existe).
      */
     public function toggle(Request $request)
     {

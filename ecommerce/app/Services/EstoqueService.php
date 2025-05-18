@@ -25,7 +25,7 @@ class EstoqueService
     public function atualizarEstoque($produtoId, $quantidade, $cor = null, $tamanho = null)
     {
         try {
-            DB::beginTransaction();
+            DB::beginTransaction(); // Inicia uma transação de banco de dados apontando que tudo que acontecer dentro do bloco de código será feito em uma transação e caso aconteça algum erro a transação num todo será revertida
 
             $estoque = Estoque::where('produto_id', $produtoId)
                 ->when($cor, function ($query) use ($cor) {
@@ -81,10 +81,10 @@ class EstoqueService
             $estoque->quantidade += $quantidade;
             $estoque->save();
 
-            DB::commit();
+            DB::commit(); // Finaliza a transação de banco de dados
             return true;
         } catch (\Exception $e) {
-            DB::rollBack();
+            DB::rollBack(); // Reverte a transação de banco de dados caso aconteça algum erro
             throw $e;
         }
     }

@@ -245,7 +245,8 @@
                                 @foreach ($dados['produtos'] as $produto)
                                     {{-- INNER LOOP FOR PRODUCTS --}}
                                     <div class="swiper-slide">
-                                        <div class="card-product position-relative">
+                                        {{-- Substituído pelo novo layout do card --}}
+                                        <div class="card product-card h-100"> {{-- Adicionado h-100 para garantir altura consistente --}}
                                             @php
                                                 // Assuming $produto is an array here based on usage below
                                                 $imagemProduto = "image/cards/camisas/camisa{$produto['id']}.jpg";
@@ -257,29 +258,28 @@
                                             <img src="{{ asset($imagem) }}" class="card-img-top"
                                                 alt="{{ $produto['nome'] }}">
 
-                                            <div class="card d-flex flex-column p-2 border-0">
-                                                <div class="star">
-                                                    <i class="fa-solid fa-star fa-2xs"></i>
-                                                    <i class="fa-solid fa-star fa-2xs"></i>
-                                                    <i class="fa-solid fa-star fa-2xs"></i>
-                                                    <i class="fa-solid fa-star fa-2xs"></i>
-                                                    <i class="fa-regular fa-star fa-2xs"></i>
-                                                </div>
-                                                <h5 class="font-weight-bold">{{ $produto['nome'] }}</h5>
-                                                <p class="card-price">
+                                            <div class="card-body d-flex flex-column"> {{-- d-flex e flex-column para alinhar o botão em baixo --}}
+                                                {{-- <p class="text-muted small">MARCA</p> --}} {{-- Omitido pois não há dados de marca --}}
+                                                <h5 class="card-title">{{ $produto['nome'] }}</h5>
+                                                <p class="card-text">
                                                     <s>R${{ number_format(floatval($produto['preco']) + 99.99, 2, ',', '.') }}</s>
                                                     <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
                                                 </p>
-                                            </div>
-
-                                            <div class="cart-icon"> {{-- Single cart icon --}}
+                                                {{-- <p class="card-text small">Tamanhos Disponíveis: P, M, G, GG</p> --}} {{-- Omitido pois não há dados de tamanho --}}
+                                                
+                                                {{-- Botão e ícone de carrinho --}}
                                                 <a href="{{ route('product.show', $produto['id']) }}"
-                                                    class="text-decoration-none">
-                                                    <i class="fa-solid fa-bag-shopping fa-xl"
-                                                        style="color: rgb(93, 92, 92); cursor: pointer;"></i>
-                                                </a>
+                                                   class="btn btn-outline-dark w-100 mt-auto">Ver Produto</a> {{-- mt-auto para empurrar para baixo --}}
+                                                {{-- O ícone de carrinho que aparece no hover pode ser adicionado depois se necessário,
+                                                     por simplicidade e para corresponder ao pedido de "Ver Produto" visível.
+                                                     O ícone original do carrinho foi removido para evitar duplicidade funcional.
+                                                <div class="cart-icon-hover position-absolute bottom-0 end-0 p-2 bg-white rounded-circle"
+                                                    style="opacity:0; transition: opacity 0.3s ease;">
+                                                    <i class="fa-solid fa-bag-shopping fa-lg"></i>
+                                                </div>
+                                                --}}
                                             </div>
-                                        </div> {{-- Closes card-product --}}
+                                        </div> {{-- Closes card product-card --}}
                                     </div> {{-- Closes swiper-slide --}}
                                 @endforeach {{-- CLOSES INNER PRODUCT LOOP --}}
                             @else
