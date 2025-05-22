@@ -163,12 +163,7 @@
                             <div class="card product-card h-100">
                                 <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
                                     @php
-                                        if (!empty($produto->url)) {
-                                            $imagem = $produto->url;
-                                        } else {
-                                            $imagemProduto = "image/cards/{$dados['nome']}/{$dados['nome']}{$produto['id']}.jpg";
-                                            $imagem = file_exists(public_path($imagemProduto)) ? $imagemProduto : $imagemPadrao;
-                                        }
+                                        $imagem = "image/cards/{$dadosCategoria['nome']}/{$dadosCategoria['nome']}{$produto['id']}.jpg";
                                     @endphp
                                     <img src="{{ asset($imagem) }}" alt="{{ $produto->nome }}" class="card-img-top">
                                 </a>
@@ -178,7 +173,8 @@
                                         <s>R${{ number_format(floatval($produto['preco']) + 99.99, 2, ',', '.') }}</s>
                                         <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
                                     </p>
-                                    <a href="{{ route('product.show', $produto['id']) }}" class="btn btn-outline-dark w-100 mt-auto">Ver Produto</a>
+                                    <a href="{{ route('product.show', $produto['id']) }}"
+                                        class="btn btn-outline-dark w-100 mt-auto">Ver Produto</a>
                                 </div>
                             </div>
                         </div>
