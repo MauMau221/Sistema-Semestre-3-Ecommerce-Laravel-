@@ -235,7 +235,6 @@
                                     <div class="swiper-slide">
                                         <div class="card product-card h-100">
                                             @php
-                                                
                                                 $imagemProduto = "image/cards/{$dados['nome']}/{$dados['nome']}{$produto['id']}.jpg";
                                                 $imagemPadrao = 'image/cards/image' . rand(1, 5) . '.png';
                                                 $imagem = file_exists(public_path($imagemProduto))

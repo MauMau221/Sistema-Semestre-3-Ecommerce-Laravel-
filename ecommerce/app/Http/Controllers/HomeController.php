@@ -35,12 +35,12 @@ class HomeController extends Controller
             }
         }
         
-        // Fallback para o comportamento anterior caso não encontre categorias
+        // Caso não encontre categorias
         $todosProdutos = Produto::where('status', true)->get();
         
         return view('home', [
             'produtosPorCategoria' => $produtosPorCategoria,
-            'produtos' => $todosProdutos // Mantendo compatibilidade com código existente
+            'produtos' => $todosProdutos 
         ]);
     }
 

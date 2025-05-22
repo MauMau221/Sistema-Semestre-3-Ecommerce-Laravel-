@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -18,10 +19,21 @@ class CategoryController extends Controller
     {
         $nomeCategoria = $request->query('nome');
         $categoria = Categoria::where('nome', $nomeCategoria)->firstOrFail();
-        
-        $produtos = $categoria->produtos()->paginate(8)->withQueryString();
+
+        // Obter produtos paginados da categoria
+        $produtos = Produto::where('categoria_id', $categoria->id)
+                           ->where('status', true)
+                           ->paginate(8)
+                           ->withQueryString();
+
+        $dadosCategoria = [
+            'nome' => ucfirst($nomeCategoria),
+            'produtos' => $produtos,
+            'id' => $categoria->id
+        ];
+
         return view('pages.listar', [
-            'itens' => $produtos,
+            'dadosCategoria' => $dadosCategoria,
             'categoria' => $nomeCategoria
         ]);
     }

@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-    @if (empty($itens))
+    @if (empty($dadosCategoria['produtos']) || $dadosCategoria['produtos']->count() === 0)
         <div class="alert alert-danger mt-0">
             <p>Itens não encontrados para a categoria selecionada</p>
         </div>
@@ -12,7 +12,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home.home') }}"
                         class="text-decoration-none text-secondary">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($categoria) }}</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($dadosCategoria['nome']) }}</li>
                 <!-- ucfisrt deixa a primeira letra maiuscula -->
             </ol>
         </nav>
@@ -141,8 +141,8 @@
                 <!-- Cabeçalho de resultados -->
                 <div class="results-header d-flex justify-content-between align-items-center">
                     <div>
-                        <h4 class="mb-0">{{ ucfirst($categoria) }}</h4>
-                        <p class="text-muted mb-0">{{ $itens->count() }} produtos encontrados</p>
+                        <h4 class="mb-0">{{ $dadosCategoria['nome'] }}</h4>
+                        <p class="text-muted mb-0">{{ $dadosCategoria['produtos']->count() }} produtos encontrados</p>
                     </div>
                     <div class="d-flex align-items-center">
                         <label for="sort" class="me-2 mt-1">Ordenar por:</label>
@@ -158,40 +158,27 @@
 
                 <!-- Grade de Produtos (4 por linha em desktop) -->
                 <div class="row">
-                    @foreach ($itens as $produto)
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="card product-card border-0">
-                                <div class="position-relative">
-                                    <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
-                                        @php
-                                            if (!empty($produto->url)) {
-                                                $imagem = "storage/" . $produto->url;
-                                            } else {
-                                                $imagemProduto = "/css/image/card/camisa{$produto->id}.jpg";
-                                                $imagemPadrao = "/css/image/card/image" . rand(1, 5) . ".png";
-                                                $imagem = file_exists(public_path($imagemProduto)) ? $imagemProduto : $imagemPadrao;
-                                            }
-                                        @endphp
-                                        <img src="{{ asset($imagem) }}" alt="{{ $produto->nome }}" class="card-img-top">
-                                    </a>
-                                    <div class="position-absolute" style="right: 10px; bottom: 10px;">
-                                        <div class="d-flex justify-content-end">
-                                            <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
-                                                <i class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(93, 92, 92); cursor: pointer;"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body p-2">
-                                    <h5 class="product-title font-weight-bold">{{ $produto['nome'] }}</h5>
-                                    <div class="product-price">R${{ number_format($produto['preco'], 2, ',', '.') }}</div>
-                                    <div class="product-installments">Ou 6x de R$
-                                        {{ number_format($produto['preco'] / 6, 2, ',', '.') }}</div>
-                                    <div class="product-colors">
-                                        <div class="color-option" style="background-color: navy;"></div>
-                                        <div class="color-option" style="background-color: black;"></div>
-                                        <div class="color-option" style="background-color: white;"></div>
-                                    </div>
+                    @foreach ($dadosCategoria['produtos'] as $produto)
+                        <div class="col-6 col-md-4 col-lg-3 mt-3">
+                            <div class="card product-card h-100">
+                                <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
+                                    @php
+                                        if (!empty($produto->url)) {
+                                            $imagem = $produto->url;
+                                        } else {
+                                            $imagemProduto = "image/cards/{$dados['nome']}/{$dados['nome']}{$produto['id']}.jpg";
+                                            $imagem = file_exists(public_path($imagemProduto)) ? $imagemProduto : $imagemPadrao;
+                                        }
+                                    @endphp
+                                    <img src="{{ asset($imagem) }}" alt="{{ $produto->nome }}" class="card-img-top">
+                                </a>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">{{ $produto['nome'] }}</h5>
+                                    <p class="card-text">
+                                        <s>R${{ number_format(floatval($produto['preco']) + 99.99, 2, ',', '.') }}</s>
+                                        <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
+                                    </p>
+                                    <a href="{{ route('product.show', $produto['id']) }}" class="btn btn-outline-dark w-100 mt-auto">Ver Produto</a>
                                 </div>
                             </div>
                         </div>
@@ -202,10 +189,11 @@
                 <div class="d-flex justify-content-center my-5">
                     <nav aria-label="Navegação de páginas">
                         <ul class="pagination p-2">
-                            {{ $itens->links() }}
+                            {{ $dadosCategoria['produtos']->links() }}
                         </ul>
                     </nav>
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
