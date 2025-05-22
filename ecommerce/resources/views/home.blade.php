@@ -228,12 +228,6 @@
                 <h3 class="p-4">{{ $dados['nome'] }}</h3>
 
                 <div class="container">
-                    <div class="d-flex justify-content-end m-2">
-                        <div class="button-prev p-2"><i
-                                class="fa-solid fa-circle-chevron-right fa-flip-horizontal fa-2xl"></i>
-                        </div>
-                        <div class="button-next p-2"><i class="fa-solid fa-circle-chevron-right fa-2xl"></i></div>
-                    </div>
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             @if (!empty($dados['produtos']) && count($dados['produtos']) > 0)
