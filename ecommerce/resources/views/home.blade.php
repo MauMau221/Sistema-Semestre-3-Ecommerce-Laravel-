@@ -11,7 +11,6 @@
 
     <main>
         <div class="container">
-            {{-- Categorias --}}
             <div class="row justify-content-center">
                 <div class="col-6 col-lg-4 col-md-4 col-sm-6
                 my-2">
@@ -84,10 +83,9 @@
                 <div class="tab-content" id="recommendationsTabContent">
                     <div class="tab-pane fade show active" id="novidades" role="tabpanel" aria-labelledby="novidades-tab">
                         <div class="row">
-                            <!-- Product Card 1 -->
                             <div class="col-md-3 col-sm-6 mb-4">
                                 <div class="card product-card">
-                                    <img src="/image/cards/camisas/camisa4.jpg" class="card-img-top"
+                                    <img src="/image/cards/jaquetas/jaquetas22.jpg" class="card-img-top"
                                         alt="Produto Novidade 1">
                                     <div class="card-body">
                                         <p class="text-muted small">ARAMIS</p>
@@ -104,10 +102,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Product Card 2 -->
+
                             <div class="col-md-3 col-sm-6 mb-4">
                                 <div class="card product-card">
-                                    <img src="image/cards/camisas/camisa5.jpg" class="card-img-top"
+                                    <img src="image/cards/jaquetas/jaquetas23.jpg" class="card-img-top"
                                         alt="Produto Novidade 2">
                                     <div class="card-body">
                                         <p class="text-muted small">ARAMIS</p>
@@ -124,10 +122,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Product Card 3 -->
+
                             <div class="col-md-3 col-sm-6 mb-4">
                                 <div class="card product-card">
-                                    <img src="image/cards/camisas/camisa6.jpg" class="card-img-top"
+                                    <img src="image/cards/jaquetas/jaquetas20.jpg" class="card-img-top"
                                         alt="Produto Novidade 3">
                                     <div class="card-body">
                                         <p class="text-muted small">ARAMIS</p>
@@ -144,10 +142,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Product Card 4 -->
+
                             <div class="col-md-3 col-sm-6 mb-4">
                                 <div class="card product-card">
-                                    <img src="image/cards/camisas/camisa7.jpg" class="card-img-top"
+                                    <img src="image/cards/jaquetas/jaquetas21.jpg" class="card-img-top"
                                         alt="Produto Novidade 4">
                                     <div class="card-body">
                                         <p class="text-muted small">ARAMIS</p>
@@ -167,11 +165,9 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="mais-vendidos" role="tabpanel" aria-labelledby="mais-vendidos-tab">
-                        <!-- Placeholder for Mais Vendidos products -->
                         <p class="text-center">Conteúdo para Mais Vendidos em breve.</p>
                     </div>
                     <div class="tab-pane fade" id="ofertas" role="tabpanel" aria-labelledby="ofertas-tab">
-                        <!-- Placeholder for Ofertas products -->
                         <p class="text-center">Conteúdo para Ofertas em breve.</p>
                     </div>
                 </div>
@@ -228,11 +224,10 @@
                 </div>
             </section>
 
-            {{-- Modified product carousel section --}}
             @foreach ($produtosPorCategoria as $categoria => $dados)
                 <h3 class="p-4">{{ $dados['nome'] }}</h3>
 
-                <div class="container"> {{-- Container for this category's swiper --}}
+                <div class="container">
                     <div class="d-flex justify-content-end m-2">
                         <div class="button-prev p-2"><i
                                 class="fa-solid fa-circle-chevron-right fa-flip-horizontal fa-2xl"></i>
@@ -243,13 +238,11 @@
                         <div class="swiper-wrapper">
                             @if (!empty($dados['produtos']) && count($dados['produtos']) > 0)
                                 @foreach ($dados['produtos'] as $produto)
-                                    {{-- INNER LOOP FOR PRODUCTS --}}
                                     <div class="swiper-slide">
-                                        {{-- Substituído pelo novo layout do card --}}
-                                        <div class="card product-card h-100"> {{-- Adicionado h-100 para garantir altura consistente --}}
+                                        <div class="card product-card h-100">
                                             @php
-                                                // Assuming $produto is an array here based on usage below
-                                                $imagemProduto = "image/cards/camisas/camisa{$produto['id']}.jpg";
+                                                
+                                                $imagemProduto = "image/cards/{$dados['nome']}/{$dados['nome']}{$produto['id']}.jpg";
                                                 $imagemPadrao = 'image/cards/image' . rand(1, 5) . '.png';
                                                 $imagem = file_exists(public_path($imagemProduto))
                                                     ? $imagemProduto
@@ -258,40 +251,30 @@
                                             <img src="{{ asset($imagem) }}" class="card-img-top"
                                                 alt="{{ $produto['nome'] }}">
 
-                                            <div class="card-body d-flex flex-column"> {{-- d-flex e flex-column para alinhar o botão em baixo --}}
-                                                {{-- <p class="text-muted small">MARCA</p> --}} {{-- Omitido pois não há dados de marca --}}
+                                            <div class="card-body d-flex flex-column">
                                                 <h5 class="card-title">{{ $produto['nome'] }}</h5>
                                                 <p class="card-text">
                                                     <s>R${{ number_format(floatval($produto['preco']) + 99.99, 2, ',', '.') }}</s>
                                                     <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
                                                 </p>
-                                                {{-- <p class="card-text small">Tamanhos Disponíveis: P, M, G, GG</p> --}} {{-- Omitido pois não há dados de tamanho --}}
-                                                
-                                                {{-- Botão e ícone de carrinho --}}
+
                                                 <a href="{{ route('product.show', $produto['id']) }}"
-                                                   class="btn btn-outline-dark w-100 mt-auto">Ver Produto</a> {{-- mt-auto para empurrar para baixo --}}
-                                                {{-- O ícone de carrinho que aparece no hover pode ser adicionado depois se necessário,
-                                                     por simplicidade e para corresponder ao pedido de "Ver Produto" visível.
-                                                     O ícone original do carrinho foi removido para evitar duplicidade funcional.
-                                                <div class="cart-icon-hover position-absolute bottom-0 end-0 p-2 bg-white rounded-circle"
-                                                    style="opacity:0; transition: opacity 0.3s ease;">
-                                                    <i class="fa-solid fa-bag-shopping fa-lg"></i>
-                                                </div>
-                                                --}}
+                                                    class="btn btn-outline-dark w-100 mt-auto">Ver Produto</a>
+
                                             </div>
-                                        </div> {{-- Closes card product-card --}}
-                                    </div> {{-- Closes swiper-slide --}}
-                                @endforeach {{-- CLOSES INNER PRODUCT LOOP --}}
+                                        </div>
+                                    </div>
+                                @endforeach
                             @else
                                 <div class="swiper-slide">
                                     <p class="text-center p-3">Nenhum produto encontrado para esta categoria.</p>
                                 </div>
                             @endif
-                        </div> {{-- Closes swiper-wrapper --}}
-                    </div> {{-- Closes swiper --}}
-                </div> {{-- Closes inner container for this category --}}
-                <hr class="mt-3"> {{-- HR for this category section --}}
-            @endforeach {{-- CLOSES OUTER CATEGORY LOOP ($produtosPorCategoria) --}}
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-3">
+            @endforeach
 
         </div>
     </main>
