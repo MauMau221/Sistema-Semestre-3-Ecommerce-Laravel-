@@ -44,36 +44,7 @@
                                     <div class="row align-items-center">
                                         <div class="col-3 col-md-2">
                                             @php
-                                                // Consulta o produto no banco para obter a URL
-                                                $produtoBanco = \App\Models\Produto::find($produto['id']);
-                                                if ($produtoBanco && !empty($produtoBanco->url)) {
-                                                    $imagem = $produtoBanco->url;
-                                                } else {
-                                                    // Tentar encontrar a categoria
-                                                    $categoriaNome = '';
-                                                    if ($produtoBanco && $produtoBanco->categoria_id) {
-                                                        $categoria = \App\Models\Categoria::find($produtoBanco->categoria_id);
-                                                        if ($categoria) {
-                                                            $categoriaNome = strtolower($categoria->nome);
-                                                        }
-                                                    }
-                                                    
-                                                    // Se não tiver categoria, tentar usar camisas como fallback
-                                                    $categoriaNome = $categoriaNome ?: 'camisas';
-                                                    
-                                                    // Tentar com o caminho específico da categoria
-                                                    $imagem = "/image/cards/{$categoriaNome}/camisa{$produto['id']}.jpg";
-                                                    
-                                                    // Se não existir, tentar com caminho genérico de camisas
-                                                    if (!file_exists(public_path($imagem))) {
-                                                        $imagem = "/image/cards/camisas/camisa{$produto['id']}.jpg";
-                                                    }
-                                                    
-                                                    // Se ainda não existir, usar imagem padrão
-                                                    if (!file_exists(public_path($imagem))) {
-                                                        $imagem = '/css/image/card/image' . rand(1, 5) . '.png';
-                                                    }
-                                                }
+                                                $imagem = "/image/cards/{$produto['categoria']}/{$produto['categoria']}{$produto['id']}.jpg";
                                             @endphp
                                             <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}"
                                                 class="product-thumbnail img-fluid">
@@ -194,7 +165,8 @@
                                     Adicione produtos para continuar.
                                 </div>
                             @else
-                                <a href="{{ route('cart.checkout') }}" class="btn btn-dark checkout-btn mb-3" id="btn-finalizar" onclick="return validarFrete(event)">FINALIZAR
+                                <a href="{{ route('cart.checkout') }}" class="btn btn-dark checkout-btn mb-3"
+                                    id="btn-finalizar" onclick="return validarFrete(event)">FINALIZAR
                                     COMPRA</a>
                             @endif
                             <a href="{{ session('url_anterior', url('/')) }}"
@@ -261,14 +233,17 @@
         function validarFrete(event) {
             const freteCalculado = document.getElementById('frete-calculado').value;
             const cepInput = document.getElementById('cep');
-            
+
             if (freteCalculado === '0') {
                 event.preventDefault();
                 cepInput.classList.add('invalid');
                 cepInput.focus();
-                
+
                 // Scroll suave até o input do CEP
-                cepInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                cepInput.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
                 return false;
             }
             return true;

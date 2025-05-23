@@ -188,64 +188,48 @@
                     <div class="swiper-wrapper">
                         @foreach ($relacionados as $prod)
                             <div class="swiper-slide">
-                                <div class="card-product position-relative">
-                                    <a href="{{ route('product.show', $prod['id']) }}"
-                                        class="text-decoration-none text-dark">
-                                        <div class="image-container">
-                                            @php
-                                                if (!empty($prod->url)) {
-                                                    $imagemProduto = $prod->url;
-                                                } else {
-                                                    // Tentar encontrar a categoria
-                                                    $categoriaNome = '';
-                                                    if ($prod->categoria_id) {
-                                                        $categoria = \App\Models\Categoria::find($prod->categoria_id);
-                                                        if ($categoria) {
-                                                            $categoriaNome = strtolower($categoria->nome);
-                                                        }
-                                                    }
-
-                                                    // Se não tiver categoria, tentar usar camisas como fallback
-                                                    $categoriaNome = $categoriaNome ?: 'camisas';
-
-                                                    // Tentar com o caminho específico da categoria
-                                                    $imagemProduto = "/image/cards/{$categoriaNome}/camisa{$prod->id}.jpg";
-
-                                                    // Se não existir, tentar com caminho genérico de camisas
-                                                    if (!file_exists(public_path($imagemProduto))) {
-                                                        $imagemProduto = "/image/cards/camisas/camisa{$prod->id}.jpg";
-                                                    }
-
-                                                    // Se ainda não existir, usar imagem padrão
-                                                    if (!file_exists(public_path($imagemProduto))) {
-                                                        $imagemProduto = '/css/image/card/image' . rand(1, 5) . '.png';
-                                                    }
+                                <div class="card product-card h-100">
+                                    @php
+                                        if (!empty($prod->url)) {
+                                            $imagemProduto = $prod->url;
+                                        } else {
+                                            // Tentar encontrar a categoria
+                                            $categoriaNome = '';
+                                            if ($prod->categoria_id) {
+                                                $categoria = \App\Models\Categoria::find($prod->categoria_id);
+                                                if ($categoria) {
+                                                    $categoriaNome = strtolower($categoria->nome);
                                                 }
-                                            @endphp
-                                            <img src="{{ asset($imagemProduto) }}" class="card-img-top"
-                                                alt="{{ $prod->nome }}">
-                                        </div>
-                                        <div class="card d-flex flex-column p-2 border-0">
-                                            <div class="star">
-                                                <i class="fa-solid fa-star fa-2xs"></i>
-                                                <i class="fa-solid fa-star fa-2xs"></i>
-                                                <i class="fa-solid fa-star fa-2xs"></i>
-                                                <i class="fa-solid fa-star fa-2xs"></i>
-                                                <i class="fa-regular fa-star fa-2xs"></i>
-                                            </div>
-                                            <h5 class="font-weight-bold">{{ $prod['nome'] }}</h5>
-                                            <p class="card-price">
-                                                <s>R${{ number_format($prod['preco'] + 99.99, 2, ',', '.') }}</s>
-                                                <strong>R${{ number_format($prod['preco'], 2, ',', '.') }}</strong>
-                                            </p>
-                                        </div>
-                                    </a>
+                                            }
 
-                                    <div class="cart-icon">
-                                        <a href="{{ route('product.show', $prod['id']) }}" class="text-decoration-none">
-                                            <i class="fa-solid fa-bag-shopping fa-xl"
-                                                style="color: rgb(93, 92, 92); cursor: pointer;"></i>
-                                        </a>
+                                            // Se não tiver categoria, tentar usar camisas como fallback
+                                            $categoriaNome = $categoriaNome ?: 'camisas';
+
+                                            // Tentar com o caminho específico da categoria
+                                            $imagemProduto = "/image/cards/{$categoriaNome}/camisa{$prod->id}.jpg";
+
+                                            // Se não existir, tentar com caminho genérico de camisas
+                                            if (!file_exists(public_path($imagemProduto))) {
+                                                $imagemProduto = "/image/cards/camisas/camisa{$prod->id}.jpg";
+                                            }
+
+                                            // Se ainda não existir, usar imagem padrão
+                                            if (!file_exists(public_path($imagemProduto))) {
+                                                $imagemProduto = '/css/image/card/image' . rand(1, 5) . '.png';
+                                            }
+                                        }
+                                    @endphp
+                                    <img src="{{ asset($imagemProduto) }}" class="card-img-top" alt="{{ $prod->nome }}">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">{{ $prod['nome'] }}</h5>
+                                        <p class="card-text">
+                                            <s>R${{ number_format($prod['preco'] + 99.99, 2, ',', '.') }}</s>
+                                            <strong>R${{ number_format($prod['preco'], 2, ',', '.') }}</strong>
+                                        </p>
+                                        <a href="{{ route('product.show', $prod['id']) }}" class="btn btn-outline-dark w-100 mt-auto">Ver Produto</a>
+                                        <div class="cart-icon-hover position-absolute bottom-0 end-0 p-2 bg-white rounded-circle" style="opacity:0; transition: opacity 0.3s ease;">
+                                            <i class="fa-solid fa-bag-shopping fa-lg"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -36,48 +36,23 @@
                             @foreach ($cart as $produto)
                                 <div class="cart-product-item d-flex align-items-center mb-3 p-2 border">
                                     @php
-                                        // Consulta o produto no banco para obter a URL e categoria
-                                        $produtoBanco = \App\Models\Produto::find($produto['id']);
-                                        if ($produtoBanco && !empty($produtoBanco->url)) {
-                                            $imagem = $produtoBanco->url;
-                                        } else {
-                                            // Tentar encontrar a categoria
-                                            $categoriaNome = '';
-                                            if ($produtoBanco && $produtoBanco->categoria_id) {
-                                                $categoria = \App\Models\Categoria::find($produtoBanco->categoria_id);
-                                                if ($categoria) {
-                                                    $categoriaNome = strtolower($categoria->nome);
-                                                }
-                                            }
-                                            
-                                            // Se não tiver categoria, tentar usar camisas como fallback
-                                            $categoriaNome = $categoriaNome ?: 'camisas';
-                                            
-                                            // Tentar com o caminho específico da categoria
-                                            $imagem = "/image/cards/{$categoriaNome}/camisa{$produto['id']}.jpg";
-                                            
-                                            // Se não existir, tentar com caminho genérico de camisas
-                                            if (!file_exists(public_path($imagem))) {
-                                                $imagem = "/image/cards/camisas/camisa{$produto['id']}.jpg";
-                                            }
-                                            
-                                            // Se ainda não existir, usar imagem padrão
-                                            if (!file_exists(public_path($imagem))) {
-                                                $imagem = '/css/image/card/image' . rand(1, 5) . '.png';
-                                            }
-                                        }
+                                        $imagem = "/image/cards/{$produto['categoria']}/{$produto['categoria']}{$produto['id']}.jpg";
                                     @endphp
-                                    <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}" class="product-thumbnail me-3" style="width: 60px; height: 60px; object-fit: cover;">
-                                    <div class="flex-grow-1">
+                                    <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}"
+                                        class="product-thumbnail me-3"
+                                        style="width: 60px; height: 60px; object-fit: cover;">
+                                    <div class="flex-grow-1 ml-3">
                                         <h6 class="mb-0">{{ $produto['nome'] }}</h6>
                                         <small class="text-muted">
-                                            {{ $produto['quantidade'] }} x R$ {{ number_format($produto['preco'], 2, ',', '.') }}
+                                            {{ $produto['quantidade'] }} x R$
+                                            {{ number_format($produto['preco'], 2, ',', '.') }}
                                             | {{ $produto['tamanho'] ?? 'Tamanho não informado' }}
                                             | {{ $produto['cor'] ?? 'Cor não informada' }}
                                         </small>
                                     </div>
                                     <div class="text-end">
-                                        <strong>R$ {{ number_format($produto['preco'] * $produto['quantidade'], 2, ',', '.') }}</strong>
+                                        <strong>R$
+                                            {{ number_format($produto['preco'] * $produto['quantidade'], 2, ',', '.') }}</strong>
                                     </div>
                                 </div>
                             @endforeach
@@ -122,10 +97,14 @@
                                         <select class="form-select" id="installments" required>
                                             <option>1x de R$ {{ number_format($total, 2, ',', '.') }} sem juros</option>
                                             <option>2x de R$ {{ number_format($total / 2, 2, ',', '.') }} sem juros</option>
-                                            <option>3x de R$ {{ number_format($total / 3, 2, ',', '.') }} sem juros</option>
-                                            <option>4x de R$ {{ number_format($total / 4, 2, ',', '.') }} sem juros</option>
-                                            <option>5x de R$ {{ number_format($total / 5, 2, ',', '.') }} sem juros</option>
-                                            <option>6x de R$ {{ number_format($total / 6, 2, ',', '.') }} sem juros</option>
+                                            <option>3x de R$ {{ number_format($total / 3, 2, ',', '.') }} sem juros
+                                            </option>
+                                            <option>4x de R$ {{ number_format($total / 4, 2, ',', '.') }} sem juros
+                                            </option>
+                                            <option>5x de R$ {{ number_format($total / 5, 2, ',', '.') }} sem juros
+                                            </option>
+                                            <option>6x de R$ {{ number_format($total / 6, 2, ',', '.') }} sem juros
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -144,9 +123,8 @@
                                 <div class="text-center">
                                     <p class="mb-3">Escaneie o QR Code abaixo para pagar com PIX</p>
                                     <div class="pix-qrcode mb-3">
-                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PIX-{{ rand(100000, 999999) }}" 
-                                             alt="QR Code PIX" 
-                                             class="img-fluid">
+                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PIX-{{ rand(100000, 999999) }}"
+                                            alt="QR Code PIX" class="img-fluid">
                                     </div>
                                     <p class="text-muted small">O QR Code expira em 30 minutos</p>
                                     <div class="alert alert-info">
@@ -174,9 +152,8 @@
                                     </button>
                                     <div id="boletoPreview" class="d-none">
                                         <div class="boleto-preview mb-3">
-                                            <img src="https://via.placeholder.com/600x200?text=Boleto+Bancário" 
-                                                 alt="Boleto Bancário" 
-                                                 class="img-fluid">
+                                            <img src="https://via.placeholder.com/600x200?text=Boleto+Bancário"
+                                                alt="Boleto Bancário" class="img-fluid">
                                         </div>
                                         <div class="alert alert-info">
                                             <i class="bi bi-info-circle-fill me-2"></i>
@@ -212,11 +189,13 @@
                         </div>
 
                         <div class="mt-4">
-                            <div class="text-muted mb-2 small">ou 6x de R$ {{ number_format(($total + 25.9) / 6, 2, ',', '.') }} sem
+                            <div class="text-muted mb-2 small">ou 6x de R$
+                                {{ number_format(($total + 25.9) / 6, 2, ',', '.') }} sem
                                 juros</div>
                             <form action="{{ route('cart.finalizar') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-dark checkout-btn mb-3 w-100">FINALIZAR COMPRA</button>
+                                <button type="submit" class="btn btn-dark checkout-btn mb-3 w-100">FINALIZAR
+                                    COMPRA</button>
                             </form>
                             <a href="{{ route('cart.checkout') }}" class="btn btn-light checkout-btn bg-light text-dark">
                                 VOLTAR
@@ -236,7 +215,7 @@
         .cart-product-item {
             border-radius: 4px;
         }
-        
+
         .product-thumbnail {
             border-radius: 4px;
         }
@@ -263,7 +242,7 @@
             padding: 20px;
             border-radius: 8px;
             display: inline-block;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border: 1px solid #e9e9e9;
         }
 
@@ -271,7 +250,7 @@
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border: 1px solid #e9e9e9;
         }
 
@@ -310,19 +289,19 @@
                 document.querySelectorAll('.payment-method').forEach(method => {
                     method.classList.remove('selected');
                 });
-                
+
                 // Esconde todos os formulários
                 document.querySelectorAll('.payment-form').forEach(form => {
                     form.classList.add('d-none');
                 });
-                
+
                 // Adiciona a classe selected ao método selecionado
                 this.closest('.payment-method').classList.add('selected');
-                
+
                 // Mostra o formulário correspondente
                 const formId = this.id + 'Form';
                 document.getElementById(formId).classList.remove('d-none');
-                
+
                 // Atualiza o total com base no desconto
                 atualizarTotal(this.id);
             });
@@ -333,21 +312,21 @@
             const subtotal = {{ $total }};
             const frete = 25.90;
             let desconto = 0;
-            
+
             if (metodoPagamento === 'pix') {
                 desconto = subtotal * 0.05; // 5% de desconto
             } else if (metodoPagamento === 'boleto') {
                 desconto = subtotal * 0.03; // 3% de desconto
             }
-            
+
             const total = subtotal + frete - desconto;
-            
+
             // Atualiza os valores na tela
-            document.querySelector('.summary-item:nth-child(3) span:last-child').textContent = 
+            document.querySelector('.summary-item:nth-child(3) span:last-child').textContent =
                 `R$ ${desconto.toFixed(2).replace('.', ',')}`;
-            document.querySelector('.summary-total span:last-child').textContent = 
+            document.querySelector('.summary-total span:last-child').textContent =
                 `R$ ${total.toFixed(2).replace('.', ',')}`;
-            document.querySelector('.text-muted.mb-2.small').innerHTML = 
+            document.querySelector('.text-muted.mb-2.small').innerHTML =
                 `ou 6x de R$ ${(total / 6).toFixed(2).replace('.', ',')} sem juros`;
         }
 
