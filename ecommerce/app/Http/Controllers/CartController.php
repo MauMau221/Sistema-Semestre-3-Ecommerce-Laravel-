@@ -31,6 +31,28 @@ class CartController extends Controller
         $cart = Session::get('cart', []);
         $total = 0;
 
+        // Se o usuário estiver logado, carrega os itens do banco de dados
+        if (Auth::check()) {
+            $cartItems = Cart::where('user_id', Auth::id())->get();
+            $cart = [];
+            
+            foreach ($cartItems as $item) {
+                $produto = Produto::with('categoria')->find($item->produto_id);
+                if ($produto) {
+                    $cart[$produto->id] = [
+                        'id' => $produto->id,
+                        'nome' => $produto->nome,
+                        'preco' => $produto->preco,
+                        'quantidade' => $item->quantidade,
+                        'categoria' => $produto->categoria->nome
+                    ];
+                }
+            }
+            
+            // Atualiza a sessão com os itens do banco
+            Session::put('cart', $cart);
+        }
+
         // Buscar as informações completas dos produtos incluindo suas categorias
         foreach ($cart as $id => $item) {
             $produto = Produto::with('categoria')->find($id);
@@ -89,6 +111,21 @@ class CartController extends Controller
                 $cart[$produto->id]['quantidade'] = 1;
             }
         }
+
+        // Se o usuário estiver logado, salva o item no banco de dados
+        if (Auth::check()) {
+            $cartItem = Cart::updateOrCreate(
+                [
+                    'user_id' => Auth::id(),
+                    'produto_id' => $produto->id,
+                ],
+                [
+                    'quantidade' => $cart[$produto->id]['quantidade'],
+                    'preco_unitario' => $produto->preco,
+                ]
+            );
+        }
+
         // salva a URL anterior antes de redirecionar pro carrinho
         session(['url_anterior' => url()->previous()]);
 
@@ -115,6 +152,14 @@ class CartController extends Controller
             }
 
             $cart[$request->produto_id]['quantidade'] = $request->quantidade;
+
+            // Se o usuário estiver logado, atualiza o item no banco de dados
+            if (Auth::check()) {
+                Cart::where('user_id', Auth::id())
+                    ->where('produto_id', $request->produto_id)
+                    ->update(['quantidade' => $request->quantidade]);
+            }
+
             Session::put('cart', $cart);
         }
 
@@ -126,6 +171,13 @@ class CartController extends Controller
         $cart = Session::get('cart', []);
 
         if (isset($cart[$request->produto_id])) {
+            // Se o usuário estiver logado, remove o item do banco de dados
+            if (Auth::check()) {
+                Cart::where('user_id', Auth::id())
+                    ->where('produto_id', $request->produto_id)
+                    ->delete();
+            }
+
             unset($cart[$request->produto_id]); //Se existir remove ele do carrinho
             Session::put('cart', $cart);
         }

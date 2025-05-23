@@ -74,20 +74,31 @@ function updateCartTotals() {
     subtotal += itemSubtotal;
 
     // Atualiza o subtotal do item
-    document.querySelector(`.subtotal-price[data-produto-id="${produtoId}"]`).textContent =
-      `R$ ${itemSubtotal.toFixed(2).replace('.', ',')}`;
+    const subtotalElement = document.querySelector(`.subtotal-price[data-produto-id="${produtoId}"]`);
+    if (subtotalElement) {
+      subtotalElement.textContent = `R$ ${itemSubtotal.toFixed(2).replace('.', ',')}`;
+    }
   });
 
   // Atualiza os totais no resumo
-  const shippingPrice = parseFloat(document.getElementById('shipping-price').textContent.replace('R$ ', '').replace(',', '.'));
-  const discountPrice = parseFloat(document.getElementById('discount-price').textContent.replace('R$ ', '').replace(',', '.'));
-  const total = subtotal + shippingPrice - discountPrice;
+  const shippingPriceElement = document.getElementById('shipping-price');
+  const discountPriceElement = document.getElementById('discount-price');
+  const totalItemsElement = document.getElementById('total-items');
+  const subtotalPriceElement = document.getElementById('subtotal-price');
+  const totalPriceElement = document.getElementById('total-price');
+  const installmentPriceElement = document.getElementById('installment-price');
 
-  document.getElementById('total-items').textContent = totalItems;
-  document.getElementById('subtotal-price').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-  document.getElementById('total-price').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-  document.getElementById('installment-price').textContent =
-    `R$ ${(total / 6).toFixed(2).replace('.', ',')}`;
+  if (shippingPriceElement && discountPriceElement && totalItemsElement && 
+      subtotalPriceElement && totalPriceElement && installmentPriceElement) {
+    const shippingPrice = parseFloat(shippingPriceElement.textContent.replace('R$ ', '').replace(',', '.'));
+    const discountPrice = parseFloat(discountPriceElement.textContent.replace('R$ ', '').replace(',', '.'));
+    const total = subtotal + shippingPrice - discountPrice;
+
+    totalItemsElement.textContent = totalItems;
+    subtotalPriceElement.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+    totalPriceElement.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    installmentPriceElement.textContent = `R$ ${(total / 6).toFixed(2).replace('.', ',')}`;
+  }
 }
 
 function btnAumentarQtd(event) {
@@ -121,14 +132,18 @@ function buscarCep(event) {
     .then(data => {
       if (data.erro) {
         alert('CEP não encontrado!');
-        document.getElementById('frete-calculado').value = '0';
+        const freteCalculado = document.getElementById('frete-calculado');
+        if (freteCalculado) {
+          freteCalculado.value = '0';
+        }
       } else {
         const shippingOptions = document.getElementById('shipping-options');
         const shippingOptionsContent = document.getElementById('shipping-options-content');
+        const shippingPriceElement = document.getElementById('shipping-price');
+        const freteCalculado = document.getElementById('frete-calculado');
         
         if (data.uf === 'SP') {
           // Atualiza o preço do frete para SP
-          const shippingPriceElement = document.getElementById('shipping-price');
           if (shippingPriceElement) {
             shippingPriceElement.textContent = 'R$ 25,90';
           }
@@ -145,30 +160,8 @@ function buscarCep(event) {
               </div>
             `;
           }
-          
-          // Preenche os campos do endereço se existirem
-          const campos = ['logradouro', 'bairro', 'localidade', 'uf'];
-          campos.forEach(campo => {
-            const elemento = document.getElementById(campo);
-            if (elemento) {
-              elemento.value = data[campo] || '';
-            }
-          });
-          
-          // Remove mensagem de erro se existir
-          const mensagemExistente = document.querySelector('.mensagem-erro-cep');
-          if (mensagemExistente) {
-            mensagemExistente.remove();
-          }
-          
-          // Torna o input válido
-          input.setCustomValidity('');
-          
-          // Marca o frete como calculado
-          document.getElementById('frete-calculado').value = '1';
         } else {
           // Atualiza o preço do frete para outros estados
-          const shippingPriceElement = document.getElementById('shipping-price');
           if (shippingPriceElement) {
             shippingPriceElement.textContent = 'R$ 48,90';
           }
@@ -185,27 +178,29 @@ function buscarCep(event) {
               </div>
             `;
           }
-          
-          // Preenche os campos do endereço se existirem
-          const campos = ['logradouro', 'bairro', 'localidade', 'uf'];
-          campos.forEach(campo => {
-            const elemento = document.getElementById(campo);
-            if (elemento) {
-              elemento.value = data[campo] || '';
-            }
-          });
-          
-          // Remove mensagem de erro se existir
-          const mensagemExistente = document.querySelector('.mensagem-erro-cep');
-          if (mensagemExistente) {
-            mensagemExistente.remove();
+        }
+        
+        // Preenche os campos do endereço se existirem
+        const campos = ['logradouro', 'bairro', 'localidade', 'uf'];
+        campos.forEach(campo => {
+          const elemento = document.getElementById(campo);
+          if (elemento) {
+            elemento.value = data[campo] || '';
           }
-          
-          // Torna o input válido
-          input.setCustomValidity('');
-          
-          // Marca o frete como calculado
-          document.getElementById('frete-calculado').value = '1';
+        });
+        
+        // Remove mensagem de erro se existir
+        const mensagemExistente = document.querySelector('.mensagem-erro-cep');
+        if (mensagemExistente) {
+          mensagemExistente.remove();
+        }
+        
+        // Torna o input válido
+        input.setCustomValidity('');
+        
+        // Marca o frete como calculado
+        if (freteCalculado) {
+          freteCalculado.value = '1';
         }
         
         // Mostra as opções de frete
@@ -220,7 +215,10 @@ function buscarCep(event) {
     .catch(error => {
       console.error('Erro ao buscar CEP:', error);
       alert('Erro ao calcular o frete. Tente novamente.');
-      document.getElementById('frete-calculado').value = '0';
+      const freteCalculado = document.getElementById('frete-calculado');
+      if (freteCalculado) {
+        freteCalculado.value = '0';
+      }
     });
 }
 
