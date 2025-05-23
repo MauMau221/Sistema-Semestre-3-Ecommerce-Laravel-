@@ -6,6 +6,7 @@ use App\Models\Produto;
 use App\Services\EstoqueService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Categoria;
 
 class ProductController extends Controller
 {
@@ -28,10 +29,11 @@ class ProductController extends Controller
         $produto = Produto::findOrFail($id);
 
         $produtoCat = $produto->categoria_id;
+        $nomeCat = Categoria::find($produtoCat)->nome;
 
         $relacionados = Produto::where('categoria_id', $produtoCat)->where('id', '!=', $id)->get();
 
-        return view('product.show', ['produto' => $produto, 'relacionados' => $relacionados]);
+        return view('product.show', ['produto' => $produto, 'relacionados' => $relacionados, 'nomeCat' => $nomeCat]);
     }
 
     public function search(Request $request)
