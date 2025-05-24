@@ -7,7 +7,6 @@ use App\Models\Produto;
 use App\Models\Pedido;
 use App\Models\OrdemPedido;
 use App\Models\Address;
-use App\Models\Categoria;
 use App\Services\EstoqueService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -200,7 +199,9 @@ class CartController extends Controller
 
         if (Auth::check()) {
             $user = Auth::user();
-            $mainAddress = $user->addresses()->where('endereco_principal', true)->first();
+            $mainAddress = Address::where('user_id', $user->id)
+                ->where('endereco_principal', true)
+                ->first();
         }
 
         return view('cart.checkout', compact('cart', 'total', 'user', 'mainAddress'));

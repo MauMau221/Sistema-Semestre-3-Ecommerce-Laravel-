@@ -182,11 +182,12 @@
                 </div>
                 <!-- Paginação -->
 
-                <div class="d-flex justify-content-center my-5">
+                <div class="d-flex flex-column align-items-center my-5">
+                    <div class="mb-2 text-muted small">
+                        Exibindo {{ $dadosCategoria['produtos']->firstItem() }} a {{ $dadosCategoria['produtos']->lastItem() }} de {{ $dadosCategoria['produtos']->total() }} resultados
+                    </div>
                     <nav aria-label="Navegação de páginas">
-                        <ul class="pagination p-2">
-                            {{ $dadosCategoria['produtos']->links() }}
-                        </ul>
+                        {{ $dadosCategoria['produtos']->links('vendor.pagination.custom') }}
                     </nav>
                 </div>
             </div>
