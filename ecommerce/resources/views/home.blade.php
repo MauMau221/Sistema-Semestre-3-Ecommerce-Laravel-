@@ -195,9 +195,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card product-card-promo">
-                                    <img src="image/cards/camisas/camisa3.jpg" class="card-img-top" alt="Produto 1">
+                                    <img src="image/cards/duplaBranca/duplas3.jpg" class="card-img-top" alt="Produto 1">
                                     <div class="card-body text-center">
-                                        <h5 class="card-title">CAMISETA MANGA CURTA LISBOA BRANCO</h5>
+                                        <h5 class="card-title">CAMISETAS MANGA CURTA LISBOA BRANCO</h5>
                                         <p class="card-text">
                                             <span class="text-decoration-line-through">R$ 319,90</span>
                                             <strong>R$ 199,90</strong>
@@ -208,9 +208,9 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="card product-card-promo">
-                                    <img src="image/cards/camisas/camisa2.jpg" class="card-img-top" alt="Produto 2">
+                                    <img src="image/cards/duplaPreta/duplas6.jpg" class="card-img-top" alt="Produto 2">
                                     <div class="card-body text-center">
-                                        <h5 class="card-title">CAMISETA MANGA CURTA CANNES PRETO</h5>
+                                        <h5 class="card-title">CAMISETAS MANGA CURTA CANNES PRETO</h5>
                                         <p class="card-text">
                                             <span class="text-decoration-line-through">R$ 319,90</span>
                                             <strong>R$ 199,90</strong>
