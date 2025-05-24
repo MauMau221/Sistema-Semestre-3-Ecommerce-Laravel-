@@ -165,7 +165,6 @@
                                     @php
                                         $imagem = "image/cards/{$dadosCategoria['nome']}/{$dadosCategoria['nome']}{$produto['id']}.jpg";
                                     @endphp
-                                    @dump($imagem)
                                     <img src="{{ asset($imagem) }}" alt="{{ $produto->nome }}" class="card-img-top">
                                 </a>
                                 <div class="card-body d-flex flex-column">
