@@ -42,37 +42,7 @@
                                         <div class="card h-100 border rounded overflow-hidden">
                                             <div class="position-relative">
                                                 @php
-                                                    // Consulta a categoria do produto para obter a URL
-                                                    if (!empty($produto->url)) {
-                                                        $imagem = $produto->url;
-                                                    } else {
-                                                        // Tentar encontrar a categoria
-                                                        $categoriaNome = '';
-                                                        if ($produto->categoria_id) {
-                                                            $categoria = \App\Models\Categoria::find(
-                                                                $produto->categoria_id,
-                                                            );
-                                                            if ($categoria) {
-                                                                $categoriaNome = strtolower($categoria->nome);
-                                                            }
-                                                        }
-
-                                                        // Se não tiver categoria, tentar usar camisas como fallback
-                                                        $categoriaNome = $categoriaNome ?: 'camisas';
-
-                                                        // Tentar com o caminho específico da categoria
-                                                        $imagem = "/image/cards/{$categoriaNome}/camisa{$produto->id}.jpg";
-
-                                                        // Se não existir, tentar com caminho genérico de camisas
-                                                        if (!file_exists(public_path($imagem))) {
-                                                            $imagem = "/image/cards/camisas/camisa{$produto->id}.jpg";
-                                                        }
-
-                                                        // Se ainda não existir, usar imagem padrão
-                                                        if (!file_exists(public_path($imagem))) {
-                                                            $imagem = '/css/image/card/image' . rand(1, 5) . '.png';
-                                                        }
-                                                    }
+                                                    $imagem = "/image/cards/{$produto['categoria_nome']}/{$produto['categoria_nome']}{$produto['id']}.jpg";
                                                     $desconto = rand(10, 30);
                                                 @endphp
                                                 <!-- Container da imagem e da tarja -->
@@ -84,7 +54,7 @@
                                                     </div>
                                                     <div
                                                         style="height: 100%; display: flex; align-items: center; justify-content: center;">
-                                                        <img src="{{ asset($imagem) }}" alt="{{ $produto->nome }}"
+                                                        <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}"
                                                             style="max-height: 140px; max-width: 100%; object-fit: contain;">
                                                     </div>
                                                     <!-- Ícone para remover dos favoritos no canto inferior direito -->
@@ -92,7 +62,8 @@
                                                         class="position-absolute"
                                                         style="right: 0; bottom: 0; margin: 0.25rem; z-index:2;">
                                                         @csrf
-                                                        <input type="hidden" name="produto_id" value="{{ $produto->id }}">
+                                                        <input type="hidden" name="produto_id"
+                                                            value="{{ $produto['id'] }}">
                                                         <button type="submit" class="btn btn-sm btn-light rounded-circle"
                                                             style="width: 30px; height: 30px; padding: 0; line-height: 30px;">
                                                             <i class="fa-solid fa-heart text-danger"></i>
@@ -104,18 +75,18 @@
                                             <div class="card-body p-2 d-flex flex-column">
                                                 <h6 class="card-title mb-1"
                                                     style="font-size: 0.9rem; font-weight: 500; line-height: 1.2; height: 2.4em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
-                                                    <a href="{{ route('product.show', $produto->id) }}"
-                                                        class="text-decoration-none text-dark">{{ $produto->nome }}</a>
+                                                    <a href="{{ route('product.show', $produto['id']) }}"
+                                                        class="text-decoration-none text-dark">{{ $produto['nome'] }}</a>
                                                 </h6>
                                                 <p class="text-muted mb-1"
                                                     style="font-size: 0.75rem; height: 1.5em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                                    {{ Str::limit($produto->desc, 50) }}
+                                                    {{ Str::limit($produto['desc'], 50) }}
                                                 </p>
                                                 <div class="d-flex align-items-center mb-1">
                                                     <span class="fw-bold text-dark">R$
-                                                        {{ number_format($produto->preco, 2, ',', '.') }}</span>
+                                                        {{ number_format($produto['preco'], 2, ',', '.') }}</span>
                                                     <small class="text-muted text-decoration-line-through ms-2">R$
-                                                        {{ number_format($produto->preco * (1 + $desconto / 100), 2, ',', '.') }}</small>
+                                                        {{ number_format($produto['preco'] * (1 + $desconto / 100), 2, ',', '.') }}</small>
                                                 </div>
                                                 <div class="d-flex align-items-center">
                                                     <small class="bg-light text-muted px-1 rounded"
@@ -127,9 +98,6 @@
                                         </div>
                                     </div>
                                 @endforeach
-                            </div>
-                            <div class="d-flex justify-content-center mt-4">
-                                {{ $favorites->links() }}
                             </div>
                         @else
                             <div class="text-center py-5">

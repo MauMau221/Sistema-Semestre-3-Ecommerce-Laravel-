@@ -20,7 +20,7 @@ class UserController extends Controller
         $user = Auth::user();
         $addresses = $user->addresses;
         $mainAddress = $user->addresses()->where('endereco_principal', true)->first();
-        
+
         return view('user.profile', compact('user', 'addresses', 'mainAddress'));
     }
 
@@ -30,7 +30,7 @@ class UserController extends Controller
     public function updateProfile(Request $request)
     {
         $user = Auth::user();
-        
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
@@ -44,13 +44,13 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        
+
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
-        
+
         $user->save();
-        
+
         return redirect()->route('user.profile')->with('success', 'Perfil atualizado com sucesso!');
     }
 
@@ -61,9 +61,9 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $pedidos = Pedido::where('user_id', $user->id)
-                        ->orderBy('created_at', 'desc')
-                        ->get();
-        
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         return view('user.orders', compact('pedidos'));
     }
 
@@ -73,12 +73,25 @@ class UserController extends Controller
     public function orderDetails($id)
     {
         $user = Auth::user();
-        $pedido = Pedido::where('id', $id)
-                        ->where('user_id', $user->id)
-                        ->firstOrFail();
-        
-        $itens = $pedido->itens; // Carrega os itens do pedido através do relacionamento
-        
+        $pedido = Pedido::with(['itens.produto.categoria'])
+            ->where('id', $id)
+            ->where('user_id', $user->id)
+            ->firstOrFail();
+
+        // Carrega os itens do pedido com o produto e sua categoria
+        $itens = $pedido->itens->map(function ($item) {
+            return [
+                'pedido_id' => $item->pedido_id,
+                'produto_id' => $item->produto_id,
+                'quantidade' => $item->quantidade,
+                'preco_unitario' => $item->preco_unitario,
+                'subtotal' => $item->subtotal,
+                'cor' => $item->cor,
+                'tamanho' => $item->tamanho,
+                'produto' => $item->produto->load('categoria')
+            ];
+        });
+
         return view('user.order_details', compact('pedido', 'itens'));
     }
-} 
+}

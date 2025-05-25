@@ -6,7 +6,6 @@ use App\Models\Favorite;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class FavoriteController extends Controller
 {
@@ -20,8 +19,22 @@ class FavoriteController extends Controller
         // Obtém IDs dos produtos favoritados pelo usuário atual
         $favoriteIds = Favorite::where('user_id', $userId)->pluck('produto_id');
         
-        // Busca os produtos correspondentes aos IDs
-        $favorites = Produto::whereIn('id', $favoriteIds)->paginate(12);
+        // Busca os produtos correspondentes aos IDs e carrega a categoria
+        $favorites = Produto::with('categoria')
+                          ->whereIn('id', $favoriteIds)
+                          ->get()
+                          ->map(function ($produto) {
+                              return [
+                                  'id' => $produto->id,
+                                  'nome' => $produto->nome,
+                                  'desc' => $produto->desc,
+                                  'preco' => $produto->preco,
+                                  'status' => $produto->status,
+                                  'url' => $produto->url,
+                                  'categoria_id' => $produto->categoria_id,
+                                  'categoria_nome' => $produto->categoria->nome
+                              ];
+                          });
         
         return view('user.favorites', compact('favorites'));
     }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use App\Services\EstoqueService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Categoria;
 
 class ProductController extends Controller

@@ -80,12 +80,11 @@
                                         <div class="d-flex align-items-center">
                                             @php
                                                 $produto = $item->produto;
-                                                $imagemProduto = "/css/image/card/camisa{$produto->id}.jpg";
-                                                $imagemPadrao = "/css/image/card/image" . rand(1, 5) . ".png";
-                                                $imagem = file_exists(public_path($imagemProduto)) ? $imagemProduto : $imagemPadrao;
+                                                $categoriaNome = $produto->categoria->nome ?? 'Sem categoria';
+                                                $imagem = "/image/cards/{$categoriaNome}/{$categoriaNome}{$produto->id}.jpg";
                                             @endphp
                                             <img src="{{ asset($imagem) }}" class="me-3" alt="{{ $item->produto->nome ?? 'Produto' }}" style="width: 50px; height: 50px; object-fit: cover;">
-                                            <div>
+                                            <div class="p-3">
                                                 <h6 class="mb-0">{{ $item->produto->nome ?? 'Produto não disponível' }}</h6>
                                                 @if(isset($item->cor) || isset($item->tamanho))
                                                 <small class="text-muted">
