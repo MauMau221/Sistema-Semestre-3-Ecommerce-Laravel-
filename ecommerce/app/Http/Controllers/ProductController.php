@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         $this->estoqueService = $estoqueService;
     }
-    
+
     public function index()
     {
         $produtos = Produto::all();
@@ -25,7 +25,7 @@ class ProductController extends Controller
     }
 
     public function show(string $id)
-    {   
+    {
         $produto = Produto::findOrFail($id);
 
         $produtoCat = $produto->categoria_id;
@@ -39,17 +39,35 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $pesquisa = $request->search;
-        $produtos = Produto::where('nome', 'LIKE', "%{$pesquisa}%")
-        ->where('tamanho', $request->tamanho)
-        ->where('cor', $request->cor)
-        ->where('preco', $request->preco)
-        ->where('categoria_id', $request->categoria_id);
+        $query = Produto::where('nome', 'LIKE', "%{$pesquisa}%");
 
-        
-        $produtos->paginate(5);
-        //$nomeCategoria = $produtos->categoria_id;
-        //dd($nomeCategoria);
-        return view('pages.listar', ['itens' => $produtos, 'pesquisa' => $pesquisa]);
+        // Aplica os filtros apenas se estiverem presentes na requisição
+        if ($request->has('tamanho')) {
+            $query->where('tamanho', $request->tamanho);
+        }
+        if ($request->has('cor')) {
+            $query->where('cor', $request->cor);
+        }
+        if ($request->has('preco')) {
+            $query->where('preco', $request->preco);
+        }
+        if ($request->has('categoria_id')) {
+            $query->where('categoria_id', $request->categoria_id);
+        }
+
+        // Obtém os resultados paginados
+        $produtos = $query->paginate(8)->appends($request->except('page'));
+
+        // Obtém o nome da categoria do primeiro produto para as imagens
+        $categoriaNome = $produtos->isNotEmpty() ? $produtos->first()->categoria->nome : '';
+
+        $dadosCategoria = [
+            'nome' => $categoriaNome,
+            'produtos' => $produtos,
+            'isSearch' => true // Flag para identificar que é uma busca
+        ];
+
+        return view('pages.listar', ['dadosCategoria' => $dadosCategoria]);
     }
 
     public function verificarEstoque(Request $request, $id)

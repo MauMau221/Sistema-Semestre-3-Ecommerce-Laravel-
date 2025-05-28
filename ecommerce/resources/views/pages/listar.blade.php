@@ -12,8 +12,13 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home.home') }}"
                         class="text-decoration-none text-secondary">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($dadosCategoria['nome']) }}</li>
-                <!-- ucfisrt deixa a primeira letra maiuscula -->
+                <li class="breadcrumb-item active" aria-current="page">
+                    @if (isset($dadosCategoria['isSearch']))
+                        Pesquisa
+                    @else
+                        {{ ucfirst($dadosCategoria['nome']) }}
+                    @endif
+                </li>
             </ol>
         </nav>
     </div>
@@ -32,7 +37,8 @@
                         <div class="filter-header">PREÇO</div>
                         <div class="filter-option">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="price1" onchange="this.form.submit()">
+                                <input class="form-check-input" type="checkbox" id="price1"
+                                    onchange="this.form.submit()">
                                 <label class="form-check-label" for="price1">Até R$ 150</label>
                             </div>
                         </div>
