@@ -13,7 +13,6 @@
 
                             $imagemPrincipal = "/image/cards/{$categoriaNome}/{$categoriaNome}{$produto->id}.jpg";
 
-                            $imagensSecundarias = [];
                         @endphp
 
                         <!-- Miniatura da imagem principal -->
@@ -24,13 +23,11 @@
                         </div>
 
                         <!-- Miniaturas das imagens secundárias -->
-                        @foreach ($imagensSecundarias as $index => $imagem)
                             <div class="product-thumbnail mb-2">
-                                <img src="{{ asset($imagem) }}" alt="{{ $produto->nome }} {{ $index + 1 }}"
+                                <img src="{{ asset($imagemPrincipal) }}" alt="{{ $produto->nome }}"
                                     class="img-fluid border border-secondary thumbnail-image"
-                                    data-image="{{ asset($imagem) }}" onclick="alterarImagemPrincipal(this)">
+                                    data-image="{{ asset($imagemPrincipal) }}" onclick="alterarImagemPrincipal(this)">
                             </div>
-                        @endforeach
                     </div>
 
                     <!-- Imagem principal -->
@@ -64,7 +61,7 @@
                     <form action="{{ route('cart.add') }}" method="POST" id="addToCartForm">
                         @csrf
                         <input type="hidden" name="produto_id" value="{{ $produto->id }}">
-
+zz
                         <div class="mb-4">
                             <div class="fw-bold mb-2">Cor:</div>
                             <div class="d-flex mb-3">

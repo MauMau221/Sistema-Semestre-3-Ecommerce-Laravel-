@@ -25,117 +25,90 @@
             <div class="col-lg-3 d-none d-lg-block">
                 <h4 class="mb-4">FILTROS</h4>
 
-                <!-- Filtro de Categorias -->
-                <div class="filter-card">
-                    <div class="filter-header">CATEGORIAS</div>
-                    <div class="filter-option">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="cat1">
-                            <label class="form-check-label" for="cat1">Camisetas (45)</label>
+                <form action="{{ route('product.search') }}" method="GET">
+                    @csrf
+                    <!-- Filtro de Preço -->
+                    <div class="filter-card">
+                        <div class="filter-header">PREÇO</div>
+                        <div class="filter-option">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="price1" onchange="this.form.submit()">
+                                <label class="form-check-label" for="price1">Até R$ 150</label>
+                            </div>
+                        </div>
+                        <div class="filter-option">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="price2">
+                                <label class="form-check-label" for="price2">R$ 151 - R$ 250</label>
+                            </div>
+                        </div>
+                        <div class="filter-option">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="price3">
+                                <label class="form-check-label" for="price3">R$ 251 - R$ 350</label>
+                            </div>
+                        </div>
+                        <div class="filter-option">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="price4">
+                                <label class="form-check-label" for="price4">Acima de R$ 350</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="filter-option">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="cat2">
-                            <label class="form-check-label" for="cat2">Polos (32)</label>
-                        </div>
-                    </div>
-                    <div class="filter-option">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="cat3">
-                            <label class="form-check-label" for="cat3">Camisas (28)</label>
-                        </div>
-                    </div>
-                    <div class="filter-option">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="cat4">
-                            <label class="form-check-label" for="cat4">Regatas (12)</label>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Filtro de Preço -->
-                <div class="filter-card">
-                    <div class="filter-header">PREÇO</div>
-                    <div class="filter-option">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="price1">
-                            <label class="form-check-label" for="price1">Até R$ 150</label>
+                    <!-- Filtro de Cor -->
+                    <div class="filter-card">
+                        <div class="filter-header">COR</div>
+                        <div class="filter-option">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="color1">
+                                <label class="form-check-label" for="color1">Azul (18)</label>
+                            </div>
+                        </div>
+                        <div class="filter-option">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="color2">
+                                <label class="form-check-label" for="color2">Preto (24)</label>
+                            </div>
+                        </div>
+                        <div class="filter-option">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="color3">
+                                <label class="form-check-label" for="color3">Branco (16)</label>
+                            </div>
+                        </div>
+                        <div class="filter-option">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="color4">
+                                <label class="form-check-label" for="color4">Cinza (12)</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="filter-option">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="price2">
-                            <label class="form-check-label" for="price2">R$ 151 - R$ 250</label>
-                        </div>
-                    </div>
-                    <div class="filter-option">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="price3">
-                            <label class="form-check-label" for="price3">R$ 251 - R$ 350</label>
-                        </div>
-                    </div>
-                    <div class="filter-option">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="price4">
-                            <label class="form-check-label" for="price4">Acima de R$ 350</label>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Filtro de Cor -->
-                <div class="filter-card">
-                    <div class="filter-header">COR</div>
-                    <div class="filter-option">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="color1">
-                            <label class="form-check-label" for="color1">Azul (18)</label>
+                    <!-- Filtro de Tamanho -->
+                    <div class="filter-card">
+                        <div class="filter-header">TAMANHO</div>
+                        <div class="d-flex flex-column">
+                            <div class="me-2 mb-2">
+                                <input type="checkbox" class="btn-check" id="size-p" autocomplete="off">
+                                <label class="btn btn-outline-secondary btn-sm" for="size-p">P</label>
+                            </div>
+                            <div class="me-2 mb-2">
+                                <input type="checkbox" class="btn-check" id="size-m" autocomplete="off">
+                                <label class="btn btn-outline-secondary btn-sm" for="size-m">M</label>
+                            </div>
+                            <div class="me-2 mb-2">
+                                <input type="checkbox" class="btn-check" id="size-g" autocomplete="off">
+                                <label class="btn btn-outline-secondary btn-sm" for="size-g">G</label>
+                            </div>
+                            <div class="me-2 mb-2">
+                                <input type="checkbox" class="btn-check" id="size-gg" autocomplete="off">
+                                <label class="btn btn-outline-secondary btn-sm" for="size-gg">GG</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="filter-option">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="color2">
-                            <label class="form-check-label" for="color2">Preto (24)</label>
-                        </div>
-                    </div>
-                    <div class="filter-option">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="color3">
-                            <label class="form-check-label" for="color3">Branco (16)</label>
-                        </div>
-                    </div>
-                    <div class="filter-option">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="color4">
-                            <label class="form-check-label" for="color4">Cinza (12)</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Filtro de Tamanho -->
-                <div class="filter-card">
-                    <div class="filter-header">TAMANHO</div>
-                    <div class="d-flex flex-column">
-                        <div class="me-2 mb-2">
-                            <input type="checkbox" class="btn-check" id="size-p" autocomplete="off">
-                            <label class="btn btn-outline-secondary btn-sm" for="size-p">P</label>
-                        </div>
-                        <div class="me-2 mb-2">
-                            <input type="checkbox" class="btn-check" id="size-m" autocomplete="off">
-                            <label class="btn btn-outline-secondary btn-sm" for="size-m">M</label>
-                        </div>
-                        <div class="me-2 mb-2">
-                            <input type="checkbox" class="btn-check" id="size-g" autocomplete="off">
-                            <label class="btn btn-outline-secondary btn-sm" for="size-g">G</label>
-                        </div>
-                        <div class="me-2 mb-2">
-                            <input type="checkbox" class="btn-check" id="size-gg" autocomplete="off">
-                            <label class="btn btn-outline-secondary btn-sm" for="size-gg">GG</label>
-                        </div>
-                    </div>
-                </div>
             </div>
-
+            </form>
             <!-- Produtos -->
             <div class="col-lg-9">
                 <!-- Cabeçalho de resultados -->
@@ -184,7 +157,9 @@
 
                 <div class="d-flex flex-column align-items-center my-5">
                     <div class="mb-2 text-muted small">
-                        Exibindo {{ $dadosCategoria['produtos']->firstItem() }} a {{ $dadosCategoria['produtos']->lastItem() }} de {{ $dadosCategoria['produtos']->total() }} resultados
+                        Exibindo {{ $dadosCategoria['produtos']->firstItem() }} a
+                        {{ $dadosCategoria['produtos']->lastItem() }} de {{ $dadosCategoria['produtos']->total() }}
+                        resultados
                     </div>
                     <nav aria-label="Navegação de páginas">
                         {{ $dadosCategoria['produtos']->links('vendor.pagination.custom') }}

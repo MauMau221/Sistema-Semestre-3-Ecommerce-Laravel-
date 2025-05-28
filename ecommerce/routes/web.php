@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('home.home');
 Route::get('/categoria', [CategoryController::class, 'categorias'])->name('category.categorias');
 Route::post('/search', [ProductController::class, 'search'])->name('product.search');
+Route::get('/search', [ProductController::class, 'search'])->name('product.search');
 Route::get('/produto/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/produto/{id}/estoque', [ProductController::class, 'verificarEstoque']);
 

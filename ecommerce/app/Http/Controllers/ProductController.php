@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use App\Services\EstoqueService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Categoria;
 
 class ProductController extends Controller
@@ -38,8 +39,17 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $pesquisa = $request->search;
-        $produtos = Produto::where('nome', 'LIKE', "%{$pesquisa}%")->paginate(5);
-        return view('pages.listar', ['itens' => $produtos, 'categoria' => $pesquisa]);
+        $produtos = Produto::where('nome', 'LIKE', "%{$pesquisa}%")
+        ->where('tamanho', $request->tamanho)
+        ->where('cor', $request->cor)
+        ->where('preco', $request->preco)
+        ->where('categoria_id', $request->categoria_id);
+
+        
+        $produtos->paginate(5);
+        //$nomeCategoria = $produtos->categoria_id;
+        //dd($nomeCategoria);
+        return view('pages.listar', ['itens' => $produtos, 'pesquisa' => $pesquisa]);
     }
 
     public function verificarEstoque(Request $request, $id)
