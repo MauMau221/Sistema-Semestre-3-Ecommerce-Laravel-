@@ -23,11 +23,11 @@
                         </div>
 
                         <!-- Miniaturas das imagens secundárias -->
-                            <div class="product-thumbnail mb-2">
-                                <img src="{{ asset($imagemPrincipal) }}" alt="{{ $produto->nome }}"
-                                    class="img-fluid border border-secondary thumbnail-image"
-                                    data-image="{{ asset($imagemPrincipal) }}" onclick="alterarImagemPrincipal(this)">
-                            </div>
+                        <div class="product-thumbnail mb-2">
+                            <img src="{{ asset($imagemPrincipal) }}" alt="{{ $produto->nome }}"
+                                class="img-fluid border border-secondary thumbnail-image"
+                                data-image="{{ asset($imagemPrincipal) }}" onclick="alterarImagemPrincipal(this)">
+                        </div>
                     </div>
 
                     <!-- Imagem principal -->
@@ -61,7 +61,6 @@
                     <form action="{{ route('cart.add') }}" method="POST" id="addToCartForm">
                         @csrf
                         <input type="hidden" name="produto_id" value="{{ $produto->id }}">
-zz
                         <div class="mb-4">
                             <div class="fw-bold mb-2">Cor:</div>
                             <div class="d-flex mb-3">
@@ -187,44 +186,27 @@ zz
                             <div class="swiper-slide">
                                 <div class="card product-card h-100">
                                     @php
-                                        if (!empty($prod->url)) {
-                                            $imagemProduto = $prod->url;
-                                        } else {
-                                            // Tentar encontrar a categoria
-                                            $categoriaNome = '';
-                                            if ($prod->categoria_id) {
-                                                $categoria = \App\Models\Categoria::find($prod->categoria_id);
-                                                if ($categoria) {
-                                                    $categoriaNome = strtolower($categoria->nome);
-                                                }
-                                            }
-
-                                            // Se não tiver categoria, tentar usar camisas como fallback
-                                            $categoriaNome = $categoriaNome ?: 'camisas';
-
-                                            // Tentar com o caminho específico da categoria
-                                            $imagemProduto = "/image/cards/{$categoriaNome}/camisa{$prod->id}.jpg";
-
-                                            // Se não existir, tentar com caminho genérico de camisas
-                                            if (!file_exists(public_path($imagemProduto))) {
-                                                $imagemProduto = "/image/cards/camisas/camisa{$prod->id}.jpg";
-                                            }
-
-                                            // Se ainda não existir, usar imagem padrão
-                                            if (!file_exists(public_path($imagemProduto))) {
-                                                $imagemProduto = '/css/image/card/image' . rand(1, 5) . '.png';
+                                        if ($prod->categoria_id) {
+                                            $categoria = \App\Models\Categoria::find($prod->categoria_id);
+                                            if ($categoria) {
+                                                $categoriaNome = strtolower($categoria->nome);
                                             }
                                         }
+                                        $imagemProduto = "/image/cards/{$categoriaNome}/{$categoriaNome}{$prod->id}.jpg";
+
                                     @endphp
-                                    <img src="{{ asset($imagemProduto) }}" class="card-img-top" alt="{{ $prod->nome }}">
+                                    <img src="{{ asset($imagemProduto) }}" class="card-img-top"
+                                        alt="{{ $prod->nome }}">
                                     <div class="card-body d-flex flex-column">
                                         <h5 class="card-title">{{ $prod['nome'] }}</h5>
                                         <p class="card-text">
                                             <s>R${{ number_format($prod['preco'] + 99.99, 2, ',', '.') }}</s>
                                             <strong>R${{ number_format($prod['preco'], 2, ',', '.') }}</strong>
                                         </p>
-                                        <a href="{{ route('product.show', $prod['id']) }}" class="btn btn-outline-dark w-100 mt-auto">Ver Produto</a>
-                                        <div class="cart-icon-hover position-absolute bottom-0 end-0 p-2 bg-white rounded-circle" style="opacity:0; transition: opacity 0.3s ease;">
+                                        <a href="{{ route('product.show', $prod['id']) }}"
+                                            class="btn btn-outline-dark w-100 mt-auto">Ver Produto</a>
+                                        <div class="cart-icon-hover position-absolute bottom-0 end-0 p-2 bg-white rounded-circle"
+                                            style="opacity:0; transition: opacity 0.3s ease;">
                                             <i class="fa-solid fa-bag-shopping fa-lg"></i>
                                         </div>
                                     </div>

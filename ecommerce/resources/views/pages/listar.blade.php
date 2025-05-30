@@ -30,33 +30,46 @@
             <div class="col-lg-3 d-none d-lg-block">
                 <h4 class="mb-4">FILTROS</h4>
 
-                <form action="{{ route('product.search') }}" method="GET">
-                    @csrf
+                <form
+                    action="{{ isset($dadosCategoria['isSearch']) ? route('product.search') : route('category.categorias') }}"
+                    method="GET">
+                    @if (isset($dadosCategoria['isSearch']))
+                        <input type="hidden" name="search" value="{{ request('search') }}">
+                    @else
+                        <input type="hidden" name="nome" value="{{ request('nome') }}">
+                    @endif
                     <!-- Filtro de Preço -->
                     <div class="filter-card">
                         <div class="filter-header">PREÇO</div>
                         <div class="filter-option">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="price1"
+                                <input class="form-check-input" type="checkbox" name="preco[]" value="0-150" id="price1"
+                                    {{ in_array('0-150', request('preco', [])) ? 'checked' : '' }}
                                     onchange="this.form.submit()">
                                 <label class="form-check-label" for="price1">Até R$ 150</label>
                             </div>
                         </div>
                         <div class="filter-option">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="price2">
+                                <input class="form-check-input" type="checkbox" name="preco[]" value="151-250"
+                                    id="price2" {{ in_array('151-250', request('preco', [])) ? 'checked' : '' }}
+                                    onchange="this.form.submit()">
                                 <label class="form-check-label" for="price2">R$ 151 - R$ 250</label>
                             </div>
                         </div>
                         <div class="filter-option">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="price3">
+                                <input class="form-check-input" type="checkbox" name="preco[]" value="251-350"
+                                    id="price3" {{ in_array('251-350', request('preco', [])) ? 'checked' : '' }}
+                                    onchange="this.form.submit()">
                                 <label class="form-check-label" for="price3">R$ 251 - R$ 350</label>
                             </div>
                         </div>
                         <div class="filter-option">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="price4">
+                                <input class="form-check-input" type="checkbox" name="preco[]" value="351+" id="price4"
+                                    {{ in_array('351+', request('preco', [])) ? 'checked' : '' }}
+                                    onchange="this.form.submit()">
                                 <label class="form-check-label" for="price4">Acima de R$ 350</label>
                             </div>
                         </div>
@@ -67,26 +80,34 @@
                         <div class="filter-header">COR</div>
                         <div class="filter-option">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="color1">
-                                <label class="form-check-label" for="color1">Azul (18)</label>
+                                <input class="form-check-input" type="checkbox" name="cor[]" value="azul" id="color1"
+                                    {{ in_array('azul', request('cor', [])) ? 'checked' : '' }}
+                                    onchange="this.form.submit()">
+                                <label class="form-check-label" for="color1">Azul</label>
                             </div>
                         </div>
                         <div class="filter-option">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="color2">
-                                <label class="form-check-label" for="color2">Preto (24)</label>
+                                <input class="form-check-input" type="checkbox" name="cor[]" value="preto" id="color2"
+                                    {{ in_array('preto', request('cor', [])) ? 'checked' : '' }}
+                                    onchange="this.form.submit()">
+                                <label class="form-check-label" for="color2">Preto</label>
                             </div>
                         </div>
                         <div class="filter-option">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="color3">
-                                <label class="form-check-label" for="color3">Branco (16)</label>
+                                <input class="form-check-input" type="checkbox" name="cor[]" value="branco" id="color3"
+                                    {{ in_array('branco', request('cor', [])) ? 'checked' : '' }}
+                                    onchange="this.form.submit()">
+                                <label class="form-check-label" for="color3">Branco</label>
                             </div>
                         </div>
                         <div class="filter-option">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="color4">
-                                <label class="form-check-label" for="color4">Cinza (12)</label>
+                                <input class="form-check-input" type="checkbox" name="cor[]" value="cinza"
+                                    id="color4" {{ in_array('cinza', request('cor', [])) ? 'checked' : '' }}
+                                    onchange="this.form.submit()">
+                                <label class="form-check-label" for="color4">Cinza</label>
                             </div>
                         </div>
                     </div>
@@ -96,25 +117,35 @@
                         <div class="filter-header">TAMANHO</div>
                         <div class="d-flex flex-column">
                             <div class="me-2 mb-2">
-                                <input type="checkbox" class="btn-check" id="size-p" autocomplete="off">
-                                <label class="btn btn-outline-secondary btn-sm" for="size-p">P</label>
+                                <input type="checkbox" class="btn-check d-none" name="tamanho[]" value="P"
+                                    id="size-p" {{ in_array('P', request('tamanho', [])) ? 'checked' : '' }}
+                                    onchange="this.form.submit()">
+                                <label
+                                    class="btn btn-outline-secondary btn-sm{{ in_array('P', request('tamanho', [])) ? ' active' : '' }}"
+                                    for="size-p">P</label>
                             </div>
                             <div class="me-2 mb-2">
-                                <input type="checkbox" class="btn-check" id="size-m" autocomplete="off">
-                                <label class="btn btn-outline-secondary btn-sm" for="size-m">M</label>
+                                <input type="checkbox" class="btn-check d-none" name="tamanho[]" value="M"
+                                    id="size-m" {{ in_array('M', request('tamanho', [])) ? 'checked' : '' }}
+                                    onchange="this.form.submit()">
+                                <label class="btn btn-outline-secondary btn-sm{{ in_array('M', request('tamanho', [])) ? ' active' : '' }}" for="size-m">M</label>
                             </div>
                             <div class="me-2 mb-2">
-                                <input type="checkbox" class="btn-check" id="size-g" autocomplete="off">
-                                <label class="btn btn-outline-secondary btn-sm" for="size-g">G</label>
+                                <input type="checkbox" class="btn-check d-none" name="tamanho[]" value="G"
+                                    id="size-g" {{ in_array('G', request('tamanho', [])) ? 'checked' : '' }}
+                                    onchange="this.form.submit()">
+                                <label class="btn btn-outline-secondary btn-sm{{ in_array('G', request('tamanho', [])) ? ' active' : '' }}" for="size-g">G</label>
                             </div>
                             <div class="me-2 mb-2">
-                                <input type="checkbox" class="btn-check" id="size-gg" autocomplete="off">
-                                <label class="btn btn-outline-secondary btn-sm" for="size-gg">GG</label>
+                                <input type="checkbox" class="btn-check d-none" name="tamanho[]" value="GG"
+                                    id="size-gg" {{ in_array('GG', request('tamanho', [])) ? 'checked' : '' }}
+                                    onchange="this.form.submit()">
+                                <label class="btn btn-outline-secondary btn-sm{{ in_array('GG', request('tamanho', [])) ? ' active' : '' }}" for="size-gg">GG</label>
                             </div>
                         </div>
                     </div>
+                </form>
             </div>
-            </form>
             <!-- Produtos -->
             <div class="col-lg-9">
                 <!-- Cabeçalho de resultados -->
