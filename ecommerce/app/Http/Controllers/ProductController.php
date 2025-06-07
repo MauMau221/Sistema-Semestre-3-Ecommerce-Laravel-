@@ -96,9 +96,30 @@ class ProductController extends Controller
                 $q->whereIn('tamanho', $request->tamanho);
             });
         }
+        // Ordenação
+        if ($request->has('sort')) {
+            switch ($request->sort) {
+                case 'price_asc':
+                    $query->orderBy('preco', 'asc');
+                    break;
+                case 'price_desc':
+                    $query->orderBy('preco', 'desc');
+                    break;
+                case 'new_arrivals':
+                    $query->orderBy('created_at', 'desc');
+                    break;
+                // Adicione outras opções de ordenação aqui, como 'mais_vendidos'
+                // case 'best_sellers':
+                //     $query->orderBy('vendas', 'desc');
+                //     break;
+                default:
+                    // Por padrão, pode-se ordenar por relevância ou outro critério
+                    break;
+            }
+        }
 
-        // Paginação: Divide os resultados em páginas de 8 produtos
-        $produtos = $query->paginate(8)->appends($request->except('page'));
+        // with: Carrega as categorias de cada produto
+        $produtos = $query->with('categoria')->paginate(8)->appends($request->except('page'));
 
         // Obtém o nome da categoria para exibição
         $categoriaNome = '';

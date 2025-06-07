@@ -157,11 +157,11 @@
                     <div class="d-flex align-items-center">
                         <label for="sort" class="me-2 mt-1">Ordenar por:</label>
                         <select id="sort" class="sort-select border-0 p-1">
-                            <option>Relevância</option>
-                            <option>Menor preço</option>
-                            <option>Maior preço</option>
-                            <option>Mais vendidos</option>
-                            <option>Lançamentos</option>
+                            <option value="relevance">Relevância</option>
+                            <option value="price_asc">Menor preço</option>
+                            <option value="price_desc">Maior preço</option>
+                            <option value="best_sellers">Mais vendidos</option>
+                            <option value="new_arrivals">Lançamentos</option>
                         </select>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                             <div class="card product-card h-100">
                                 <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
                                     @php
-                                        $imagem = "image/cards/{$dadosCategoria['nome']}/{$dadosCategoria['nome']}{$produto['id']}.jpg";
+                                        $imagem = "image/cards/{$produto->categoria->nome}/{$produto->categoria->nome}{$produto['id']}.jpg";
                                     @endphp
                                     <img src="{{ asset($imagem) }}" alt="{{ $produto->nome }}" class="card-img-top">
                                 </a>
@@ -205,4 +205,6 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ asset('js/product/product_filters.js') }}"></script>
 @endsection

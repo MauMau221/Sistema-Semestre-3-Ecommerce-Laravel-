@@ -24,11 +24,11 @@ class CategoryController extends Controller
 
         // Inicia a query base com filtros essenciais
         $query = Produto::where('categoria_id', $categoria->id)
-                       ->where('status', true);
+            ->where('status', true);
 
         // Filtro de Preço: Permite selecionar faixas de preço específicas
         if ($request->has('preco')) {
-            $query->where(function($q) use ($request) {
+            $query->where(function ($q) use ($request) {
                 foreach ($request->preco as $faixaPreco) {
                     switch ($faixaPreco) {
                         case '0-150':
@@ -50,16 +50,33 @@ class CategoryController extends Controller
 
         // Filtro de Cor: Busca produtos com as cores selecionadas no estoque
         if ($request->has('cor')) {
-            $query->whereHas('estoque', function($q) use ($request) {
+            $query->whereHas('estoque', function ($q) use ($request) {
                 $q->whereIn('cor', $request->cor);
             });
         }
 
         // Filtro de Tamanho: Busca produtos com os tamanhos selecionados no estoque
         if ($request->has('tamanho')) {
-            $query->whereHas('estoque', function($q) use ($request) {
+            $query->whereHas('estoque', function ($q) use ($request) {
                 $q->whereIn('tamanho', $request->tamanho);
             });
+        }
+        // Ordenação
+        if ($request->has('sort')) {
+            switch ($request->sort) {
+                case 'price_asc':
+                    $query->orderBy('preco', 'asc');
+                    break;
+                case 'price_desc':
+                    $query->orderBy('preco', 'desc');
+                    break;
+                case 'new_arrivals':
+                    $query->orderBy('created_at', 'desc');
+                    break;
+                default:
+                    // Por padrão, pode-se ordenar por relevância ou outro critério
+                    break;
+            }
         }
 
         // Paginação: Divide os resultados em páginas de 8 produtos
