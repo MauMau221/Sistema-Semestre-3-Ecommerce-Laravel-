@@ -75,75 +75,6 @@
                         </div>
                     </div>
 
-                    <!-- Filtro de Cor -->
-                    <div class="filter-card">
-                        <div class="filter-header">COR</div>
-                        <div class="filter-option">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="cor[]" value="azul" id="color1"
-                                    {{ in_array('azul', request('cor', [])) ? 'checked' : '' }}
-                                    onchange="this.form.submit()">
-                                <label class="form-check-label" for="color1">Azul</label>
-                            </div>
-                        </div>
-                        <div class="filter-option">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="cor[]" value="preto" id="color2"
-                                    {{ in_array('preto', request('cor', [])) ? 'checked' : '' }}
-                                    onchange="this.form.submit()">
-                                <label class="form-check-label" for="color2">Preto</label>
-                            </div>
-                        </div>
-                        <div class="filter-option">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="cor[]" value="branco" id="color3"
-                                    {{ in_array('branco', request('cor', [])) ? 'checked' : '' }}
-                                    onchange="this.form.submit()">
-                                <label class="form-check-label" for="color3">Branco</label>
-                            </div>
-                        </div>
-                        <div class="filter-option">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="cor[]" value="cinza"
-                                    id="color4" {{ in_array('cinza', request('cor', [])) ? 'checked' : '' }}
-                                    onchange="this.form.submit()">
-                                <label class="form-check-label" for="color4">Cinza</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Filtro de Tamanho -->
-                    <div class="filter-card">
-                        <div class="filter-header">TAMANHO</div>
-                        <div class="d-flex flex-column">
-                            <div class="me-2 mb-2">
-                                <input type="checkbox" class="btn-check d-none" name="tamanho[]" value="P"
-                                    id="size-p" {{ in_array('P', request('tamanho', [])) ? 'checked' : '' }}
-                                    onchange="this.form.submit()">
-                                <label
-                                    class="btn btn-outline-secondary btn-sm{{ in_array('P', request('tamanho', [])) ? ' active' : '' }}"
-                                    for="size-p">P</label>
-                            </div>
-                            <div class="me-2 mb-2">
-                                <input type="checkbox" class="btn-check d-none" name="tamanho[]" value="M"
-                                    id="size-m" {{ in_array('M', request('tamanho', [])) ? 'checked' : '' }}
-                                    onchange="this.form.submit()">
-                                <label class="btn btn-outline-secondary btn-sm{{ in_array('M', request('tamanho', [])) ? ' active' : '' }}" for="size-m">M</label>
-                            </div>
-                            <div class="me-2 mb-2">
-                                <input type="checkbox" class="btn-check d-none" name="tamanho[]" value="G"
-                                    id="size-g" {{ in_array('G', request('tamanho', [])) ? 'checked' : '' }}
-                                    onchange="this.form.submit()">
-                                <label class="btn btn-outline-secondary btn-sm{{ in_array('G', request('tamanho', [])) ? ' active' : '' }}" for="size-g">G</label>
-                            </div>
-                            <div class="me-2 mb-2">
-                                <input type="checkbox" class="btn-check d-none" name="tamanho[]" value="GG"
-                                    id="size-gg" {{ in_array('GG', request('tamanho', [])) ? 'checked' : '' }}
-                                    onchange="this.form.submit()">
-                                <label class="btn btn-outline-secondary btn-sm{{ in_array('GG', request('tamanho', [])) ? ' active' : '' }}" for="size-gg">GG</label>
-                            </div>
-                        </div>
-                    </div>
                 </form>
             </div>
             <!-- Produtos -->
@@ -157,11 +88,8 @@
                     <div class="d-flex align-items-center">
                         <label for="sort" class="me-2 mt-1">Ordenar por:</label>
                         <select id="sort" class="sort-select border-0 p-1">
-                            <option value="relevance">Relevância</option>
                             <option value="price_asc">Menor preço</option>
                             <option value="price_desc">Maior preço</option>
-                            <option value="best_sellers">Mais vendidos</option>
-                            <option value="new_arrivals">Lançamentos</option>
                         </select>
                     </div>
                 </div>

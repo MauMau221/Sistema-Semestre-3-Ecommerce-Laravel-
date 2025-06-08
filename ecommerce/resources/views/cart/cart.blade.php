@@ -120,19 +120,6 @@
                         <input type="hidden" id="frete-calculado" value="0">
                     </div>
 
-                    <!-- Seção de cupom de desconto -->
-                    <div class="mb-5">
-                        <h2 class="section-title">CUPOM DE DESCONTO</h2>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Digite seu cupom">
-                                    <button class="btn btn-dark" type="button">APLICAR</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
                 <!-- Coluna da direita - Resumo do pedido -->

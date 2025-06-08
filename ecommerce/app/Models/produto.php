@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Estoque;
 use App\Models\Favorite;
+use App\Models\OrdemPedido;
 
 class Produto extends Model
 {
@@ -30,6 +31,22 @@ class Produto extends Model
     public function estoque()
     {
         return $this->hasMany(Estoque::class);
+    }
+    
+    public function ordemPedidos()
+    {
+        return $this->hasMany(OrdemPedido::class, 'produto_id');
+    }
+
+    /**
+     * Get the available stock for the product.
+     */
+    public function getAvailableStockAttribute() // getAvailableStockAttribute é um atributo virtual que retorna o estoque disponível do produto
+    {
+        $totalStock = $this->estoque()->sum('quantidade');
+        $totalSold = $this->ordemPedidos()->sum('quantidade');
+
+        return $totalStock - $totalSold;
     }
     
     /**
@@ -60,5 +77,23 @@ class Produto extends Model
             // Se ocorrer algum erro (tabela não existe, etc.), retorna false
             return false;
         }
+    }
+
+    /**
+     * Get the available stock for the product by color and size.
+     */
+    public function qtdDisponivel($cor, $tamanho)
+    {
+        $estoque = $this->estoque()
+                           ->where('cor', $cor)
+                           ->where('tamanho', $tamanho)
+                           ->sum('quantidade');
+
+        $vendido = $this->ordemPedidos()
+                          ->where('cor', $cor)
+                          ->where('tamanho', $tamanho)
+                          ->sum('quantidade');
+
+        return $estoque - $vendido;
     }
 }

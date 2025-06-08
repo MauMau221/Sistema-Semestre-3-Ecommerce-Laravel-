@@ -3,7 +3,7 @@
     width: 320px;
     border-radius: 0.75rem;
     padding: 2rem;
-    color: rgb(188, 186, 186);
+    color: rgb(0, 0, 0);
   }
   
   .login .title {
@@ -11,6 +11,10 @@
     font-size: 1.5rem;
     line-height: 2rem;
     font-weight: 700;
+  }
+
+  .form-login {
+    background-color: #f8f9fa;
   }
   
   .login .form {

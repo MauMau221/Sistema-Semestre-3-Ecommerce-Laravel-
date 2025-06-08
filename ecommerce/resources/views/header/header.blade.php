@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
-                    <div>Frete grátis para compras acima de R$ 299,99</div>
+                    <div>Frete grátis para compras em SP</div>
                 </div>
                 <div class="col-md-4 text-end">
                     <div>

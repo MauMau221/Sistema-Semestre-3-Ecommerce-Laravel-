@@ -33,12 +33,12 @@ class ProductController extends Controller
 
         // Busca produtos relacionados da mesma categoria
         $relacionados = Produto::where('categoria_id', $produtoCat)
-                             ->where('id', '!=', $id)
-                             ->get();
+            ->where('id', '!=', $id)
+            ->get();
 
         return view('product.show', [
-            'produto' => $produto, 
-            'relacionados' => $relacionados, 
+            'produto' => $produto,
+            'relacionados' => $relacionados,
             'nomeCat' => $nomeCat
         ]);
     }
@@ -63,7 +63,7 @@ class ProductController extends Controller
 
         // Filtro de Preço: Permite selecionar faixas de preço específicas
         if ($request->has('preco')) {
-            $query->where(function($q) use ($request) {
+            $query->where(function ($q) use ($request) {
                 foreach ($request->preco as $faixaPreco) {
                     switch ($faixaPreco) {
                         case '0-150':
@@ -85,14 +85,14 @@ class ProductController extends Controller
 
         // Filtro de Cor: Busca produtos com as cores selecionadas no estoque
         if ($request->has('cor')) {
-            $query->whereHas('estoque', function($q) use ($request) {
+            $query->whereHas('estoque', function ($q) use ($request) {
                 $q->whereIn('cor', $request->cor);
             });
         }
 
         // Filtro de Tamanho: Busca produtos com os tamanhos selecionados no estoque
         if ($request->has('tamanho')) {
-            $query->whereHas('estoque', function($q) use ($request) {
+            $query->whereHas('estoque', function ($q) use ($request) {
                 $q->whereIn('tamanho', $request->tamanho);
             });
         }
@@ -148,14 +148,12 @@ class ProductController extends Controller
     // Método para verificar disponibilidade de estoque
     public function verificarEstoque(Request $request, $id)
     {
-        $produto = Produto::findOrFail($id);
-        $estoque = $produto->estoque()
-            ->where('cor', $request->cor)
-            ->where('tamanho', $request->tamanho)
-            ->first();
+
+        $produto = Produto::find($id);
+        $estoqueDisponivel = $produto->qtdDisponivel($request->cor, $request->tamanho); // Acessa o atributo calculado
 
         return response()->json([
-            'quantidade' => $estoque ? $estoque->quantidade : 0
+            'quantidade' => $estoqueDisponivel ? $estoqueDisponivel : 0
         ]);
     }
 }
