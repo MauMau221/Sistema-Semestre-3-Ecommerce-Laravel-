@@ -97,9 +97,6 @@
                             @error('tamanho')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                            <div class="mt-2">
-                                <a href="#" class="text-decoration-none text-dark">Guia de tamanhos</a>
-                            </div>
                         </div>
 
                         <div class="mb-4">

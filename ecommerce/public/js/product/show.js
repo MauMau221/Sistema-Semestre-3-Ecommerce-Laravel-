@@ -27,10 +27,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     estoqueAtual = data.quantidade;
                     estoqueDisponivel.textContent = estoqueAtual;
                     quantidadeInput.max = estoqueAtual;
-                    
-                    // Ajusta a quantidade se necessário
-                    if (parseInt(quantidadeInput.value) > estoqueAtual) {
-                        quantidadeInput.value = estoqueAtual > 0 ? estoqueAtual : 1;
+
+                    if (estoqueAtual <= 0) {
+                        quantidadeInput.value = 0;
+                        quantidadeInput.disabled = true;
+                        addToCartBtn.disabled = true;
+                        addToCartBtn.style.backgroundColor = '#ccc';
+                        addToCartBtn.style.cursor = 'not-allowed';
+                    } else {
+                        addToCartBtn.disabled = false;
+                        addToCartBtn.style.backgroundColor = '#000';
+                        addToCartBtn.style.cursor = 'pointer';
+                        quantidadeInput.value = 1;
+                        quantidadeInput.disabled = false;
                     }
                 });
         } else {
