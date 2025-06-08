@@ -39,17 +39,6 @@ class Produto extends Model
     }
 
     /**
-     * Get the available stock for the product.
-     */
-    public function getAvailableStockAttribute() // getAvailableStockAttribute é um atributo virtual que retorna o estoque disponível do produto
-    {
-        $totalStock = $this->estoque()->sum('quantidade');
-        $totalSold = $this->ordemPedidos()->sum('quantidade');
-
-        return $totalStock - $totalSold;
-    }
-    
-    /**
      * Get the users who favorited this product.
      */
     public function favoritedBy()
