@@ -37,60 +37,61 @@
                             <h4 class="text-center">Sua sacola esta vazia!</h4>
                         @endif
                         @foreach ($cart as $produto)
-                            <form action="/cart/remove" method="POST" class="cart-item-form">
-                                @csrf
-                                <input type="hidden" name="produto_id" value="{{ $produto['id'] }}">
-                                <div class="cart-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-3 col-md-2">
-                                            @php
-                                                $imagem = "/image/cards/{$produto['categoria']}/{$produto['categoria']}{$produto['id']}.jpg";
-                                            @endphp
-                                            <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}"
-                                                class="product-thumbnail img-fluid">
-                                        </div>
-                                        <div class="col-9 col-md-4">
-                                            <h5 class="mb-1">{{ $produto['nome'] }}</h5>
-                                            <p class="text-muted mb-1">
-                                                Tamanho: {{ $produto['tamanho'] ?? 'Não informado' }} |
-                                                Cor: {{ $produto['cor'] ?? 'Não informada' }}
-                                            </p>
-                                            <p class="text-muted mb-0">Código: #{{ $produto['id'] }}</p>
-                                        </div>
-                                        <div class="col-6 col-md-3 mt-3 mt-md-0">
-                                            <form action="{{ route('cart.update') }}" method="POST"
-                                                class="update-cart-form">
-                                                @csrf
-                                                <input type="hidden" name="produto_id" value="{{ $produto['id'] }}">
-                                                <div class="quantity-selector">
-                                                    <button type="button" class="quantity-btn"
-                                                        onclick="btnDiminuirQtd(event)">-</button>
-                                                    <input type="text" name="quantidade" class="quantity-input"
-                                                        value="{{ $produto['quantidade'] }}"
-                                                        data-price="{{ $produto['preco'] }}"
-                                                        data-produto-id="{{ $produto['id'] }}">
-                                                    <button type="button" class="quantity-btn"
-                                                        onclick="btnAumentarQtd(event)">+</button>
-                                                </div>
-                                                <button type="submit"
-                                                    class="btn btn-sm btn-link text-dark mt-2">Atualizar</button>
-                                            </form>
-                                        </div>
-                                        <div class="col-6 col-md-3 mt-3 mt-md-0 text-end">
-                                            <div class="fw-bold mb-1 product-price" data-price="{{ $produto['preco'] }}">
-                                                R$ {{ number_format($produto['preco'], 2, ',', '.') }}
-                                            </div>
-                                            <div class="fw-bold mb-1 subtotal-price"
-                                                data-produto-id="{{ $produto['id'] }}">
-                                                R$
-                                                {{ number_format($produto['preco'] * $produto['quantidade'], 2, ',', '.') }}
-                                            </div>
-                                            <button type="submit"
-                                                class="text-danger small btn-link-hover border-0 bg-transparent">Remover</button>
+                            <div class="cart-item">
+                                <div class="row align-items-center">
+                                    <div class="col-3 col-md-2">
+                                        @php
+                                            $imagem = "/image/cards/{$produto['categoria']}/{$produto['categoria']}{$produto['id']}.jpg";
+                                        @endphp
+                                        <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}"
+                                            class="product-thumbnail img-fluid">
+                                    </div>
+                                    <div class="col-9 col-md-4">
+                                        <h5 class="mb-1">{{ $produto['nome'] }}</h5>
+                                        <div class="d-flex gap-2 mb-2">
+                                            <small class="text-muted">
+                                                {{ $produto['tamanho'] ?? 'Tamanho não informado' }} |
+                                                {{ $produto['cor'] ?? 'Cor não informada' }}
+                                            </small>
                                         </div>
                                     </div>
+                                    <div class="col-6 col-md-3 mt-3 mt-md-0">
+                                        <form action="{{ route('cart.update') }}" method="POST"
+                                            class="update-cart-form">
+                                            @csrf
+                                            <input type="hidden" name="produto_id" value="{{ $produto['id'] }}">
+                                            <div class="quantity-selector">
+                                                <button type="button" class="quantity-btn"
+                                                    onclick="btnDiminuirQtd(event)">-</button>
+                                                <input type="text" name="quantidade" class="quantity-input"
+                                                    value="{{ $produto['quantidade'] }}"
+                                                    data-price="{{ $produto['preco'] }}"
+                                                    data-produto-id="{{ $produto['id'] }}">
+                                                <button type="button" class="quantity-btn"
+                                                    onclick="btnAumentarQtd(event)">+</button>
+                                            </div>
+                                            <button type="submit"
+                                                class="btn btn-sm btn-link text-dark mt-2">Atualizar</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6 col-md-3 mt-3 mt-md-0 text-end">
+                                        <div class="fw-bold mb-1 product-price" data-price="{{ $produto['preco'] }}">
+                                            R$ {{ number_format($produto['preco'], 2, ',', '.') }}
+                                        </div>
+                                        <div class="fw-bold mb-1 subtotal-price"
+                                            data-produto-id="{{ $produto['id'] }}">
+                                            R$
+                                            {{ number_format($produto['preco'] * $produto['quantidade'], 2, ',', '.') }}
+                                        </div>
+                                        <form action="/cart/remove" method="POST" class="d-inline">
+                                            @csrf
+                                            <input type="hidden" name="produto_id" value="{{ $produto['id'] }}">
+                                            <button type="submit"
+                                                class="text-danger small btn-link-hover border-0 bg-transparent">Remover</button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
                         @endforeach
                     </div>
 
@@ -208,6 +209,8 @@
             if (currentValue > 1) {
                 input.value = currentValue - 1;
                 updateCartTotals();
+                // Envia o formulário automaticamente
+                event.target.closest('form').submit();
             }
         }
 
@@ -215,6 +218,8 @@
             const input = event.target.parentElement.querySelector('.quantity-input');
             input.value = parseInt(input.value) + 1;
             updateCartTotals();
+            // Envia o formulário automaticamente
+            event.target.closest('form').submit();
         }
 
         function validarFrete(event) {

@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (estoqueAtual <= 0) {
                         quantidadeInput.value = 0;
                         quantidadeInput.disabled = true;
+                        estoqueDisponivel.textContent = '0';
                         addToCartBtn.disabled = true;
                         addToCartBtn.style.backgroundColor = '#ccc';
                         addToCartBtn.style.cursor = 'not-allowed';

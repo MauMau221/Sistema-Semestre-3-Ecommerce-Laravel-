@@ -43,7 +43,9 @@ class CartController extends Controller
                         'nome' => $produto->nome,
                         'preco' => $produto->preco,
                         'quantidade' => $item->quantidade,
-                        'categoria' => $produto->categoria->nome
+                        'categoria' => $produto->categoria->nome,
+                        'cor' => $item->cor,
+                        'tamanho' => $item->tamanho
                     ];
                 }
             }
@@ -56,6 +58,7 @@ class CartController extends Controller
         foreach ($cart as $id => $item) {
             $produto = Produto::with('categoria')->find($id);
             if ($produto) {
+                // Mantém os dados existentes e apenas adiciona a categoria
                 $cart[$id]['categoria'] = $produto->categoria->nome;
             }
             $subtotal = $item['preco'] * $item['quantidade'];
@@ -95,6 +98,8 @@ class CartController extends Controller
             }
 
             $cart[$produto->id]['quantidade'] = $novaQuantidade;
+            $cart[$produto->id]['cor'] = $request->cor;
+            $cart[$produto->id]['tamanho'] = $request->tamanho;
         } else {
             //Se não adiciona um item novo
             $cart[$produto->id] = [
@@ -113,7 +118,7 @@ class CartController extends Controller
 
         // Se o usuário estiver logado, salva o item no banco de dados
         if (Auth::check()) {
-            $cartItem = Cart::updateOrCreate(
+            Cart::updateOrCreate(
                 [
                     'user_id' => Auth::id(),
                     'produto_id' => $produto->id,
@@ -121,6 +126,8 @@ class CartController extends Controller
                 [
                     'quantidade' => $cart[$produto->id]['quantidade'],
                     'preco_unitario' => $produto->preco,
+                    'cor' => $request->cor,
+                    'tamanho' => $request->tamanho
                 ]
             );
         }
@@ -144,8 +151,8 @@ class CartController extends Controller
             if (!$this->estoqueService->verificarDisponibilidade(
                 $produto->id,
                 $request->quantidade,
-                $cart[$request->produto_id]['cor'],
-                $cart[$request->produto_id]['tamanho']
+                $cart[$request->produto_id]['cor'] ?? null,
+                $cart[$request->produto_id]['tamanho'] ?? null
             )) {
                 return redirect()->back()->with('error', 'Quantidade indisponível em estoque');
             }
@@ -188,7 +195,7 @@ class CartController extends Controller
     {
         $cart = Session::get('cart', []);
         $total = 0;
-        foreach ($cart as $id => $item) { //Traz os valores correspondente ao ID e coloca dentro e $item
+        foreach ($cart as $id => $item) { //Traz os valores correspondente ao ID e coloca dentro de $item
             $subtotal = $item['preco'] * $item['quantidade'];
 
             $total += $subtotal;
@@ -215,6 +222,7 @@ class CartController extends Controller
         foreach ($cart as $id => $item) {
             $produto = Produto::with('categoria')->find($id);
             if ($produto) {
+                // Mantém os dados existentes do item e apenas adiciona a categoria
                 $cart[$id]['categoria'] = $produto->categoria->nome;
             }
             $subtotal = $item['preco'] * $item['quantidade'];
@@ -270,14 +278,15 @@ class CartController extends Controller
         return view('cart.buy', compact('cart', 'total'));
     }
 
-    public function finalizar(Request $request)
+    public function finalizar()
     {
         $cart = Session::get('cart', []);
         $total = 0;
 
-        // Calcular o total
+        // Calcular o total usando os dados atualizados do carrinho
         foreach ($cart as $item) {
-            $total += $item['preco'] * $item['quantidade'];
+            $subtotal = $item['preco'] * $item['quantidade'];
+            $total += $subtotal;
         }
 
         try {
@@ -291,7 +300,7 @@ class CartController extends Controller
             $pedido->status_id = 1; // Status inicial (pendente)
             $pedido->save();
 
-            // Processar cada item do carrinho
+            // Processar cada item do carrinho usando os dados atualizados
             foreach ($cart as $id => $item) {
                 // Criar o item do pedido
                 OrdemPedido::create([
@@ -316,8 +325,13 @@ class CartController extends Controller
             // Finaliza a transação
             DB::commit();
 
-            // Limpa o carrinho
+            // Limpa o carrinho da sessão
             Session::forget('cart');
+
+            // Se o usuário estiver logado, limpa o carrinho do banco de dados
+            if (Auth::check()) {
+                Cart::where('user_id', Auth::id())->delete();
+            }
 
             return redirect()->route('user.orders')->with('success', 'Seu pedido foi realizado com sucesso! Você pode acompanhar o status pelo menu "Meus Pedidos".');
         } catch (\Exception $e) {

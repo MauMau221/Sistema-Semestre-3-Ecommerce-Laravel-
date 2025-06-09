@@ -18,6 +18,7 @@ class Produto extends Model
         'nome',
         'desc',
         'preco',
+        'desconto',
         'status',
         'url',
         'categoria_id',

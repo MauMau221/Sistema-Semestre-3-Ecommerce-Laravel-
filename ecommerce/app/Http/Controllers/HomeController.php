@@ -13,7 +13,7 @@ class HomeController extends Controller
         $produtosPorCategoria = [];
         
         // Lista de categorias que queremos exibir
-        $categorias = ['camisas', 'polos', 'camisetas', 'acessorios'];
+        $categorias = ['camisas', 'polos', 'camisetas', 'acessorios', 'blusas'];
         
         foreach ($categorias as $nomeCategoria) {
             $categoria = Categoria::where('nome', $nomeCategoria)->first();
@@ -35,12 +35,17 @@ class HomeController extends Controller
             }
         }
         
-        // Caso não encontre categorias
-        $todosProdutos = Produto::where('status', true)->get();
+        
+        // Buscar produtos com desconto para a aba de ofertas
+        $produtosComDesconto = Produto::where('desconto', '>', 0)
+            ->where('status', true)
+            ->orderBy('desconto', 'desc')
+            ->take(4)
+            ->get();
         
         return view('home', [
             'produtosPorCategoria' => $produtosPorCategoria,
-            'produtos' => $todosProdutos 
+            'produtosComDesconto' => $produtosComDesconto
         ]);
     }
 

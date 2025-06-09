@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-    @if (empty($produtos))
+    @if (empty($produtosComDesconto) || empty($produtosPorCategoria))
         <div class="alert alert-danger mt-0">
             <p>Itens não encontrados</p>
         </div>
@@ -168,7 +168,39 @@
                         <p class="text-center">Conteúdo para Mais Vendidos em breve.</p>
                     </div>
                     <div class="tab-pane fade" id="ofertas" role="tabpanel" aria-labelledby="ofertas-tab">
-                        <p class="text-center">Conteúdo para Ofertas em breve.</p>
+                        <div class="row">
+                            @if($produtosComDesconto->isNotEmpty())
+                                @foreach($produtosComDesconto as $produto)
+                                    <div class="col-md-3 col-sm-6 mb-4">
+                                        <div class="card product-card">
+                                            <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
+                                                @php
+                                                    $imagem = "image/cards/{$produto->categoria->nome}/{$produto->categoria->nome}{$produto['id']}.jpg";
+                                                @endphp
+                                                <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}" class="card-img-top">
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $produto['nome'] }}</h5>
+                                                <p class="card-text">
+                                                    @if($produto['desconto'] > 0)
+                                                        <s>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</s>
+                                                        <strong>R${{ number_format(floatval($produto['preco']) - floatval($produto['desconto']), 2, ',', '.') }}</strong>
+                                                        <span class="badge ms-2">-{{ number_format(($produto['desconto'] / $produto['preco']) * 100, 0) }}%</span>
+                                                    @else
+                                                        <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
+                                                    @endif
+                                                </p>
+                                                <a href="{{ route('product.show', $produto['id']) }}" class="btn btn-outline-dark w-100">Ver Produto</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="col-12">
+                                    <p class="text-center">Nenhum produto em oferta no momento.</p>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </section>
@@ -247,8 +279,13 @@
                                             <div class="card-body d-flex flex-column">
                                                 <h5 class="card-title">{{ $produto['nome'] }}</h5>
                                                 <p class="card-text">
-                                                    <s>R${{ number_format(floatval($produto['preco']) + 99.99, 2, ',', '.') }}</s>
-                                                    <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
+                                                    @if($produto['desconto'] > 0)
+                                                        <s>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</s>
+                                                        <strong>R${{ number_format(floatval($produto['preco']) - floatval($produto['desconto']), 2, ',', '.') }}</strong>
+                                                        <span class="badge ms-2">-{{ number_format(($produto['desconto'] / $produto['preco']) * 100, 0) }}%</span>
+                                                    @else
+                                                        <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
+                                                    @endif
                                                 </p>
 
                                                 <a href="{{ route('product.show', $produto['id']) }}"

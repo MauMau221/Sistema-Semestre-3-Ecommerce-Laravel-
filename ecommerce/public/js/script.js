@@ -55,44 +55,6 @@ function buscarCep(event) {
         const shippingPriceElement = document.getElementById('shipping-price');
         const freteCalculado = document.getElementById('frete-calculado');
         
-        if (data.uf === 'SP') {
-          // Atualiza o preço do frete para SP
-          if (shippingPriceElement) {
-            shippingPriceElement.textContent = 'R$ 25,90';
-          }
-          
-          // Atualiza as opções de frete
-          if (shippingOptionsContent) {
-            shippingOptionsContent.innerHTML = `
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="shippingOption" id="standardShipping" checked>
-                <label class="form-check-label d-flex justify-content-between w-100" for="standardShipping">
-                  <span>Entrega para São Paulo</span>
-                  <span>R$ 25,90</span>
-                </label>
-              </div>
-            `;
-          }
-        } else {
-          // Atualiza o preço do frete para outros estados
-          if (shippingPriceElement) {
-            shippingPriceElement.textContent = 'R$ 48,90';
-          }
-          
-          // Atualiza as opções de frete
-          if (shippingOptionsContent) {
-            shippingOptionsContent.innerHTML = `
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="shippingOption" id="standardShipping" checked>
-                <label class="form-check-label d-flex justify-content-between w-100" for="standardShipping">
-                  <span>Entrega para outras regiões fora de São Paulo</span>
-                  <span>R$ 48,90</span>
-                </label>
-              </div>
-            `;
-          }
-        }
-        
         // Preenche os campos do endereço se existirem
         const campos = ['logradouro', 'bairro', 'localidade', 'uf'];
         campos.forEach(campo => {
@@ -111,18 +73,53 @@ function buscarCep(event) {
         // Torna o input válido
         input.setCustomValidity('');
         
-        // Marca o frete como calculado
-        if (freteCalculado) {
-          freteCalculado.value = '1';
-        }
-        
-        // Mostra as opções de frete
-        if (shippingOptions) {
+        // Se estiver na página do carrinho, atualiza as opções de frete
+        if (shippingOptions && shippingOptionsContent) {
+          if (data.uf === 'SP') {
+            // Atualiza o preço do frete para SP
+            if (shippingPriceElement) {
+              shippingPriceElement.textContent = 'R$ 0,00';
+            }
+            
+            // Atualiza as opções de frete
+            shippingOptionsContent.innerHTML = `
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="shippingOption" id="standardShipping" checked>
+                <label class="form-check-label d-flex justify-content-between w-100" for="standardShipping">
+                  <span>Entrega para São Paulo</span>
+                  <span>R$ 0,00</span>
+                </label>
+              </div>
+            `;
+          } else {
+            // Atualiza o preço do frete para outros estados
+            if (shippingPriceElement) {
+              shippingPriceElement.textContent = 'R$ 48,90';
+            }
+            
+            // Atualiza as opções de frete
+            shippingOptionsContent.innerHTML = `
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="shippingOption" id="standardShipping" checked>
+                <label class="form-check-label d-flex justify-content-between w-100" for="standardShipping">
+                  <span>Entrega para outras regiões fora de São Paulo</span>
+                  <span>R$ 48,90</span>
+                </label>
+              </div>
+            `;
+          }
+          
+          // Marca o frete como calculado
+          if (freteCalculado) {
+            freteCalculado.value = '1';
+          }
+          
+          // Mostra as opções de frete
           shippingOptions.classList.remove('d-none');
+          
+          // Atualiza o total
+          updateCartTotals();
         }
-        
-        // Atualiza o total
-        updateCartTotals();
       }
     })
     .catch(error => {

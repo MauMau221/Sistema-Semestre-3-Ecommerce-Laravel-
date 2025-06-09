@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('produto_id');
             $table->integer('quantidade')->default(1);
             $table->decimal('preco_unitario', 10, 2);
+            $table->string('cor')->nullable();
+            $table->string('tamanho')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

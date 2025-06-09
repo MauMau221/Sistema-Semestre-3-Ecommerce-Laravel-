@@ -88,8 +88,10 @@
                     <div class="d-flex align-items-center">
                         <label for="sort" class="me-2 mt-1">Ordenar por:</label>
                         <select id="sort" class="sort-select border-0 p-1">
+                            <option value="#">Novidades</option>
                             <option value="price_asc">Menor preço</option>
                             <option value="price_desc">Maior preço</option>
+                            <option value="discount">Desconto</option>
                         </select>
                     </div>
                 </div>
@@ -108,8 +110,13 @@
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">{{ $produto['nome'] }}</h5>
                                     <p class="card-text">
-                                        <s>R${{ number_format(floatval($produto['preco']) + 99.99, 2, ',', '.') }}</s>
-                                        <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
+                                        @if($produto['desconto'] > 0)
+                                            <s>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</s>
+                                            <strong>R${{ number_format(floatval($produto['preco']) - floatval($produto['desconto']), 2, ',', '.') }}</strong>
+                                            <span class="badge ms-2">-{{ number_format(($produto['desconto'] / $produto['preco']) * 100, 0) }}%</span>
+                                        @else
+                                            <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
+                                        @endif
                                     </p>
                                     <a href="{{ route('product.show', $produto['id']) }}"
                                         class="btn btn-outline-dark w-100 mt-auto">Ver Produto</a>

@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             CalcasSeeder::class,
             CalcadosSeeder::class,
             AcessoriosSeeder::class,
+            BlusasSeeder::class,
             // Execute o ImagemProdutoSeeder após os outros seeders que criam produtos
             ImagemProdutoSeeder::class,
             // Processamento de imagens para as novas categorias

@@ -105,13 +105,10 @@ class ProductController extends Controller
                 case 'price_desc':
                     $query->orderBy('preco', 'desc');
                     break;
-                case 'new_arrivals':
-                    $query->orderBy('created_at', 'desc');
+                case 'discount':
+                    $query->where('desconto', '>', 0)
+                          ->orderBy('desconto', 'desc');
                     break;
-                // Adicione outras opções de ordenação aqui, como 'mais_vendidos'
-                // case 'best_sellers':
-                //     $query->orderBy('vendas', 'desc');
-                //     break;
                 default:
                     // Por padrão, pode-se ordenar por relevância ou outro critério
                     break;

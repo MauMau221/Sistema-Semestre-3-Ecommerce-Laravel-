@@ -41,9 +41,15 @@
                 <div class="col-md-6 product-details">
                     <h1 class="product-title">{{ $produto['nome'] }}</h1>
                     <div class="mb-3">
-                        <span class="product-price">R$ {{ number_format($produto['preco'], 2, ',', '.') }}</span>
-                        <div class="product-installments">em até 6x de R$
-                            {{ number_format($produto['preco'] / 6, 2, ',', '.') }} sem juros</div>
+                        @if($produto['desconto'] > 0)
+                            <s class="text-muted">R$ {{ number_format($produto['preco'], 2, ',', '.') }}</s>
+                            <span class="product-price">R$ {{ number_format($produto['preco'] - $produto['desconto'], 2, ',', '.') }}</span>
+                            <span class="badge ms-2">-{{ number_format(($produto['desconto'] / $produto['preco']) * 100, 0) }}%</span>
+                            <div class="product-installments">em até 6x de R$ {{ number_format(($produto['preco'] - $produto['desconto']) / 6, 2, ',', '.') }} sem juros</div>
+                        @else
+                            <span class="product-price">R$ {{ number_format($produto['preco'], 2, ',', '.') }}</span>
+                            <div class="product-installments">em até 6x de R$ {{ number_format($produto['preco'] / 6, 2, ',', '.') }} sem juros</div>
+                        @endif
                     </div>
 
                     @if (session('error'))

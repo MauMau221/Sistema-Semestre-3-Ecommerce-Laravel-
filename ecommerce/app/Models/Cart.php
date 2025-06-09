@@ -13,6 +13,8 @@ class Cart extends Model
         'produto_id',
         'quantidade',
         'preco_unitario',
+        'cor',
+        'tamanho'
     ];
 
     public function produtos()
