@@ -43,9 +43,21 @@ class HomeController extends Controller
             ->take(4)
             ->get();
         
+        // Buscar produtos da categoria jaquetas para a aba de novidades
+        $categoriaJaquetas = Categoria::where('nome', 'jaquetas')->first();
+        $produtosJaquetas = [];
+        
+        if ($categoriaJaquetas) {
+            $produtosJaquetas = Produto::where('categoria_id', $categoriaJaquetas->id)
+                ->where('status', true)
+                ->limit(4)
+                ->get();
+        }
+        
         return view('home', [
             'produtosPorCategoria' => $produtosPorCategoria,
-            'produtosComDesconto' => $produtosComDesconto
+            'produtosComDesconto' => $produtosComDesconto,
+            'produtosJaquetas' => $produtosJaquetas
         ]);
     }
 

@@ -66,131 +66,89 @@
                 <h2 class="text-center mb-4">Recomendações da Semana</h2>
                 <ul class="nav nav-tabs justify-content-center mb-4" id="recommendationsTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="novidades-tab" data-bs-toggle="tab" data-bs-target="#novidades"
+                        <button class="nav-link active home-recommendations" id="novidades-tab" data-bs-toggle="tab" data-bs-target="#novidades"
                             type="button" role="tab" aria-controls="novidades" aria-selected="true">NOVIDADES</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="ofertas-tab" data-bs-toggle="tab" data-bs-target="#ofertas"
+                            type="button" role="tab" aria-controls="ofertas" aria-selected="false">OFERTAS</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="mais-vendidos-tab" data-bs-toggle="tab" data-bs-target="#mais-vendidos"
                             type="button" role="tab" aria-controls="mais-vendidos" aria-selected="false">MAIS
                             VENDIDOS</button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="ofertas-tab" data-bs-toggle="tab" data-bs-target="#ofertas"
-                            type="button" role="tab" aria-controls="ofertas" aria-selected="false">OFERTAS</button>
-                    </li>
                 </ul>
 
                 <div class="tab-content" id="recommendationsTabContent">
                     <div class="tab-pane fade show active" id="novidades" role="tabpanel" aria-labelledby="novidades-tab">
                         <div class="row">
-                            <div class="col-md-3 col-sm-6 mb-4">
-                                <div class="card product-card">
-                                    <img src="/image/cards/jaquetas/jaquetas22.jpg" class="card-img-top"
-                                        alt="Produto Novidade 1">
-                                    <div class="card-body">
-                                        <p class="text-muted small">ARAMIS</p>
-                                        <h5 class="card-title">JAQUETA NYLON DUPLA FACE PUFFER PRETO COM VERDE</h5>
-                                        <p class="card-text"><strong>R$ 1.499,90</strong></p>
-                                        <p class="card-text small">Tamanhos Disponíveis: P, M, G, GG, XGG</p>
-                                        <a href="#"
-                                            class="btn btn-outline-dark w-100 stretched-link visually-hidden">Ver
-                                            Produto</a>
-                                        <div class="cart-icon-hover position-absolute bottom-0 end-0 p-2 bg-white rounded-circle"
-                                            style="opacity:0; transition: opacity 0.3s ease;">
-                                            <i class="fa-solid fa-bag-shopping fa-lg"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6 mb-4">
-                                <div class="card product-card">
-                                    <img src="image/cards/jaquetas/jaquetas23.jpg" class="card-img-top"
-                                        alt="Produto Novidade 2">
-                                    <div class="card-body">
-                                        <p class="text-muted small">ARAMIS</p>
-                                        <h5 class="card-title">JAQUETA PV MESCLA GRAFITE MESCLA</h5>
-                                        <p class="card-text"><strong>R$ 1.699,90</strong></p>
-                                        <p class="card-text small">Tamanhos Disponíveis: P, M, G, GG, XGG</p>
-                                        <a href="#"
-                                            class="btn btn-outline-dark w-100 stretched-link visually-hidden">Ver
-                                            Produto</a>
-                                        <div class="cart-icon-hover position-absolute bottom-0 end-0 p-2 bg-white rounded-circle"
-                                            style="opacity:0; transition: opacity 0.3s ease;">
-                                            <i class="fa-solid fa-bag-shopping fa-lg"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6 mb-4">
-                                <div class="card product-card">
-                                    <img src="image/cards/jaquetas/jaquetas20.jpg" class="card-img-top"
-                                        alt="Produto Novidade 3">
-                                    <div class="card-body">
-                                        <p class="text-muted small">ARAMIS</p>
-                                        <h5 class="card-title">JAQUETA BOMBER COURO SPECIAL EDITION PRETO</h5>
-                                        <p class="card-text"><strong>R$ 4.999,90</strong></p>
-                                        <p class="card-text small">Tamanhos Disponíveis: P, M, G, GG</p>
-                                        <a href="#"
-                                            class="btn btn-outline-dark w-100 stretched-link visually-hidden">Ver
-                                            Produto</a>
-                                        <div class="cart-icon-hover position-absolute bottom-0 end-0 p-2 bg-white rounded-circle"
-                                            style="opacity:0; transition: opacity 0.3s ease;">
-                                            <i class="fa-solid fa-bag-shopping fa-lg"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6 mb-4">
-                                <div class="card product-card">
-                                    <img src="image/cards/jaquetas/jaquetas21.jpg" class="card-img-top"
-                                        alt="Produto Novidade 4">
-                                    <div class="card-body">
-                                        <p class="text-muted small">ARAMIS</p>
-                                        <h5 class="card-title">JAQUETA CHAMOUIS COM BOTÕES CAFÉ</h5>
-                                        <p class="card-text"><strong>R$ 4.999,90</strong></p>
-                                        <p class="card-text small">Tamanhos Disponíveis: M, G, GG</p>
-                                        <a href="#"
-                                            class="btn btn-outline-dark w-100 stretched-link visually-hidden">Ver
-                                            Produto</a>
-                                        <div class="cart-icon-hover position-absolute bottom-0 end-0 p-2 bg-white rounded-circle"
-                                            style="opacity:0; transition: opacity 0.3s ease;">
-                                            <i class="fa-solid fa-bag-shopping fa-lg"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="mais-vendidos" role="tabpanel" aria-labelledby="mais-vendidos-tab">
-                        <p class="text-center">Conteúdo para Mais Vendidos em breve.</p>
-                    </div>
-                    <div class="tab-pane fade" id="ofertas" role="tabpanel" aria-labelledby="ofertas-tab">
-                        <div class="row">
-                            @if($produtosComDesconto->isNotEmpty())
-                                @foreach($produtosComDesconto as $produto)
+                            @if ($produtosJaquetas->isNotEmpty())
+                                @foreach ($produtosJaquetas as $produto)
                                     <div class="col-md-3 col-sm-6 mb-4">
                                         <div class="card product-card">
-                                            <a href="{{ route('product.show', $produto['id']) }}" class="text-decoration-none">
+                                            <a href="{{ route('product.show', $produto['id']) }}"
+                                                class="text-decoration-none">
                                                 @php
-                                                    $imagem = "image/cards/{$produto->categoria->nome}/{$produto->categoria->nome}{$produto['id']}.jpg";
+                                                    $imagem = "image/cards/jaquetas/jaquetas{$produto['id']}.jpg";
                                                 @endphp
-                                                <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}" class="card-img-top">
+                                                <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}"
+                                                    class="card-img-top">
                                             </a>
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ $produto['nome'] }}</h5>
                                                 <p class="card-text">
-                                                    @if($produto['desconto'] > 0)
+                                                    @if ($produto['desconto'] > 0)
                                                         <s>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</s>
                                                         <strong>R${{ number_format(floatval($produto['preco']) - floatval($produto['desconto']), 2, ',', '.') }}</strong>
-                                                        <span class="badge ms-2">-{{ number_format(($produto['desconto'] / $produto['preco']) * 100, 0) }}%</span>
+                                                        <span
+                                                            class="badge ms-2">-{{ number_format(($produto['desconto'] / $produto['preco']) * 100, 0) }}%</span>
                                                     @else
                                                         <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
                                                     @endif
                                                 </p>
-                                                <a href="{{ route('product.show', $produto['id']) }}" class="btn btn-outline-dark w-100">Ver Produto</a>
+                                                <a href="{{ route('product.show', $produto['id']) }}"
+                                                    class="btn btn-outline-dark w-100">Ver Produto</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="col-12">
+                                    <p class="text-center">Nenhum produto disponível no momento.</p>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="ofertas" role="tabpanel" aria-labelledby="ofertas-tab">
+                        <div class="row">
+                            @if ($produtosComDesconto->isNotEmpty())
+                                @foreach ($produtosComDesconto as $produto)
+                                    <div class="col-md-3 col-sm-6 mb-4">
+                                        <div class="card product-card">
+                                            <a href="{{ route('product.show', $produto['id']) }}"
+                                                class="text-decoration-none">
+                                                @php
+                                                    $imagem = "image/cards/{$produto->categoria->nome}/{$produto->categoria->nome}{$produto['id']}.jpg";
+                                                @endphp
+                                                <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}"
+                                                    class="card-img-top">
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $produto['nome'] }}</h5>
+                                                <p class="card-text">
+                                                    @if ($produto['desconto'] > 0)
+                                                        <s>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</s>
+                                                        <strong>R${{ number_format(floatval($produto['preco']) - floatval($produto['desconto']), 2, ',', '.') }}</strong>
+                                                        <span
+                                                            class="badge ms-2">-{{ number_format(($produto['desconto'] / $produto['preco']) * 100, 0) }}%</span>
+                                                    @else
+                                                        <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
+                                                    @endif
+                                                </p>
+                                                <a href="{{ route('product.show', $produto['id']) }}"
+                                                    class="btn btn-outline-dark w-100">Ver Produto</a>
                                             </div>
                                         </div>
                                     </div>
@@ -201,6 +159,10 @@
                                 </div>
                             @endif
                         </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="mais-vendidos" role="tabpanel" aria-labelledby="mais-vendidos-tab">
+                        <p class="text-center">Conteúdo para Mais Vendidos em breve.</p>
                     </div>
                 </div>
             </section>
@@ -279,10 +241,11 @@
                                             <div class="card-body d-flex flex-column">
                                                 <h5 class="card-title">{{ $produto['nome'] }}</h5>
                                                 <p class="card-text">
-                                                    @if($produto['desconto'] > 0)
+                                                    @if ($produto['desconto'] > 0)
                                                         <s>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</s>
                                                         <strong>R${{ number_format(floatval($produto['preco']) - floatval($produto['desconto']), 2, ',', '.') }}</strong>
-                                                        <span class="badge ms-2">-{{ number_format(($produto['desconto'] / $produto['preco']) * 100, 0) }}%</span>
+                                                        <span
+                                                            class="badge ms-2">-{{ number_format(($produto['desconto'] / $produto['preco']) * 100, 0) }}%</span>
                                                     @else
                                                         <strong>R${{ number_format(floatval($produto['preco']), 2, ',', '.') }}</strong>
                                                     @endif
