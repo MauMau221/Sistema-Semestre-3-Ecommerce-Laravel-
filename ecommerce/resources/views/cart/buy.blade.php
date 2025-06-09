@@ -177,7 +177,7 @@
                         </div>
                         <div class="summary-item">
                             <span>Frete</span>
-                            <span>R$ 25,90</span>
+                            <span>R$ 0,00</span>
                         </div>
                         <div class="summary-item">
                             <span>Desconto</span>

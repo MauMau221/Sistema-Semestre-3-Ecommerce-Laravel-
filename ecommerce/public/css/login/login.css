@@ -109,9 +109,10 @@
   }
   
   .login .social-icons .icon svg {
+    margin-bottom: 20%;
     height: 1.25rem;
     width: 1.25rem;
-    fill: #fff;
+    fill: #000000;
   }
   
   .login .signup {
@@ -121,8 +122,8 @@
   }
 
   .signup a:hover {
-    color: white;
-    text-shadow: 2px 2px black;
+    color: rgb(0, 0, 0);
+    text-shadow: 2px 2px rgb(148, 137, 137);
 
   }
   
