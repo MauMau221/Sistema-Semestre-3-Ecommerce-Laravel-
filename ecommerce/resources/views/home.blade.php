@@ -131,9 +131,9 @@
                                                 class="text-decoration-none">
                                                 @php
                                                     $imagem = "image/cards/{$produto->categoria->nome}/{$produto->categoria->nome}{$produto['id']}.jpg";
-                                                @endphp
+                                                    @endphp
                                                 <img src="{{ asset($imagem) }}" alt="{{ $produto['nome'] }}"
-                                                    class="card-img-top">
+                                                class="card-img-top">
                                             </a>
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ $produto['nome'] }}</h5>
@@ -229,11 +229,8 @@
                                     <div class="swiper-slide">
                                         <div class="card product-card h-100">
                                             @php
-                                                $imagemProduto = "image/cards/{$dados['nome']}/{$dados['nome']}{$produto['id']}.jpg";
-                                                $imagemPadrao = 'image/cards/image' . rand(1, 5) . '.png';
-                                                $imagem = file_exists(public_path($imagemProduto))
-                                                    ? $imagemProduto
-                                                    : $imagemPadrao;
+                                                $imagem = "image/cards/{$dados['nome']}/{$dados['nome']}{$produto['id']}.jpg";
+                                                dump($imagem);
                                             @endphp
                                             <img src="{{ asset($imagem) }}" class="card-img-top"
                                                 alt="{{ $produto['nome'] }}">
