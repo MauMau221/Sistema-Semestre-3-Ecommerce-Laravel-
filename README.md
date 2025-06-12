@@ -32,9 +32,7 @@ composer require google/apiclient
 php artisan serve <br>
 
 - Comandos para gerar dados fictícios: <br>  
-php artisan db:seed --class=CategoriasSeeder <br>  
-php artisan db:seed --class=ProdutosSeeder <br>  
-
+php artisan db:seed <br>  
 ---------------------------------------------
 
 Base do site https://www.aramis.com.br/casual-15-off
